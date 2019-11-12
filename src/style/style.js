@@ -12,7 +12,7 @@ import Light from './light';
 import LineAtlas from '../render/line_atlas';
 import {pick, clone, extend, deepEqual, filterObject, mapObject} from '../util/util';
 import {getJSON, getReferrer, makeRequest, ResourceType} from '../util/ajax';
-import {isMapboxURL} from '../util/mapbox';
+import {isGoongURL} from '../util/mapbox';
 import browser from '../util/browser';
 import Dispatcher from '../util/dispatcher';
 import {validateStyle, emitValidationErrors as _emitValidationErrors} from './validate_style';
@@ -205,7 +205,7 @@ class Style extends Evented {
         this.fire(new Event('dataloading', {dataType: 'style'}));
 
         const validate = typeof options.validate === 'boolean' ?
-            options.validate : !isMapboxURL(url);
+            options.validate : !isGoongURL(url);
 
         url = this.map._requestManager.normalizeStyleURL(url, options.accessToken);
         const request = this.map._requestManager.transformRequest(url, ResourceType.Style);

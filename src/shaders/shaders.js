@@ -82,7 +82,7 @@ export const symbolSDF = compile(symbolSDFFrag, symbolSDFVert);
 // Expand #pragmas to #ifdefs.
 
 function compile(fragmentSource, vertexSource) {
-    const re = /#pragma mapbox: ([\w]+) ([\w]+) ([\w]+) ([\w]+)/g;
+    const re = /#pragma goong: ([\w]+) ([\w]+) ([\w]+) ([\w]+)/g;
 
     const fragmentPragmas = {};
 

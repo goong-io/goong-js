@@ -68,7 +68,7 @@ export class RequestManager {
     }
 
     normalizeStyleURL(url: string, accessToken?: string): string {
-        if (!isMapboxURL(url)) {
+        if (!isGoongURL(url)) {
             accessToken = this._customAccessToken || accessToken || config.ACCESS_TOKEN;
             return `${url}?api_key=${accessToken}`;
         }
@@ -78,7 +78,7 @@ export class RequestManager {
     }
 
     normalizeGlyphsURL(url: string, accessToken?: string): string {
-        if (!isMapboxURL(url)) {
+        if (!isGoongURL(url)) {
             return url;
         }
         const urlObject = parseUrl(url);
@@ -87,7 +87,7 @@ export class RequestManager {
     }
 
     normalizeSourceURL(url: string, accessToken?: string): string {
-        if (!isMapboxURL(url)) {
+        if (!isGoongURL(url)) {
             return url;
         }
         const urlObject = parseUrl(url);
@@ -100,12 +100,14 @@ export class RequestManager {
 
     normalizeSpriteURL(url: string, format: string, extension: string, accessToken?: string): string {
         const urlObject = parseUrl(url);
-        if (!isMapboxURL(url)) {
+        if (!isGoongURL(url)) {
+            console.log("ahihi");
             urlObject.path += `${format}${extension}`;
             // accessToken = this._customAccessToken || accessToken || config.ACCESS_TOKEN;
             // return `${url}?api_key=${accessToken}`;
             return formatUrl(urlObject);
         }
+        console.log("ahihi2");
         urlObject.path = `/styles/v1${urlObject.path}/sprite${format}${extension}`;
         return this._makeAPIURL(urlObject, this._customAccessToken || accessToken);
     }
@@ -115,7 +117,7 @@ export class RequestManager {
             this._createSkuToken();
         }
 
-        if (!sourceURL || !isMapboxURL(sourceURL)) return tileURL;
+        if (!sourceURL || !isGoongURL(sourceURL)) return tileURL;
 
         const urlObject = parseUrl(tileURL);
         const imageExtensionRe = /(\.(png|jpg)\d*)(?=$)/;
@@ -154,13 +156,13 @@ export class RequestManager {
         result += urlObject.path.replace(version, '');
 
         // Append the query string, minus the access token parameter.
-        const params = urlObject.params.filter(p => !p.match(/^access_token=/));
+        const params = urlObject.params.filter(p => !p.match(/^api_key=/));
         if (params.length) result += `?${params.join('&')}`;
         return result;
     }
 
     canonicalizeTileset(tileJSON: TileJSON, sourceURL: string) {
-        if (!isMapboxURL(sourceURL)) return tileJSON.tiles || [];
+        if (!isGoongURL(sourceURL)) return tileJSON.tiles || [];
         const canonical = [];
         for (const url of tileJSON.tiles) {
             const canonicalUrl = this.canonicalizeTileURL(url);
@@ -187,23 +189,23 @@ export class RequestManager {
         // if (accessToken[0] === 's')
         //     throw new Error(`Use a public access token (pk.*) with Goong JS, not a secret access token (sk.*). ${help}`);
 
-        urlObject.params = urlObject.params.filter((d) => d.indexOf('access_token') === -1);
-        urlObject.params.push(`access_token=${accessToken}`);
+        urlObject.params = urlObject.params.filter((d) => d.indexOf('api_key') === -1);
+        urlObject.params.push(`api_key=${accessToken}`);
         return formatUrl(urlObject);
     }
 }
 
-function isMapboxURL(url: string) {
-    return url.indexOf('mapbox:') === 0;
+function isGoongURL(url: string) {
+    return false;//return url.indexOf('goong.io') >= 0;
 }
 
-const mapboxHTTPURLRe = /^((https?:)?\/\/)?([^\/]+\.)?mapbox\.c(n|om)(\/|\?|$)/i;
-function isMapboxHTTPURL(url: string): boolean {
-    return mapboxHTTPURLRe.test(url);
+const goongHTTPURLRe = /^((https?:)?\/\/)?([^\/]+\.)?goong\.io(\/|\?|$)/i;
+function isGoongHTTPURL(url: string): boolean {
+    return goongHTTPURLRe.test(url);
 }
 
 function hasCacheDefeatingSku(url: string) {
-    return url.indexOf('sku=') > 0 && isMapboxHTTPURL(url);
+    return url.indexOf('sku=') > 0 && isGoongHTTPURL(url);
 }
 
 const urlRe = /^(\w+):\/\/([^/?]*)(\/[^?]+)?\??(.+)?/;
@@ -226,9 +228,9 @@ function formatUrl(obj: UrlObject): string {
     return `${obj.protocol}://${obj.authority}${obj.path}${params}`;
 }
 
-export { isMapboxURL, isMapboxHTTPURL, hasCacheDefeatingSku };
+export { isGoongURL, isGoongHTTPURL, hasCacheDefeatingSku };
 
-const telemEventKey = 'mapbox.eventData';
+const telemEventKey = 'goong.eventData';
 
 function parseAccessToken(accessToken: ?string) {
     if (!accessToken) {
@@ -327,7 +329,7 @@ class TelemetryEvent {
     postEvent(timestamp: number, additionalPayload: { [string]: any }, callback: (err: ?Error) => void, customAccessToken?: ?string) {
         if (!config.EVENTS_URL) return;
         const eventsUrlObject: UrlObject = parseUrl(config.EVENTS_URL);
-        eventsUrlObject.params.push(`access_token=${customAccessToken || config.ACCESS_TOKEN || ''}`);
+        eventsUrlObject.params.push(`api_key=${customAccessToken || config.ACCESS_TOKEN || ''}`);
 
         const payload: Object = {
             event: this.type,
@@ -379,7 +381,7 @@ postMapLoadEvent(tileUrls: Array < string >, mapId: number, skuToken: string, cu
     if (config.EVENTS_URL &&
         customAccessToken || config.ACCESS_TOKEN &&
         Array.isArray(tileUrls) &&
-        tileUrls.some(url => isMapboxURL(url) || isMapboxHTTPURL(url))) {
+        tileUrls.some(url => isGoongURL(url) || isGoongHTTPURL(url))) {
         this.queueRequest({ id: mapId, timestamp: Date.now() }, customAccessToken);
     }
 }
@@ -419,7 +421,7 @@ export class TurnstileEvent extends TelemetryEvent {
         if (config.EVENTS_URL &&
             config.ACCESS_TOKEN &&
             Array.isArray(tileUrls) &&
-            tileUrls.some(url => isMapboxURL(url) || isMapboxHTTPURL(url))) {
+            tileUrls.some(url => isGoongURL(url) || isGoongHTTPURL(url))) {
             this.queueRequest(Date.now(), customAccessToken);
         }
     }

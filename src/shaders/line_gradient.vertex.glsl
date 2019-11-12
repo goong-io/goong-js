@@ -23,18 +23,18 @@ varying vec2 v_width2;
 varying float v_gamma_scale;
 varying highp float v_lineprogress;
 
-#pragma mapbox: define lowp float blur
-#pragma mapbox: define lowp float opacity
-#pragma mapbox: define mediump float gapwidth
-#pragma mapbox: define lowp float offset
-#pragma mapbox: define mediump float width
+#pragma goong: define lowp float blur
+#pragma goong: define lowp float opacity
+#pragma goong: define mediump float gapwidth
+#pragma goong: define lowp float offset
+#pragma goong: define mediump float width
 
 void main() {
-    #pragma mapbox: initialize lowp float blur
-    #pragma mapbox: initialize lowp float opacity
-    #pragma mapbox: initialize mediump float gapwidth
-    #pragma mapbox: initialize lowp float offset
-    #pragma mapbox: initialize mediump float width
+    #pragma goong: initialize lowp float blur
+    #pragma goong: initialize lowp float opacity
+    #pragma goong: initialize mediump float gapwidth
+    #pragma goong: initialize lowp float offset
+    #pragma goong: initialize mediump float width
 
     // the distance over which the line edge fades out.
     // Retina devices need a smaller distance to avoid aliasing.

@@ -27,10 +27,10 @@ uniform vec2 u_texsize;
 varying vec2 v_tex;
 varying float v_fade_opacity;
 
-#pragma mapbox: define lowp float opacity
+#pragma goong: define lowp float opacity
 
 void main() {
-    #pragma mapbox: initialize lowp float opacity
+    #pragma goong: initialize lowp float opacity
 
     vec2 a_pos = a_pos_offset.xy;
     vec2 a_offset = a_pos_offset.zw;

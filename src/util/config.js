@@ -10,7 +10,7 @@ type Config = {|
 |};
 
 const config: Config = {
-    API_URL: 'https://api-ss1.goong.io',
+    API_URL: 'https://tiles.goong.io',
     get EVENTS_URL() {
             return 'https://goong.io';
     },

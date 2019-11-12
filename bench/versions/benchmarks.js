@@ -29,16 +29,10 @@ window.goongjsBenchmarks = window.goongjsBenchmarks || {};
 
 const version = process.env.BENCHMARK_VERSION;
 
-<<<<<<< HEAD
 function register(name, benchmark) {
     window.goongjsBenchmarks[name] = window.goongjsBenchmarks[name] || {};
     window.goongjsBenchmarks[name][version] = benchmark;
-=======
-function register(name, bench) {
-    window.mapboxglBenchmarks[name] = window.mapboxglBenchmarks[name] || {};
-    window.mapboxglBenchmarks[name][version] = bench;
->>>>>>> d5248e19aee3ddeee83a823b056c9ca49248e87a
-}
+
 
 const style = 'mapbox://styles/mapbox/streets-v10';
 const center = [-77.032194, 38.912753];

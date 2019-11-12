@@ -1,21 +1,21 @@
 varying vec3 v_data;
 
-#pragma mapbox: define highp vec4 color
-#pragma mapbox: define mediump float radius
-#pragma mapbox: define lowp float blur
-#pragma mapbox: define lowp float opacity
-#pragma mapbox: define highp vec4 stroke_color
-#pragma mapbox: define mediump float stroke_width
-#pragma mapbox: define lowp float stroke_opacity
+#pragma goong: define highp vec4 color
+#pragma goong: define mediump float radius
+#pragma goong: define lowp float blur
+#pragma goong: define lowp float opacity
+#pragma goong: define highp vec4 stroke_color
+#pragma goong: define mediump float stroke_width
+#pragma goong: define lowp float stroke_opacity
 
 void main() {
-    #pragma mapbox: initialize highp vec4 color
-    #pragma mapbox: initialize mediump float radius
-    #pragma mapbox: initialize lowp float blur
-    #pragma mapbox: initialize lowp float opacity
-    #pragma mapbox: initialize highp vec4 stroke_color
-    #pragma mapbox: initialize mediump float stroke_width
-    #pragma mapbox: initialize lowp float stroke_opacity
+    #pragma goong: initialize highp vec4 color
+    #pragma goong: initialize mediump float radius
+    #pragma goong: initialize lowp float blur
+    #pragma goong: initialize lowp float opacity
+    #pragma goong: initialize highp vec4 stroke_color
+    #pragma goong: initialize mediump float stroke_width
+    #pragma goong: initialize lowp float stroke_opacity
 
     vec2 extrude = v_data.xy;
     float extrude_length = length(extrude);

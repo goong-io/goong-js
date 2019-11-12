@@ -51,12 +51,9 @@ map.addControl(new goongjs.GeolocateControl({
         maxZoom: 20
     }
 }));
-<<<<<<< HEAD
+
 map.addControl(new goongjs.ScaleControl());
-=======
-map.addControl(new mapboxgl.ScaleControl());
-map.addControl(new mapboxgl.FullscreenControl());
->>>>>>> d5248e19aee3ddeee83a823b056c9ca49248e87a
+map.addControl(new goongjs.FullscreenControl());
 
 map.on('load', function() {
     map.addSource('geojson', {

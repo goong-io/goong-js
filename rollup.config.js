@@ -33,7 +33,7 @@ export default [{
     // Next, bundle together the three "chunks" produced in the previous pass
     // into a single, final bundle. See rollup/bundle_prelude.js and
     // rollup/goongjs.js for details.
-    input: 'rollup/mapboxgl.js',
+    input: 'rollup/goongjs.js',
     output: {
         name: 'goongjs',
         file: outputFile,

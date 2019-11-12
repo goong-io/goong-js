@@ -30,11 +30,6 @@ const defaultOptions: Options = {
     trackUserLocation: false,
     showUserLocation: true
 };
-<<<<<<< HEAD
-const className = 'goongjs-ctrl';
-=======
->>>>>>> d5248e19aee3ddeee83a823b056c9ca49248e87a
-
 let supportsGeolocation;
 
 function checkGeolocationSupport(callback) {
@@ -119,7 +114,7 @@ class GeolocateControl extends Evented {
 
     onAdd(map: Map) {
         this._map = map;
-        this._container = DOM.create('div', `mapboxgl-ctrl mapboxgl-ctrl-group`);
+        this._container = DOM.create('div', `goongjs-ctrl goongjs-ctrl-group`);
         checkGeolocationSupport(this._setupUI);
         return this._container;
     }
@@ -156,21 +151,21 @@ class GeolocateControl extends Evented {
         switch (this._watchState) {
         case 'WAITING_ACTIVE':
             this._watchState = 'ACTIVE_ERROR';
-            this._geolocateButton.classList.remove('mapboxgl-ctrl-geolocate-active');
-            this._geolocateButton.classList.add('mapboxgl-ctrl-geolocate-active-error');
+            this._geolocateButton.classList.remove('goongjs-ctrl-geolocate-active');
+            this._geolocateButton.classList.add('goongjs-ctrl-geolocate-active-error');
             break;
         case 'ACTIVE_LOCK':
             this._watchState = 'ACTIVE_ERROR';
-            this._geolocateButton.classList.remove('mapboxgl-ctrl-geolocate-active');
-            this._geolocateButton.classList.add('mapboxgl-ctrl-geolocate-active-error');
-            this._geolocateButton.classList.add('mapboxgl-ctrl-geolocate-waiting');
+            this._geolocateButton.classList.remove('goongjs-ctrl-geolocate-active');
+            this._geolocateButton.classList.add('goongjs-ctrl-geolocate-active-error');
+            this._geolocateButton.classList.add('goongjs-ctrl-geolocate-waiting');
             // turn marker grey
             break;
         case 'BACKGROUND':
             this._watchState = 'BACKGROUND_ERROR';
-            this._geolocateButton.classList.remove('mapboxgl-ctrl-geolocate-background');
-            this._geolocateButton.classList.add('mapboxgl-ctrl-geolocate-background-error');
-            this._geolocateButton.classList.add('mapboxgl-ctrl-geolocate-waiting');
+            this._geolocateButton.classList.remove('goongjs-ctrl-geolocate-background');
+            this._geolocateButton.classList.add('goongjs-ctrl-geolocate-background-error');
+            this._geolocateButton.classList.add('goongjs-ctrl-geolocate-waiting');
             // turn marker grey
             break;
         case 'ACTIVE_ERROR':
@@ -261,56 +256,22 @@ class GeolocateControl extends Evented {
             if (error.code === 1) {
                 // PERMISSION_DENIED
                 this._watchState = 'OFF';
-<<<<<<< HEAD
+
                 this._geolocateButton.classList.remove('goongjs-ctrl-geolocate-waiting');
                 this._geolocateButton.classList.remove('goongjs-ctrl-geolocate-active');
                 this._geolocateButton.classList.remove('goongjs-ctrl-geolocate-active-error');
                 this._geolocateButton.classList.remove('goongjs-ctrl-geolocate-background');
                 this._geolocateButton.classList.remove('goongjs-ctrl-geolocate-background-error');
-=======
-                this._geolocateButton.classList.remove('mapboxgl-ctrl-geolocate-waiting');
-                this._geolocateButton.classList.remove('mapboxgl-ctrl-geolocate-active');
-                this._geolocateButton.classList.remove('mapboxgl-ctrl-geolocate-active-error');
-                this._geolocateButton.classList.remove('mapboxgl-ctrl-geolocate-background');
-                this._geolocateButton.classList.remove('mapboxgl-ctrl-geolocate-background-error');
                 this._geolocateButton.disabled = true;
                 this._geolocateButton.title = 'Location not available';
                 this._geolocateButton.setAttribute('aria-label', 'Location not available');
->>>>>>> d5248e19aee3ddeee83a823b056c9ca49248e87a
 
                 if (this._geolocationWatchID !== undefined) {
                     this._clearWatch();
                 }
             } else {
-<<<<<<< HEAD
-                switch (this._watchState) {
-                case 'WAITING_ACTIVE':
-                    this._watchState = 'ACTIVE_ERROR';
-                    this._geolocateButton.classList.remove('goongjs-ctrl-geolocate-active');
-                    this._geolocateButton.classList.add('goongjs-ctrl-geolocate-active-error');
-                    break;
-                case 'ACTIVE_LOCK':
-                    this._watchState = 'ACTIVE_ERROR';
-                    this._geolocateButton.classList.remove('goongjs-ctrl-geolocate-active');
-                    this._geolocateButton.classList.add('goongjs-ctrl-geolocate-active-error');
-                    this._geolocateButton.classList.add('goongjs-ctrl-geolocate-waiting');
-                    // turn marker grey
-                    break;
-                case 'BACKGROUND':
-                    this._watchState = 'BACKGROUND_ERROR';
-                    this._geolocateButton.classList.remove('goongjs-ctrl-geolocate-background');
-                    this._geolocateButton.classList.add('goongjs-ctrl-geolocate-background-error');
-                    this._geolocateButton.classList.add('goongjs-ctrl-geolocate-waiting');
-                    // turn marker grey
-                    break;
-                case 'ACTIVE_ERROR':
-                    break;
-                default:
-                    assert(false, `Unexpected watchState ${this._watchState}`);
-                }
-=======
+
                 this._setErrorState();
->>>>>>> d5248e19aee3ddeee83a823b056c9ca49248e87a
             }
         }
 
@@ -330,8 +291,8 @@ class GeolocateControl extends Evented {
 
     _setupUI(supported: boolean) {
         this._container.addEventListener('contextmenu', (e: MouseEvent) => e.preventDefault());
-        this._geolocateButton = DOM.create('button', `mapboxgl-ctrl-geolocate`, this._container);
-        DOM.create('span', `mapboxgl-ctrl-icon`, this._geolocateButton).setAttribute('aria-hidden', true);
+        this._geolocateButton = DOM.create('button', `goongjs-ctrl-geolocate`, this._container);
+        DOM.create('span', `goongjs-ctrl-icon`, this._geolocateButton).setAttribute('aria-hidden', true);
         this._geolocateButton.type = 'button';
         this._geolocateButton.title = 'Find my location';
         this._geolocateButton.setAttribute('aria-label', 'Find my location');

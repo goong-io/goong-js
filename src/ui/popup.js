@@ -113,15 +113,10 @@ export default class Popup extends Evented {
         if (this._trackPointer) {
             this._map.on('mousemove', (e) => { this._update(e.point); });
             this._map.on('mouseup', (e) => { this._update(e.point); });
-<<<<<<< HEAD
-            this._container.classList.add('goongjs-popup-track-pointer');
-            this._map._canvasContainer.classList.add('goongjs-track-pointer');
-=======
-            if (this._container) {
-                this._container.classList.add('mapboxgl-popup-track-pointer');
+       if (this._container) {
+                this._container.classList.add('goongjs-popup-track-pointer');
             }
-            this._map._canvasContainer.classList.add('mapboxgl-track-pointer');
->>>>>>> d5248e19aee3ddeee83a823b056c9ca49248e87a
+            this._map._canvasContainer.classList.add('goongjs-track-pointer');
         } else {
             this._map.on('move', this._update);
         }
@@ -217,15 +212,10 @@ export default class Popup extends Evented {
         if (this._map) {
             this._map.on('move', this._update);
             this._map.off('mousemove');
-<<<<<<< HEAD
-            this._container.classList.remove('goongjs-popup-track-pointer');
-            this._map._canvasContainer.classList.remove('goongjs-track-pointer');
-=======
             if (this._container) {
-                this._container.classList.remove('mapboxgl-popup-track-pointer');
+                this._container.classList.remove('goongjs-popup-track-pointer');
             }
-            this._map._canvasContainer.classList.remove('mapboxgl-track-pointer');
->>>>>>> d5248e19aee3ddeee83a823b056c9ca49248e87a
+            this._map._canvasContainer.classList.remove('goongjs-track-pointer');
         }
 
         return this;
@@ -244,15 +234,10 @@ export default class Popup extends Evented {
             this._map.off('move', this._update);
             this._map.on('mousemove', (e) => { this._update(e.point); });
             this._map.on('drag', (e) => { this._update(e.point); });
-<<<<<<< HEAD
-            this._container.classList.add('goongjs-popup-track-pointer');
-            this._map._canvasContainer.classList.add('goongjs-track-pointer');
-=======
-            if (this._container) {
-                this._container.classList.add('mapboxgl-popup-track-pointer');
+        if (this._container) {
+                this._container.classList.add('goongjs-popup-track-pointer');
             }
-            this._map._canvasContainer.classList.add('mapboxgl-track-pointer');
->>>>>>> d5248e19aee3ddeee83a823b056c9ca49248e87a
+            this._map._canvasContainer.classList.add('goongjs-track-pointer');
         }
 
         return this;
@@ -425,7 +410,7 @@ export default class Popup extends Evented {
             }
 
             if (this._trackPointer) {
-                this._container.classList.add('mapboxgl-popup-track-pointer');
+                this._container.classList.add('goongjs-popup-track-pointer');
             }
         }
 
