@@ -6,12 +6,26 @@ import unassert from 'rollup-plugin-unassert';
 import json from 'rollup-plugin-json';
 import {flow} from '../../build/rollup_plugins';
 
+// Build es modules?
+const esm = 'esm' in process.env;
+
+const transforms = {
+    dangerousForOf: true,
+    modules: esm ? false : undefined
+};
+
 const config = [{
     input: `${__dirname}/style-spec.js`,
     output: {
+<<<<<<< HEAD
         name: 'goongjsStyleSpecification',
         file: `${__dirname}/dist/index.js`,
         format: 'umd',
+=======
+        name: 'mapboxGlStyleSpecification',
+        file: `${__dirname}/dist/${esm ? 'index.es.js' : 'index.js'}`,
+        format: esm ? 'esm' : 'umd',
+>>>>>>> d5248e19aee3ddeee83a823b056c9ca49248e87a
         sourcemap: true
     },
     plugins: [
@@ -25,7 +39,7 @@ const config = [{
         }),
         flow(),
         json(),
-        buble({transforms: {dangerousForOf: true}, objectAssign: "Object.assign"}),
+        buble({transforms, objectAssign: "Object.assign"}),
         unassert(),
         resolve({
             browser: true,

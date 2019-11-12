@@ -495,7 +495,7 @@ test('Popup#remove is idempotent (#2395)', (t) => {
     t.end();
 });
 
-test('Popup adds classes from className option', (t) => {
+test('Popup adds classes from className option, methods for class manipulations works properly', (t) => {
     const map = createMap(t);
     const popup = new Popup({className: 'some classes'})
         .setText('Test')
@@ -505,6 +505,27 @@ test('Popup adds classes from className option', (t) => {
     const popupContainer = popup.getElement();
     t.ok(popupContainer.classList.contains('some'));
     t.ok(popupContainer.classList.contains('classes'));
+
+    popup.addClassName('addedClass');
+    t.ok(popupContainer.classList.contains('addedClass'));
+
+    popup.removeClassName('addedClass');
+    t.ok(!popupContainer.classList.contains('addedClass'));
+
+    popup.toggleClassName('toggle');
+    t.ok(popupContainer.classList.contains('toggle'));
+
+    popup.toggleClassName('toggle');
+    t.ok(!popupContainer.classList.contains('toggle'));
+
+    t.throws(() => popup.addClassName('should throw exception'), window.DOMException);
+    t.throws(() => popup.removeClassName('should throw exception'), window.DOMException);
+    t.throws(() => popup.toggleClassName('should throw exception'), window.DOMException);
+
+    t.throws(() => popup.addClassName(''), window.DOMException);
+    t.throws(() => popup.removeClassName(''), window.DOMException);
+    t.throws(() => popup.toggleClassName(''), window.DOMException);
+
     t.end();
 });
 
@@ -531,6 +552,30 @@ test('Pointer-tracked popup is tagged with right class', (t) => {
     t.end();
 });
 
+test('Pointer-tracked popup with content set later is tagged with right class ', (t) => {
+    const map = createMap(t);
+    const popup = new Popup()
+        .trackPointer()
+        .addTo(map);
+
+    popup.setText("Test");
+
+    t.equal(popup._container.classList.value.includes('mapboxgl-popup-track-pointer'), true);
+    t.end();
+});
+
+test('Pointer-tracked popup that is set afterwards is tagged with right class ', (t) => {
+    const map = createMap(t);
+    const popup = new Popup()
+        .addTo(map);
+
+    popup.setText("Test");
+    popup.trackPointer();
+
+    t.equal(popup._container.classList.value.includes('mapboxgl-popup-track-pointer'), true);
+    t.end();
+});
+
 test('Pointer-tracked popup can be repositioned with setLngLat', (t) => {
     const map = createMap(t);
     const popup = new Popup()
@@ -540,6 +585,7 @@ test('Pointer-tracked popup can be repositioned with setLngLat', (t) => {
         .addTo(map);
 
     t.deepEqual(popup._pos, map.project([0, 0]));
+    t.equal(popup._container.classList.value.includes('mapboxgl-popup-track-pointer'), false);
     t.end();
 });
 

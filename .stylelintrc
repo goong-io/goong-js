@@ -5,6 +5,13 @@
     "declaration-block-semicolon-newline-after": "always-multi-line",
     "block-opening-brace-space-before": "always-multi-line",
     "declaration-block-single-line-max-declarations": 3,
+<<<<<<< HEAD
     "selector-class-pattern": "goongjs-[a-z-]+"
+=======
+    "selector-class-pattern": "mapboxgl-[a-z-]+",
+    "at-rule-no-unknown": [true, {
+      "ignoreAtRules": ["svg-load"]
+    }]
+>>>>>>> d5248e19aee3ddeee83a823b056c9ca49248e87a
   }
 }

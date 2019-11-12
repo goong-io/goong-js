@@ -1,7 +1,7 @@
 import goongjs from '../../src';
 import accessToken from '../lib/access_token';
 import locationsWithTileID from '../lib/locations_with_tile_id';
-import styleBenchmarkLocations from '@mapbox/gazetteer/mapbox-streets/style-benchmark-locations.json';
+import {benchmark} from '@mapbox/gazetteer';
 import Layout from '../benchmarks/layout';
 import LayoutDDS from '../benchmarks/layout_dds';
 import SymbolLayout from '../benchmarks/symbol_layout';
@@ -21,7 +21,7 @@ import FilterEvaluate from '../benchmarks/filter_evaluate';
 
 import getWorkerPool from '../../src/util/global_worker_pool';
 
-const styleLocations = locationsWithTileID(styleBenchmarkLocations.features);
+const styleLocations = locationsWithTileID(benchmark.styleBenchmarkLocations.features);
 
 goongjs.accessToken = accessToken;
 
@@ -29,9 +29,15 @@ window.goongjsBenchmarks = window.goongjsBenchmarks || {};
 
 const version = process.env.BENCHMARK_VERSION;
 
+<<<<<<< HEAD
 function register(name, benchmark) {
     window.goongjsBenchmarks[name] = window.goongjsBenchmarks[name] || {};
     window.goongjsBenchmarks[name][version] = benchmark;
+=======
+function register(name, bench) {
+    window.mapboxglBenchmarks[name] = window.mapboxglBenchmarks[name] || {};
+    window.mapboxglBenchmarks[name][version] = bench;
+>>>>>>> d5248e19aee3ddeee83a823b056c9ca49248e87a
 }
 
 const style = 'mapbox://styles/mapbox/streets-v10';

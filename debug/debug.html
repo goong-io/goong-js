@@ -29,7 +29,7 @@
 </div>
 
 <script src='../dist/mapbox-gl-dev.js'></script>
-<script src='access_token_generated.js'></script>
+<script src='../debug/access_token_generated.js'></script>
 <script>
 
 var map = window.map = new goongjs.Map({
@@ -51,7 +51,12 @@ map.addControl(new goongjs.GeolocateControl({
         maxZoom: 20
     }
 }));
+<<<<<<< HEAD
 map.addControl(new goongjs.ScaleControl());
+=======
+map.addControl(new mapboxgl.ScaleControl());
+map.addControl(new mapboxgl.FullscreenControl());
+>>>>>>> d5248e19aee3ddeee83a823b056c9ca49248e87a
 
 map.on('load', function() {
     map.addSource('geojson', {

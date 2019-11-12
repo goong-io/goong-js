@@ -36,10 +36,10 @@ class NavigationControl {
     _map: Map;
     options: Options;
     _container: HTMLElement;
-    _zoomInButton: HTMLElement;
-    _zoomOutButton: HTMLElement;
+    _zoomInButton: HTMLButtonElement;
+    _zoomOutButton: HTMLButtonElement;
     _compass: HTMLElement;
-    _compassArrow: HTMLElement;
+    _compassIcon: HTMLElement;
     _handler: DragRotateHandler;
 
     constructor(options: Options) {
@@ -52,26 +52,43 @@ class NavigationControl {
             bindAll([
                 '_updateZoomButtons'
             ], this);
+<<<<<<< HEAD
             this._zoomInButton = this._createButton('goongjs-ctrl-icon goongjs-ctrl-zoom-in', 'Zoom in', () => this._map.zoomIn());
             this._zoomOutButton = this._createButton('goongjs-ctrl-icon goongjs-ctrl-zoom-out', 'Zoom out', () => this._map.zoomOut());
+=======
+            this._zoomInButton = this._createButton('mapboxgl-ctrl-zoom-in', 'Zoom in', (e) => this._map.zoomIn({}, {originalEvent: e}));
+            DOM.create('span', `mapboxgl-ctrl-icon`, this._zoomInButton).setAttribute('aria-hidden', true);
+            this._zoomOutButton = this._createButton('mapboxgl-ctrl-zoom-out', 'Zoom out', (e) => this._map.zoomOut({}, {originalEvent: e}));
+            DOM.create('span', `mapboxgl-ctrl-icon`, this._zoomOutButton).setAttribute('aria-hidden', true);
+>>>>>>> d5248e19aee3ddeee83a823b056c9ca49248e87a
         }
         if (this.options.showCompass) {
             bindAll([
                 '_rotateCompassArrow'
             ], this);
+<<<<<<< HEAD
             this._compass = this._createButton('goongjs-ctrl-icon goongjs-ctrl-compass', 'Reset bearing to north', () => {
+=======
+            this._compass = this._createButton('mapboxgl-ctrl-compass', 'Reset bearing to north', (e) => {
+>>>>>>> d5248e19aee3ddeee83a823b056c9ca49248e87a
                 if (this.options.visualizePitch) {
-                    this._map.resetNorthPitch();
+                    this._map.resetNorthPitch({}, {originalEvent: e});
                 } else {
-                    this._map.resetNorth();
+                    this._map.resetNorth({}, {originalEvent: e});
                 }
             });
+<<<<<<< HEAD
             this._compassArrow = DOM.create('span', 'goongjs-ctrl-compass-arrow', this._compass);
+=======
+            this._compassIcon = DOM.create('span', 'mapboxgl-ctrl-icon', this._compass);
+            this._compassIcon.setAttribute('aria-hidden', true);
+>>>>>>> d5248e19aee3ddeee83a823b056c9ca49248e87a
         }
     }
 
     _updateZoomButtons() {
         const zoom = this._map.getZoom();
+<<<<<<< HEAD
         if (zoom === this._map.getMaxZoom()) {
             this._zoomInButton.classList.add('goongjs-ctrl-icon-disabled');
         } else {
@@ -82,6 +99,10 @@ class NavigationControl {
         } else {
             this._zoomOutButton.classList.remove('goongjs-ctrl-icon-disabled');
         }
+=======
+        this._zoomInButton.disabled = zoom === this._map.getMaxZoom();
+        this._zoomOutButton.disabled = zoom === this._map.getMinZoom();
+>>>>>>> d5248e19aee3ddeee83a823b056c9ca49248e87a
     }
 
     _rotateCompassArrow() {
@@ -89,7 +110,7 @@ class NavigationControl {
             `scale(${1 / Math.pow(Math.cos(this._map.transform.pitch * (Math.PI / 180)), 0.5)}) rotateX(${this._map.transform.pitch}deg) rotateZ(${this._map.transform.angle * (180 / Math.PI)}deg)` :
             `rotate(${this._map.transform.angle * (180 / Math.PI)}deg)`;
 
-        this._compassArrow.style.transform = rotate;
+        this._compassIcon.style.transform = rotate;
     }
 
     onAdd(map: Map) {

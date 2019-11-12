@@ -8,14 +8,15 @@
     <style>
         body { margin: 0; padding: 0; }
         html, body, #map { height: 100%; }
+        #animate { position: absolute; top: 0; left: 0; }
     </style>
 </head>
 
 <body>
 <div id='map'></div>
-
+<button id="animate">Animate</button>
 <script src='../dist/mapbox-gl-dev.js'></script>
-<script src='access_token_generated.js'></script>
+<script src='../debug/access_token_generated.js'></script>
 <script>
 
 var map = window.map = new goongjs.Map({
@@ -26,6 +27,7 @@ var map = window.map = new goongjs.Map({
     hash: true
 });
 
+<<<<<<< HEAD
 function addRandomMarker() {
     var bounds = map.getBounds();
     var s = bounds.getSouth();
@@ -49,8 +51,61 @@ function addRandomMarker() {
         .setPopup(popup)
         .addTo(map);
 }
+=======
+const spinningMarkers = [];
+['auto', 'map', 'viewport'].forEach((rotationAlignment, i) => {
+    ['auto', 'map', 'viewport'].forEach((pitchAlignment, j) => {
+        var bounds = map.getBounds();
+        var s = bounds.getSouth();
+        var n = bounds.getNorth();
+        var w = bounds.getWest();
+        var e = bounds.getEast();
 
-for (var i = 0; i < 100; i++) addRandomMarker();
+        var lng = w + (e - w) * (i / 3);
+        var lat = s + (n - s) * (j / 3);
+
+        var popup = new mapboxgl.Popup().setHTML(`Pitch Alignment: ${pitchAlignment}<br>Rotation Alignment: ${rotationAlignment}`);
+
+        var r = Math.round(Math.random() * 255);
+        var g = Math.round(Math.random() * 255);
+        var b = Math.round(Math.random() * 255);
+
+        var marker = new mapboxgl.Marker({
+            color: `rgb(${r}, ${g}, ${b})`,
+            draggable: true,
+            rotationAlignment,
+            pitchAlignment
+        })
+            .setLngLat([lng, lat])
+            .setPopup(popup)
+            .addTo(map);
+>>>>>>> d5248e19aee3ddeee83a823b056c9ca49248e87a
+
+        marker.togglePopup();
+
+        spinningMarkers.push(marker);
+    });
+});
+
+let animate = false;
+document.getElementById('animate').addEventListener('click', () => {
+    animate = !animate;
+    if (animate) {
+        spinMarkers();
+    }
+});
+
+let rotation = 0;
+function spinMarkers() {
+    rotation++;
+    spinningMarkers.forEach((marker) => {
+        marker.setRotation(rotation);
+    });
+    if (animate) {
+        window.requestAnimationFrame(spinMarkers);
+    }
+}
+window.requestAnimationFrame(spinMarkers);
 
 map.addControl(new goongjs.NavigationControl());
 

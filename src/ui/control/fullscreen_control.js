@@ -29,7 +29,6 @@ class FullscreenControl {
     _fullscreen: boolean;
     _fullscreenchange: string;
     _fullscreenButton: HTMLElement;
-    _className: string;
     _container: HTMLElement;
 
     constructor(options: Options) {
@@ -54,13 +53,20 @@ class FullscreenControl {
         } else if ('onmsfullscreenchange' in window.document) {
             this._fullscreenchange = 'MSFullscreenChange';
         }
+<<<<<<< HEAD
         this._className = 'goongjs-ctrl';
+=======
+>>>>>>> d5248e19aee3ddeee83a823b056c9ca49248e87a
     }
 
     onAdd(map: Map) {
         this._map = map;
         if (!this._container) this._container = this._map.getContainer();
+<<<<<<< HEAD
         this._controlContainer = DOM.create('div', `${this._className} goongjs-ctrl-group`);
+=======
+        this._controlContainer = DOM.create('div', `mapboxgl-ctrl mapboxgl-ctrl-group`);
+>>>>>>> d5248e19aee3ddeee83a823b056c9ca49248e87a
         if (this._checkFullscreenSupport()) {
             this._setupUI();
         } else {
@@ -86,7 +92,8 @@ class FullscreenControl {
     }
 
     _setupUI() {
-        const button = this._fullscreenButton = DOM.create('button', (`${this._className}-icon ${this._className}-fullscreen`), this._controlContainer);
+        const button = this._fullscreenButton = DOM.create('button', (`mapboxgl-ctrl-fullscreen`), this._controlContainer);
+        DOM.create('span', `mapboxgl-ctrl-icon`, button).setAttribute('aria-hidden', true);
         button.type = 'button';
         this._updateTitle();
         this._fullscreenButton.addEventListener('click', this._onClickFullscreen);
@@ -112,8 +119,8 @@ class FullscreenControl {
 
         if ((fullscreenElement === this._container) !== this._fullscreen) {
             this._fullscreen = !this._fullscreen;
-            this._fullscreenButton.classList.toggle(`${this._className}-shrink`);
-            this._fullscreenButton.classList.toggle(`${this._className}-fullscreen`);
+            this._fullscreenButton.classList.toggle(`mapboxgl-ctrl-shrink`);
+            this._fullscreenButton.classList.toggle(`mapboxgl-ctrl-fullscreen`);
             this._updateTitle();
         }
     }
