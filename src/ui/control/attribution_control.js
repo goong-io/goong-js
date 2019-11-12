@@ -19,8 +19,8 @@ type Options = {
  * @param {boolean} [options.compact] If `true` force a compact attribution that shows the full attribution on mouse hover, or if `false` force the full attribution control. The default is a responsive attribution that collapses when the map is less than 640 pixels wide.
  * @param {string | Array<string>} [options.customAttribution] String or strings to show in addition to any other attributions.
  * @example
- * var map = new mapboxgl.Map({attributionControl: false})
- *     .addControl(new mapboxgl.AttributionControl({
+ * var map = new goongjs.Map({attributionControl: false})
+ *     .addControl(new goongjs.AttributionControl({
  *         compact: true
  *     }));
  */
@@ -52,11 +52,11 @@ class AttributionControl {
         const compact = this.options && this.options.compact;
 
         this._map = map;
-        this._container = DOM.create('div', 'mapboxgl-ctrl mapboxgl-ctrl-attrib');
-        this._innerContainer = DOM.create('div', 'mapboxgl-ctrl-attrib-inner', this._container);
+        this._container = DOM.create('div', 'goongjs-ctrl goongjs-ctrl-attrib');
+        this._innerContainer = DOM.create('div', 'goongjs-ctrl-attrib-inner', this._container);
 
         if (compact) {
-            this._container.classList.add('mapboxgl-compact');
+            this._container.classList.add('goongjs-compact');
         }
 
         this._updateAttributions();
@@ -88,7 +88,7 @@ class AttributionControl {
     _updateEditLink() {
         let editLink = this._editLink;
         if (!editLink) {
-            editLink = this._editLink = (this._container.querySelector('.mapbox-improve-map'): any);
+            editLink = this._editLink = (this._container.querySelector('.goongjs-improve-map'): any);
         }
 
         const params = [
@@ -167,9 +167,9 @@ class AttributionControl {
 
         if (attributions.length) {
             this._innerContainer.innerHTML = attribHTML;
-            this._container.classList.remove('mapboxgl-attrib-empty');
+            this._container.classList.remove('goongjs-attrib-empty');
         } else {
-            this._container.classList.add('mapboxgl-attrib-empty');
+            this._container.classList.add('goongjs-attrib-empty');
         }
         // remove old DOM node from _editLink
         this._editLink = null;
@@ -177,9 +177,9 @@ class AttributionControl {
 
     _updateCompact() {
         if (this._map.getCanvasContainer().offsetWidth <= 640) {
-            this._container.classList.add('mapboxgl-compact');
+            this._container.classList.add('goongjs-compact');
         } else {
-            this._container.classList.remove('mapboxgl-compact');
+            this._container.classList.remove('goongjs-compact');
         }
     }
 

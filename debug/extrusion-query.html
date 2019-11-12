@@ -18,7 +18,7 @@
 <script src='access_token_generated.js'></script>
 <script>
 
-var map = window.map = new mapboxgl.Map({
+var map = window.map = new goongjs.Map({
     container: 'map',
     zoom: 16.9,
     center: [-73.989816, 40.76263],
@@ -50,7 +50,7 @@ map.on('style.load', function() {
 
     let hovered = [];
     window.addEventListener('mousemove', function(e) {
-        e.point = new mapboxgl.Point(e.clientX, e.clientY);
+        e.point = new goongjs.Point(e.clientX, e.clientY);
         console.time('query');
         const features = map.queryRenderedFeatures(e.point, {layers: ['3d-buildings']});
         console.timeEnd('query');

@@ -79,7 +79,7 @@ class DragPanHandler {
      */
     enable() {
         if (this.isEnabled()) return;
-        this._el.classList.add('mapboxgl-touch-drag-pan');
+        this._el.classList.add('goongjs-touch-drag-pan');
         this._state = 'enabled';
     }
 
@@ -91,7 +91,7 @@ class DragPanHandler {
      */
     disable() {
         if (!this.isEnabled()) return;
-        this._el.classList.remove('mapboxgl-touch-drag-pan');
+        this._el.classList.remove('goongjs-touch-drag-pan');
         switch (this._state) {
         case 'active':
             this._state = 'disabled';

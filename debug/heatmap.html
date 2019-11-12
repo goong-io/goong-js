@@ -18,7 +18,7 @@
 <script src='access_token_generated.js'></script>
 <script>
 
-var map = window.map = new mapboxgl.Map({
+var map = window.map = new goongjs.Map({
     container: 'map',
     zoom: 2,
     center: [0, 0],
@@ -26,8 +26,8 @@ var map = window.map = new mapboxgl.Map({
     hash: false
 });
 
-map.addControl(new mapboxgl.NavigationControl());
-map.addControl(new mapboxgl.GeolocateControl());
+map.addControl(new goongjs.NavigationControl());
+map.addControl(new goongjs.GeolocateControl());
 
 map.on('load', function() {
 

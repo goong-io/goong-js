@@ -30,13 +30,13 @@
             .then(() => {
                 const benchmarks = [];
 
-                for (const name in window.mapboxglBenchmarks) {
+                for (const name in window.goongjsBenchmarks) {
                     const versions = [];
 
-                    for (const test in window.mapboxglBenchmarks[name]) {
+                    for (const test in window.goongjsBenchmarks[name]) {
                         versions.push({
                             name: test,
-                            bench: window.mapboxglBenchmarks[name][test]
+                            bench: window.goongjsBenchmarks[name][test]
                         });
                     }
                     benchmarks.push({name, versions});

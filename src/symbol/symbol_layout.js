@@ -649,7 +649,7 @@ function addSymbol(bucket: SymbolBucket,
     const iconBoxEndIndex = iconCollisionFeature ? iconCollisionFeature.boxEndIndex : bucket.collisionBoxArray.length;
 
     if (bucket.glyphOffsetArray.length >= SymbolBucket.MAX_GLYPHS) warnOnce(
-        "Too many glyphs being rendered in a tile. See https://github.com/mapbox/mapbox-gl-js/issues/2907"
+        "Too many glyphs being rendered in a tile"
     );
 
     bucket.symbolInstances.emplaceBack(

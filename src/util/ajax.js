@@ -56,7 +56,7 @@ class AJAXError extends Error {
     url: string;
     constructor(message: string, status: number, url: string) {
         if (status === 401 && isMapboxHTTPURL(url)) {
-            message += ': you may have provided an invalid Mapbox access token. See https://www.mapbox.com/api-documentation/#access-tokens-and-token-scopes';
+            message += ': you may have provided an invalid Goong access token. See https://docs.goong.io';
         }
         super(message);
         this.status = status;

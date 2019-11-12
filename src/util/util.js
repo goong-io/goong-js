@@ -440,8 +440,8 @@ export function parseCacheControl(cacheControl: string): Object {
 export function storageAvailable(type: string): boolean {
     try {
         const storage = window[type];
-        storage.setItem('_mapbox_test_', 1);
-        storage.removeItem('_mapbox_test_');
+        storage.setItem('_goong_test_', 1);
+        storage.removeItem('_goong_test_');
         return true;
     } catch (e) {
         return false;

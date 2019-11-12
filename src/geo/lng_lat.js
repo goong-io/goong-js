@@ -15,7 +15,7 @@ import LngLatBounds from './lng_lat_bounds';
  * @param {number} lng Longitude, measured in degrees.
  * @param {number} lat Latitude, measured in degrees.
  * @example
- * var ll = new mapboxgl.LngLat(-73.9749, 40.7736);
+ * var ll = new goongjs.LngLat(-73.9749, 40.7736);
  * @see [Get coordinates of the mouse pointer](https://www.mapbox.com/mapbox-gl-js/example/mouse-position/)
  * @see [Display a popup](https://www.mapbox.com/mapbox-gl-js/example/popup/)
  * @see [Highlight features within a bounding box](https://www.mapbox.com/mapbox-gl-js/example/using-box-queryrenderedfeatures/)
@@ -41,7 +41,7 @@ class LngLat {
      *
      * @returns {LngLat} The wrapped `LngLat` object.
      * @example
-     * var ll = new mapboxgl.LngLat(286.0251, 40.7736);
+     * var ll = new goongjs.LngLat(286.0251, 40.7736);
      * var wrapped = ll.wrap();
      * wrapped.lng; // = -73.9749
      */
@@ -54,7 +54,7 @@ class LngLat {
      *
      * @returns {Array<number>} The coordinates represeted as an array of longitude and latitude.
      * @example
-     * var ll = new mapboxgl.LngLat(-73.9749, 40.7736);
+     * var ll = new goongjs.LngLat(-73.9749, 40.7736);
      * ll.toArray(); // = [-73.9749, 40.7736]
      */
     toArray() {
@@ -66,7 +66,7 @@ class LngLat {
      *
      * @returns {string} The coordinates represented as a string of the format `'LngLat(lng, lat)'`.
      * @example
-     * var ll = new mapboxgl.LngLat(-73.9749, 40.7736);
+     * var ll = new goongjs.LngLat(-73.9749, 40.7736);
      * ll.toString(); // = "LngLat(-73.9749, 40.7736)"
      */
     toString() {
@@ -79,7 +79,7 @@ class LngLat {
      * @param {number} [radius=0] Distance in meters from the coordinates to extend the bounds.
      * @returns {LngLatBounds} A new `LngLatBounds` object representing the coordinates extended by the `radius`.
      * @example
-     * var ll = new mapboxgl.LngLat(-73.9749, 40.7736);
+     * var ll = new goongjs.LngLat(-73.9749, 40.7736);
      * ll.toBounds(100).toArray(); // = [[-73.97501862141328, 40.77351016847229], [-73.97478137858673, 40.77368983152771]]
      */
     toBounds(radius?: number = 0) {
@@ -101,7 +101,7 @@ class LngLat {
      * @returns {LngLat} A new `LngLat` object, if a conversion occurred, or the original `LngLat` object.
      * @example
      * var arr = [-73.9749, 40.7736];
-     * var ll = mapboxgl.LngLat.convert(arr);
+     * var ll = goongjs.LngLat.convert(arr);
      * ll;   // = LngLat {lng: -73.9749, lat: 40.7736}
      */
     static convert(input: LngLatLike): LngLat {
@@ -128,7 +128,7 @@ class LngLat {
  *
  * @typedef {LngLat | {lng: number, lat: number} | {lon: number, lat: number} | [number, number]} LngLatLike
  * @example
- * var v1 = new mapboxgl.LngLat(-122.420679, 37.772537);
+ * var v1 = new goongjs.LngLat(-122.420679, 37.772537);
  * var v2 = [-122.420679, 37.772537];
  * var v3 = {lon: -122.420679, lat: 37.772537};
  */

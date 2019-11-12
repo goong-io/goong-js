@@ -84,7 +84,7 @@ This change allows us to implement a more standardized and predictable method of
 **What is changing?**
 - Add SKU token to Mapbox API requests [#8276](https://github.com/mapbox/mapbox-gl-js/pull/8276)
 
-When (and only when) loading tiles from a Mapbox API with a Mapbox access token set (`mapboxgl.accessToken`), a query parameter named `sku` will be added to all requests for vector, raster and raster-dem tiles. Every map instance uses a unique `sku` value, which is refreshed every 12 hours. The token itself is comprised of a token version (always “1”), a sku ID (always “01”) and a random 10-digit base-62 number. The purpose of the token is to allow for metering of map sessions on the server-side. A session lasts from a new map instantiation until the map is destroyed or 12 hours passes, whichever comes first.
+When (and only when) loading tiles from a Mapbox API with a Mapbox access token set (`goongjs.accessToken`), a query parameter named `sku` will be added to all requests for vector, raster and raster-dem tiles. Every map instance uses a unique `sku` value, which is refreshed every 12 hours. The token itself is comprised of a token version (always “1”), a sku ID (always “01”) and a random 10-digit base-62 number. The purpose of the token is to allow for metering of map sessions on the server-side. A session lasts from a new map instantiation until the map is destroyed or 12 hours passes, whichever comes first.
 
 For further information on the pricing changes, you can read our [blog post](https://blog.mapbox.com/new-pricing-46b7c26166e7) and check out our new [pricing page](https://www.mapbox.com/pricing), which has a price calculator. As always, you can also contact our team at [https://support.mapbox.com](https://support.mapbox.com).
 
@@ -557,7 +557,7 @@ August 16, 2018
 
 ### 🐛 Bug fixes
 
-- Add box-sizing to the "mapboxgl-ctrl-scale"-class [#5715](https://github.com/mapbox/mapbox-gl-js/pull/5715)
+- Add box-sizing to the "goongjs-ctrl-scale"-class [#5715](https://github.com/mapbox/mapbox-gl-js/pull/5715)
 - Fix rendering in Safari [#5712](https://github.com/mapbox/mapbox-gl-js/issues/5712)
 - Fix "Cannot read property 'hasTransition' of undefined" error [#5714](https://github.com/mapbox/mapbox-gl-js/issues/5714)
 - Fix misplaced raster tiles [#5713](https://github.com/mapbox/mapbox-gl-js/issues/5713)
@@ -857,7 +857,7 @@ August 16, 2018
 #### Development workflow improvements :computer:
 
 - Add flowtype interfaces and definitions @vicapow
-- Add stylelinting to ensure `mapboxgl-` prefix on all classes #4584 @asantos3026
+- Add stylelinting to ensure `goongjs-` prefix on all classes #4584 @asantos3026
 
 ## 0.36.0 (April 19, 2017)
 
@@ -946,7 +946,7 @@ August 16, 2018
 - Automatically add Mapbox wordmark when required by Mapbox TOS #3933
 - Increase default `maxZoom` from 20 to 22 #4333
 - Deprecate `tiledata` and `tiledataloading` events in favor of `sourcedata` and `sourcedataloading`. #4347
-- `mapboxgl.util` is no longer exported #1408
+- `goongjs.util` is no longer exported #1408
 - `"type": "categorical"` is now required for all categorical functions. Previously, some forms of "implicitly" categorical functions worked, and others did not. #3717
 
 #### :white_check_mark: New features
@@ -1105,16 +1105,16 @@ August 16, 2018
 
 - Replace `fill-extrude-height` and `fill-extrude-base` properties of `fill` render type with a separate `fill-extrusion` type (with corresponding `fill-extrusion-height` and `fill-extrusion-base` properties), solving problems with render parity and runtime switching between flat and extruded fills. https://github.com/mapbox/mapbox-gl-style-spec/issues/554
 - Change the units for extrusion height properties (`fill-extrusion-height`, `fill-extrusion-base`) from "magic numbers" to meters. #3509
-- Remove `mapboxgl.Control` class and change the way custom controls should be implemented. #3497
-- Remove `mapboxgl.util` functions: `inherit`, `extendAll`, `debounce`, `coalesce`, `startsWith`, `supportsGeolocation`. #3441 #3571
-- **`mapboxgl.util` is deprecated** and will be removed in the next release. #1408
+- Remove `goongjs.Control` class and change the way custom controls should be implemented. #3497
+- Remove `goongjs.util` functions: `inherit`, `extendAll`, `debounce`, `coalesce`, `startsWith`, `supportsGeolocation`. #3441 #3571
+- **`goongjs.util` is deprecated** and will be removed in the next release. #1408
 
 #### New features and improvements
 
 - Tons of **performance improvements** that combined make rendering **up to 3 times faster**, especially for complex styles. #3485 #3489 #3490 #3491 #3498 #3499 #3501 #3510 #3514 #3515 #3486 #3527 #3574 ⚡️⚡️⚡️
 - 🈯 Added **vertical text writing mode** for languages that support it. #3438
 - 🈯 Improved **line breaking of Chinese and Japanese text** in point-placed labels. #3420
-- Reduce the default number of worker threads (`mapboxgl.workerCount`) for better performance. #3565
+- Reduce the default number of worker threads (`goongjs.workerCount`) for better performance. #3565
 - Automatically use `categorical` style function type when input values are strings. #3384
 - Improve control buttons accessibility. #3492
 - Remove geolocation button if geolocation is disabled (e.g. the page is not served through `https`). #3571
@@ -1320,7 +1320,7 @@ August 16, 2018
  * Fix event data object not being passed for double click events #2814
  * Fix multipolygons disappearing from map at certain zoom levels #2704
  * Fix exceptions caused by `queryRenderedFeatures` in Safari and Firefox #2822
- * Fix `mapboxgl#supported()` returning `true` in old versions of IE11 mapbox/mapbox-gl-supported#1
+ * Fix `goongjs#supported()` returning `true` in old versions of IE11 mapbox/mapbox-gl-supported#1
 
 ## 0.20.1 (June 21 2016)
 
@@ -1336,7 +1336,7 @@ August 16, 2018
  * Add `workerCount` constructor option #2666
  * Improve performance of `locationPoint` and `pointLocation` #2690
  * Remove "Not using VertexArrayObject extension" warning messages #2707
- * Add `version` property to mapboxgl #2660
+ * Add `version` property to goongjs #2660
  * Support property functions in `circle-opacity` and `circle-blur` #2693
 
 #### Bugfixes
@@ -1439,7 +1439,7 @@ August 16, 2018
 * Add touch events (#2195)
 * Add `map.queryRenderedFeatures` to query the styled and rendered representations of features (#2224)
 * Add `map.querySourceFeatures` to get features directly from vector tiles, independent of the style (#2224)
-* Add `mapboxgl.Geolocate` control (#1939)
+* Add `goongjs.Geolocate` control (#1939)
 * Make background patterns render seamlessly across tile boundaries (#2305)
 
 #### Bugfixes
@@ -1524,7 +1524,7 @@ August 16, 2018
 
 #### Bugfixes
 
-* Fixed bug causing WebGL contexts to be "used up" by calling `mapboxgl.supported()` (#2018)
+* Fixed bug causing WebGL contexts to be "used up" by calling `goongjs.supported()` (#2018)
 * Fixed non-deterministic symbol z-order sorting (#2023)
 * Fixed garbled labels while zooming (#2012)
 * Fixed icon jumping when touching trackpad with two fingers (#1990)
@@ -1795,7 +1795,7 @@ August 16, 2018
 * Expose `geojson-vt` options for GeoJSON sources (#1271)
 * bearing snaps to "North" within a tolerance of 7 degrees (#1059)
 * Now you can directly mutate the minzoom and maxzoom layer properties with `map.setLayerZoomRange(layerId, minzoom, maxzoom)`
-* Exposed `mapboxgl.Control`, a base class used by all UI controls
+* Exposed `goongjs.Control`, a base class used by all UI controls
 * Refactored handlers to be individually included in Map options, or enable/disable them individually at runtime, e.g. `map.scrollZoom.disable()`.
 * New feature: Batch operations can now be done at once, improving performance for calling multiple style functions: (#1352)
 
@@ -1841,11 +1841,11 @@ August 16, 2018
   map.easeTo([40, -74.50], 9, null, {duration: 400}); // 0.7.0 or earlier
   map.easeTo({center: [40, -74.50], zoom: 9, duration: 400}); // now
   ```
-* `mapboxgl.Source` is no longer exported. Use `map.addSource()` instead. See the
+* `goongjs.Source` is no longer exported. Use `map.addSource()` instead. See the
   [GeoJSON line](https://www.mapbox.com/mapbox-gl-js/example/geojson-line/) or
   [GeoJSON markers](https://www.mapbox.com/mapbox-gl-js/example/geojson-markers/)
   examples.
-* `mapboxgl.util.supported()` moved to [`mapboxgl.supported()`](https://www.mapbox.com/mapbox-gl-js/api/#mapboxgl/supported).
+* `goongjs.util.supported()` moved to [`goongjs.supported()`](https://www.mapbox.com/mapbox-gl-js/api/#goongjs/supported).
 
 #### UX improvements
 
@@ -2110,7 +2110,7 @@ if you need to rotate around a point other than the map center.
 
 - Changed `Navigation` control signature: now it doesn't need `map` in constructor
 and gets added with `map.addControl(nav)` or `nav.addTo(map)`.
-- Updated CSS classes to have consistent naming prefixed with `mapboxgl-`.
+- Updated CSS classes to have consistent naming prefixed with `goongjs-`.
 
 #### Improvements
 

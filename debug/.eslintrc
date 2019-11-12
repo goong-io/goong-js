@@ -22,7 +22,7 @@
     "browser": true
   },
   "globals": {
-    "mapboxgl": false,
+    "goongjs": false,
     "React": false,
     "ReactDOM": false
   }

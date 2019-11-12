@@ -18,23 +18,23 @@ import config from './config';
 import browser from './browser';
 import window from './window';
 import webpSupported from './webp_supported';
-import {createSkuToken, SKU_ID} from './sku_token';
-import {version as sdkVersion} from '../../package.json';
-import {uuid, validateUuid, storageAvailable, b64DecodeUnicode, b64EncodeUnicode, warnOnce, extend} from './util';
-import {postData, ResourceType} from './ajax';
+import { createSkuToken, SKU_ID } from './sku_token';
+import { version as sdkVersion } from '../../package.json';
+import { uuid, validateUuid, storageAvailable, b64DecodeUnicode, b64EncodeUnicode, warnOnce, extend } from './util';
+import { postData, ResourceType } from './ajax';
 
-import type {RequestParameters} from './ajax';
-import type {Cancelable} from '../types/cancelable';
-import type {TileJSON} from '../types/tilejson';
+import type { RequestParameters } from './ajax';
+import type { Cancelable } from '../types/cancelable';
+import type { TileJSON } from '../types/tilejson';
 
 type ResourceTypeEnum = $Keys<typeof ResourceType>;
 export type RequestTransformFunction = (url: string, resourceType?: ResourceTypeEnum) => RequestParameters;
 
 type UrlObject = {|
     protocol: string,
-    authority: string,
-    path: string,
-    params: Array<string>
+        authority: string,
+            path: string,
+                params: Array<string>
 |};
 
 export class RequestManager {
@@ -61,28 +61,35 @@ export class RequestManager {
 
     transformRequest(url: string, type: ResourceTypeEnum) {
         if (this._transformRequestFn) {
-            return this._transformRequestFn(url, type) || {url};
+            return this._transformRequestFn(url, type) || { url };
         }
 
-        return {url};
+        return { url };
     }
 
     normalizeStyleURL(url: string, accessToken?: string): string {
-        if (!isMapboxURL(url)) return url;
+        if (!isMapboxURL(url)) {
+            accessToken = this._customAccessToken || accessToken || config.ACCESS_TOKEN;
+            return `${url}?api_key=${accessToken}`;
+        }
         const urlObject = parseUrl(url);
-        urlObject.path = `/styles/v1${urlObject.path}`;
+        // urlObject.path = `/styles/v1${urlObject.path}`;
         return this._makeAPIURL(urlObject, this._customAccessToken || accessToken);
     }
 
     normalizeGlyphsURL(url: string, accessToken?: string): string {
-        if (!isMapboxURL(url)) return url;
+        if (!isMapboxURL(url)) {
+            return url;
+        }
         const urlObject = parseUrl(url);
         urlObject.path = `/fonts/v1${urlObject.path}`;
         return this._makeAPIURL(urlObject, this._customAccessToken || accessToken);
     }
 
     normalizeSourceURL(url: string, accessToken?: string): string {
-        if (!isMapboxURL(url)) return url;
+        if (!isMapboxURL(url)) {
+            return url;
+        }
         const urlObject = parseUrl(url);
         urlObject.path = `/v4/${urlObject.authority}.json`;
         // TileJSON requests need a secure flag appended to their URLs so
@@ -95,6 +102,8 @@ export class RequestManager {
         const urlObject = parseUrl(url);
         if (!isMapboxURL(url)) {
             urlObject.path += `${format}${extension}`;
+            // accessToken = this._customAccessToken || accessToken || config.ACCESS_TOKEN;
+            // return `${url}?api_key=${accessToken}`;
             return formatUrl(urlObject);
         }
         urlObject.path = `/styles/v1${urlObject.path}/sprite${format}${extension}`;
@@ -142,7 +151,7 @@ export class RequestManager {
         }
         // Reassemble the canonical URL from the parts we've parsed before.
         let result = "mapbox://tiles/";
-        result +=  urlObject.path.replace(version, '');
+        result += urlObject.path.replace(version, '');
 
         // Append the query string, minus the access token parameter.
         const params = urlObject.params.filter(p => !p.match(/^access_token=/));
@@ -161,7 +170,7 @@ export class RequestManager {
     }
 
     _makeAPIURL(urlObject: UrlObject, accessToken: string | null | void): string {
-        const help = 'See https://www.mapbox.com/api-documentation/#access-tokens-and-token-scopes';
+        const help = 'See https://docs.goong.io';
         const apiUrlObject = parseUrl(config.API_URL);
         urlObject.protocol = apiUrlObject.protocol;
         urlObject.authority = apiUrlObject.authority;
@@ -174,9 +183,9 @@ export class RequestManager {
 
         accessToken = accessToken || config.ACCESS_TOKEN;
         if (!accessToken)
-            throw new Error(`An API access token is required to use Mapbox GL. ${help}`);
-        if (accessToken[0] === 's')
-            throw new Error(`Use a public access token (pk.*) with Mapbox GL, not a secret access token (sk.*). ${help}`);
+            throw new Error(`An API access token is required to use Goong JS. ${help}`);
+        // if (accessToken[0] === 's')
+        //     throw new Error(`Use a public access token (pk.*) with Goong JS, not a secret access token (sk.*). ${help}`);
 
         urlObject.params = urlObject.params.filter((d) => d.indexOf('access_token') === -1);
         urlObject.params.push(`access_token=${accessToken}`);
@@ -217,7 +226,7 @@ function formatUrl(obj: UrlObject): string {
     return `${obj.protocol}://${obj.authority}${obj.path}${params}`;
 }
 
-export {isMapboxURL, isMapboxHTTPURL, hasCacheDefeatingSku};
+export { isMapboxURL, isMapboxHTTPURL, hasCacheDefeatingSku };
 
 const telemEventKey = 'mapbox.eventData';
 
@@ -293,7 +302,7 @@ class TelemetryEvent {
 
     saveEventData() {
         const isLocalStorageAvailable = storageAvailable('localStorage');
-        const storageKey =  this.getStorageKey();
+        const storageKey = this.getStorageKey();
         const uuidKey = this.getStorageKey('uuid');
         if (isLocalStorageAvailable) {
             try {
@@ -308,14 +317,14 @@ class TelemetryEvent {
 
     }
 
-    processRequests(_: ?string) {}
+    processRequests(_: ?string) { }
 
     /*
     * If any event data should be persisted after the POST request, the callback should modify eventData`
     * to the values that should be saved. For this reason, the callback should be invoked prior to the call
     * to TelemetryEvent#saveData
     */
-    postEvent(timestamp: number, additionalPayload: {[string]: any}, callback: (err: ?Error) => void, customAccessToken?: ?string) {
+    postEvent(timestamp: number, additionalPayload: { [string]: any }, callback: (err: ?Error) => void, customAccessToken?: ?string) {
         if (!config.EVENTS_URL) return;
         const eventsUrlObject: UrlObject = parseUrl(config.EVENTS_URL);
         eventsUrlObject.params.push(`access_token=${customAccessToken || config.ACCESS_TOKEN || ''}`);
@@ -323,7 +332,7 @@ class TelemetryEvent {
         const payload: Object = {
             event: this.type,
             created: new Date(timestamp).toISOString(),
-            sdkIdentifier: 'mapbox-gl-js',
+            sdkIdentifier: 'goong-js',
             sdkVersion,
             skuId: SKU_ID,
             userId: this.anonId
@@ -346,56 +355,56 @@ class TelemetryEvent {
         });
     }
 
-    queueRequest(event: number | {id: number, timestamp: number}, customAccessToken?: ?string) {
+    queueRequest(event: number | { id: number, timestamp: number }, customAccessToken?: ?string) {
         this.queue.push(event);
         this.processRequests(customAccessToken);
     }
 }
 
 export class MapLoadEvent extends TelemetryEvent {
-    +success: {[number]: boolean};
-    skuToken: string;
+    +success: { [number]: boolean };
+skuToken: string;
 
-    constructor() {
-        super('map.load');
-        this.success = {};
-        this.skuToken = '';
+constructor() {
+    super('map.load');
+    this.success = {};
+    this.skuToken = '';
+}
+
+postMapLoadEvent(tileUrls: Array < string >, mapId: number, skuToken: string, customAccessToken: string) {
+    //Enabled only when Mapbox Access Token is set and a source uses
+    // mapbox tiles.
+    this.skuToken = skuToken;
+
+    if (config.EVENTS_URL &&
+        customAccessToken || config.ACCESS_TOKEN &&
+        Array.isArray(tileUrls) &&
+        tileUrls.some(url => isMapboxURL(url) || isMapboxHTTPURL(url))) {
+        this.queueRequest({ id: mapId, timestamp: Date.now() }, customAccessToken);
+    }
+}
+
+processRequests(customAccessToken ?: ? string) {
+    if (this.pendingRequest || this.queue.length === 0) return;
+    const { id, timestamp } = this.queue.shift();
+
+    // Only one load event should fire per map
+    if (id && this.success[id]) return;
+
+    if (!this.anonId) {
+        this.fetchEventData();
     }
 
-    postMapLoadEvent(tileUrls: Array<string>, mapId: number, skuToken: string, customAccessToken: string) {
-        //Enabled only when Mapbox Access Token is set and a source uses
-        // mapbox tiles.
-        this.skuToken = skuToken;
-
-        if (config.EVENTS_URL &&
-            customAccessToken || config.ACCESS_TOKEN &&
-            Array.isArray(tileUrls) &&
-            tileUrls.some(url => isMapboxURL(url) || isMapboxHTTPURL(url))) {
-            this.queueRequest({id: mapId, timestamp: Date.now()}, customAccessToken);
-        }
+    if (!validateUuid(this.anonId)) {
+        this.anonId = uuid();
     }
 
-    processRequests(customAccessToken?: ?string) {
-        if (this.pendingRequest || this.queue.length === 0) return;
-        const {id, timestamp} = this.queue.shift();
-
-        // Only one load event should fire per map
-        if (id && this.success[id]) return;
-
-        if (!this.anonId) {
-            this.fetchEventData();
+    this.postEvent(timestamp, { skuToken: this.skuToken }, (err) => {
+        if (!err) {
+            if (id) this.success[id] = true;
         }
-
-        if (!validateUuid(this.anonId)) {
-            this.anonId = uuid();
-        }
-
-        this.postEvent(timestamp, {skuToken: this.skuToken}, (err) => {
-            if (!err) {
-                if (id) this.success[id] = true;
-            }
-        }, customAccessToken);
-    }
+    }, customAccessToken);
+}
 }
 
 export class TurnstileEvent extends TelemetryEvent {
@@ -450,7 +459,7 @@ export class TurnstileEvent extends TelemetryEvent {
             return this.processRequests();
         }
 
-        this.postEvent(nextUpdate, {"enabled.telemetry": false}, (err) => {
+        this.postEvent(nextUpdate, { "enabled.telemetry": false }, (err) => {
             if (!err) {
                 this.eventData.lastSuccess = nextUpdate;
                 this.eventData.tokenU = tokenU;

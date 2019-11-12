@@ -20,7 +20,7 @@ export default class WorkerPool {
 
     acquire(mapId: number): Array<WorkerInterface> {
         if (!this.workers) {
-            // Lazily look up the value of mapboxgl.workerCount so that
+            // Lazily look up the value of goongjs.workerCount so that
             // client code has had a chance to set it.
             this.workers = [];
             while (this.workers.length < WorkerPool.workerCount) {

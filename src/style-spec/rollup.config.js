@@ -9,7 +9,7 @@ import {flow} from '../../build/rollup_plugins';
 const config = [{
     input: `${__dirname}/style-spec.js`,
     output: {
-        name: 'mapboxGlStyleSpecification',
+        name: 'goongjsStyleSpecification',
         file: `${__dirname}/dist/index.js`,
         format: 'umd',
         sourcemap: true

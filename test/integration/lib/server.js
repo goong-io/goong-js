@@ -6,11 +6,11 @@ import colors from 'chalk';
 
 export default function () {
     const integrationMount = st({path: path.join(__dirname, '..')});
-    const mapboxGLStylesMount = st({path: path.dirname(require.resolve('mapbox-gl-styles')), url: 'mapbox-gl-styles'});
+    const goongjsStylesMount = st({path: path.dirname(require.resolve('mapbox-gl-styles')), url: 'mapbox-gl-styles'});
     const mapboxMVTFixturesMount = st({path: path.dirname(require.resolve('@mapbox/mvt-fixtures')), url: 'mvt-fixtures'});
     const server = createServer((req, res) => {
         return mapboxMVTFixturesMount(req, res, () => {
-            return mapboxGLStylesMount(req, res, () => {
+            return goongjsStylesMount(req, res, () => {
                 return integrationMount(req, res);
             });
         });

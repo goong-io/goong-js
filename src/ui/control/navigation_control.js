@@ -27,7 +27,7 @@ const defaultOptions: Options = {
  * @param {Boolean} [options.showZoom=true] If `true` the zoom-in and zoom-out buttons are included.
  * @param {Boolean} [options.visualizePitch=false] If `true` the pitch is visualized by rotating X-axis of compass.
  * @example
- * var nav = new mapboxgl.NavigationControl();
+ * var nav = new goongjs.NavigationControl();
  * map.addControl(nav, 'top-left');
  * @see [Display map navigation controls](https://www.mapbox.com/mapbox-gl-js/example/navigation/)
  * @see [Add a third party vector tile source](https://www.mapbox.com/mapbox-gl-js/example/third-party/)
@@ -45,42 +45,42 @@ class NavigationControl {
     constructor(options: Options) {
         this.options = extend({}, defaultOptions, options);
 
-        this._container = DOM.create('div', 'mapboxgl-ctrl mapboxgl-ctrl-group');
+        this._container = DOM.create('div', 'goongjs-ctrl goongjs-ctrl-group');
         this._container.addEventListener('contextmenu', (e) => e.preventDefault());
 
         if (this.options.showZoom) {
             bindAll([
                 '_updateZoomButtons'
             ], this);
-            this._zoomInButton = this._createButton('mapboxgl-ctrl-icon mapboxgl-ctrl-zoom-in', 'Zoom in', () => this._map.zoomIn());
-            this._zoomOutButton = this._createButton('mapboxgl-ctrl-icon mapboxgl-ctrl-zoom-out', 'Zoom out', () => this._map.zoomOut());
+            this._zoomInButton = this._createButton('goongjs-ctrl-icon goongjs-ctrl-zoom-in', 'Zoom in', () => this._map.zoomIn());
+            this._zoomOutButton = this._createButton('goongjs-ctrl-icon goongjs-ctrl-zoom-out', 'Zoom out', () => this._map.zoomOut());
         }
         if (this.options.showCompass) {
             bindAll([
                 '_rotateCompassArrow'
             ], this);
-            this._compass = this._createButton('mapboxgl-ctrl-icon mapboxgl-ctrl-compass', 'Reset bearing to north', () => {
+            this._compass = this._createButton('goongjs-ctrl-icon goongjs-ctrl-compass', 'Reset bearing to north', () => {
                 if (this.options.visualizePitch) {
                     this._map.resetNorthPitch();
                 } else {
                     this._map.resetNorth();
                 }
             });
-            this._compassArrow = DOM.create('span', 'mapboxgl-ctrl-compass-arrow', this._compass);
+            this._compassArrow = DOM.create('span', 'goongjs-ctrl-compass-arrow', this._compass);
         }
     }
 
     _updateZoomButtons() {
         const zoom = this._map.getZoom();
         if (zoom === this._map.getMaxZoom()) {
-            this._zoomInButton.classList.add('mapboxgl-ctrl-icon-disabled');
+            this._zoomInButton.classList.add('goongjs-ctrl-icon-disabled');
         } else {
-            this._zoomInButton.classList.remove('mapboxgl-ctrl-icon-disabled');
+            this._zoomInButton.classList.remove('goongjs-ctrl-icon-disabled');
         }
         if (zoom === this._map.getMinZoom()) {
-            this._zoomOutButton.classList.add('mapboxgl-ctrl-icon-disabled');
+            this._zoomOutButton.classList.add('goongjs-ctrl-icon-disabled');
         } else {
-            this._zoomOutButton.classList.remove('mapboxgl-ctrl-icon-disabled');
+            this._zoomOutButton.classList.remove('goongjs-ctrl-icon-disabled');
         }
     }
 

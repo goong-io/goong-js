@@ -18,7 +18,7 @@
 <script src='access_token_generated.js'></script>
 <script>
 
-var map = window.map = new mapboxgl.Map({
+var map = window.map = new goongjs.Map({
     container: 'map',
     zoom: 12.5,
     maxZoom: 24,
@@ -27,7 +27,7 @@ var map = window.map = new mapboxgl.Map({
     hash: true
 });
 
-map.addControl(new mapboxgl.ScaleControl({unit: 'nautical'}));
+map.addControl(new goongjs.ScaleControl({unit: 'nautical'}));
 
 </script>
 </body>

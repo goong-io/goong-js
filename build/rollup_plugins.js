@@ -10,7 +10,7 @@ import minifyStyleSpec from './rollup_plugin_minify_style_spec';
 import { createFilter } from 'rollup-pluginutils';
 
 // Common set of plugins/transformations shared across different rollup
-// builds (main mapboxgl bundle, style-spec package, benchmarks bundle)
+// builds (main goongjs bundle, style-spec package, benchmarks bundle)
 
 export const plugins = (minified, production) => [
     flow(),

@@ -1,6 +1,6 @@
 'use strict';
 
-mapboxgl.accessToken = getAccessToken();
+goongjs.accessToken = getAccessToken();
 
 function getAccessToken() {
     var accessToken = (

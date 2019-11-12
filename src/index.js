@@ -48,7 +48,7 @@ const exported = {
      *
      * @var {string} accessToken
      * @example
-     * mapboxgl.accessToken = myAccessToken;
+     * goongjs.accessToken = myAccessToken;
      * @see [Display a map](https://www.mapbox.com/mapbox-gl-js/examples/)
      */
     get accessToken(): ?string {
@@ -64,7 +64,7 @@ const exported = {
      *
      * @var {string} baseApiUrl
      * @example
-     * mapboxgl.baseApiUrl = 'https://api.mapbox.com';
+     * goongjs.baseApiUrl = 'https://api-ss1.goong.io';
      */
     get baseApiUrl(): ?string {
         return config.API_URL;
@@ -81,7 +81,7 @@ const exported = {
      *
      * @var {string} workerCount
      * @example
-     * mapboxgl.workerCount = 2;
+     * goongjs.workerCount = 2;
      */
     get workerCount(): number {
         return WorkerPool.workerCount;
@@ -97,7 +97,7 @@ const exported = {
      *
      * @var {string} maxParallelImageRequests
      * @example
-     * mapboxgl.maxParallelImageRequests = 10;
+     * goongjs.maxParallelImageRequests = 10;
      */
     get maxParallelImageRequests(): number {
         return config.MAX_PARALLEL_IMAGE_REQUESTS;
@@ -146,7 +146,7 @@ const exported = {
  *   be dramatically worse than expected (e.g. a software WebGL renderer would be used).
  * @return {boolean}
  * @example
- * mapboxgl.supported() // = true
+ * goongjs.supported() // = true
  * @see [Check for browser support](https://www.mapbox.com/mapbox-gl-js/example/check-for-support/)
  */
 
@@ -158,7 +158,7 @@ const exported = {
  * @param {string} pluginURL URL pointing to the Mapbox RTL text plugin source.
  * @param {Function} callback Called with an error argument if there is an error.
  * @example
- * mapboxgl.setRTLTextPlugin('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.0/mapbox-gl-rtl-text.js');
+ * goongjs.setRTLTextPlugin('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.0/mapbox-gl-rtl-text.js');
  * @see [Add support for right-to-left scripts](https://www.mapbox.com/mapbox-gl-js/example/mapbox-gl-rtl-text/)
  */
 

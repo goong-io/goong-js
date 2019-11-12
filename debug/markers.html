@@ -18,7 +18,7 @@
 <script src='access_token_generated.js'></script>
 <script>
 
-var map = window.map = new mapboxgl.Map({
+var map = window.map = new goongjs.Map({
     container: 'map',
     zoom: 12.5,
     center: [-77.01866, 38.888],
@@ -35,13 +35,13 @@ function addRandomMarker() {
 
     var lng = w + (e - w) * Math.random();
     var lat = s + (n - s) * Math.random();
-    var popup = new mapboxgl.Popup().setText('hello hi');
+    var popup = new goongjs.Popup().setText('hello hi');
 
     var r = Math.round(Math.random() * 255);
     var g = Math.round(Math.random() * 255);
     var b = Math.round(Math.random() * 255);
 
-    var marker = new mapboxgl.Marker({
+    var marker = new goongjs.Marker({
         color: `rgb(${r}, ${g}, ${b})`,
         draggable: true
     })
@@ -52,7 +52,7 @@ function addRandomMarker() {
 
 for (var i = 0; i < 100; i++) addRandomMarker();
 
-map.addControl(new mapboxgl.NavigationControl());
+map.addControl(new goongjs.NavigationControl());
 
 </script>
 

@@ -26,12 +26,12 @@ class LogoControl {
 
     onAdd(map: Map) {
         this._map = map;
-        this._container = DOM.create('div', 'mapboxgl-ctrl');
-        const anchor = DOM.create('a', 'mapboxgl-ctrl-logo');
+        this._container = DOM.create('div', 'goongjs-ctrl');
+        const anchor = DOM.create('a', 'goongjs-ctrl-logo');
         anchor.target = "_blank";
         anchor.rel = "noopener nofollow";
-        anchor.href = "https://www.mapbox.com/";
-        anchor.setAttribute("aria-label", "Mapbox logo");
+        anchor.href = "https://goong.io/";
+        anchor.setAttribute("aria-label", "Goong logo");
         anchor.setAttribute("rel", "noopener nofollow");
         this._container.appendChild(anchor);
         this._container.style.display = 'none';
@@ -67,7 +67,7 @@ class LogoControl {
         const sourceCaches = this._map.style.sourceCaches;
         for (const id in sourceCaches) {
             const source = sourceCaches[id].getSource();
-            if (source.mapbox_logo) {
+            if (source.w_logo) {
                 return true;
             }
         }
@@ -80,9 +80,9 @@ class LogoControl {
         if (containerChildren.length) {
             const anchor = containerChildren[0];
             if (this._map.getCanvasContainer().offsetWidth < 250) {
-                anchor.classList.add('mapboxgl-compact');
+                anchor.classList.add('goongjs-compact');
             } else {
-                anchor.classList.remove('mapboxgl-compact');
+                anchor.classList.remove('goongjs-compact');
             }
         }
     }

@@ -221,11 +221,11 @@ class LineBucket implements Bucket {
         this.totalDistance = 0;
 
         if (!!feature.properties &&
-            feature.properties.hasOwnProperty('mapbox_clip_start') &&
-            feature.properties.hasOwnProperty('mapbox_clip_end')) {
+            feature.properties.hasOwnProperty('goong_clip_start') &&
+            feature.properties.hasOwnProperty('goong_clip_end')) {
 
-            this.clipStart = +feature.properties['mapbox_clip_start'];
-            this.clipEnd = +feature.properties['mapbox_clip_end'];
+            this.clipStart = +feature.properties['goong_clip_start'];
+            this.clipEnd = +feature.properties['goong_clip_end'];
 
             // Calculate the total distance, in tile units, of this tiled line feature
             for (let i = 0; i < vertices.length - 1; i++) {

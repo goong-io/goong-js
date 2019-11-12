@@ -215,10 +215,10 @@ const defaultOptions = {
  * @param {boolean} [options.collectResourceTiming=false] If `true`, Resource Timing API information will be collected for requests made by GeoJSON and Vector Tile web workers (this information is normally inaccessible from the main Javascript thread). Information will be returned in a `resourceTiming` property of relevant `data` events.
  * @param {number} [options.fadeDuration=300] Controls the duration of the fade-in/fade-out animation for label collisions, in milliseconds. This setting affects all symbol layers. This setting does not affect the duration of runtime styling transitions or raster tile cross-fading.
  * @param {boolean} [options.crossSourceCollisions=true] If `true`, symbols from multiple sources can collide with each other during collision detection. If `false`, collision detection is run separately for the symbols in each source.
- * @param {string} [options.accessToken=null] If specified, map will use this token instead of the one defined in mapboxgl.accessToken.
+ * @param {string} [options.accessToken=null] If specified, map will use this token instead of the one defined in goongjs.accessToken.
 
  * @example
- * var map = new mapboxgl.Map({
+ * var map = new goongjs.Map({
  *   container: 'map',
  *   center: [-122.420679, 37.772537],
  *   zoom: 13,
@@ -1570,26 +1570,26 @@ class Map extends Camera {
         const computedColor = window.getComputedStyle(this._missingCSSCanary).getPropertyValue('background-color');
         if (computedColor !== 'rgb(250, 128, 114)') {
             warnOnce('This page appears to be missing CSS declarations for ' +
-                'Mapbox GL JS, which may cause the map to display incorrectly. ' +
-                'Please ensure your page includes mapbox-gl.css, as described ' +
-                'in https://www.mapbox.com/mapbox-gl-js/api/.');
+                'Goong JS, which may cause the map to display incorrectly. ' +
+                'Please ensure your page includes goongjs.css, as described ' +
+                'in https://docs.goong.io/');
         }
     }
 
     _setupContainer() {
         const container = this._container;
-        container.classList.add('mapboxgl-map');
+        container.classList.add('goongjs-map');
 
-        const missingCSSCanary = this._missingCSSCanary = DOM.create('div', 'mapboxgl-canary', container);
+        const missingCSSCanary = this._missingCSSCanary = DOM.create('div', 'goongjs-canary', container);
         missingCSSCanary.style.visibility = 'hidden';
         this._detectMissingCSS();
 
-        const canvasContainer = this._canvasContainer = DOM.create('div', 'mapboxgl-canvas-container', container);
+        const canvasContainer = this._canvasContainer = DOM.create('div', 'goongjs-canvas-container', container);
         if (this._interactive) {
-            canvasContainer.classList.add('mapboxgl-interactive');
+            canvasContainer.classList.add('goongjs-interactive');
         }
 
-        this._canvas = DOM.create('canvas', 'mapboxgl-canvas', canvasContainer);
+        this._canvas = DOM.create('canvas', 'goongjs-canvas', canvasContainer);
         this._canvas.style.position = 'absolute';
         this._canvas.addEventListener('webglcontextlost', this._contextLost, false);
         this._canvas.addEventListener('webglcontextrestored', this._contextRestored, false);
@@ -1599,10 +1599,10 @@ class Map extends Camera {
         const dimensions = this._containerDimensions();
         this._resizeCanvas(dimensions[0], dimensions[1]);
 
-        const controlContainer = this._controlContainer = DOM.create('div', 'mapboxgl-control-container', container);
+        const controlContainer = this._controlContainer = DOM.create('div', 'goongjs-control-container', container);
         const positions = this._controlPositions = {};
         ['top-left', 'top-right', 'bottom-left', 'bottom-right'].forEach((positionName) => {
-            positions[positionName] = DOM.create('div', `mapboxgl-ctrl-${positionName}`, controlContainer);
+            positions[positionName] = DOM.create('div', `goongjs-ctrl-${positionName}`, controlContainer);
         });
     }
 
@@ -1827,7 +1827,7 @@ class Map extends Camera {
         removeNode(this._canvasContainer);
         removeNode(this._controlContainer);
         removeNode(this._missingCSSCanary);
-        this._container.classList.remove('mapboxgl-map');
+        this._container.classList.remove('goongjs-map');
         this.fire(new Event('remove'));
     }
 
@@ -1971,7 +1971,7 @@ function removeNode(node) {
  *
  * Controls must implement `onAdd` and `onRemove`, and must own an
  * element, which is often a `div` element. To use Mapbox GL JS's
- * default control styling, add the `mapboxgl-ctrl` class to your control's
+ * default control styling, add the `goongjs-ctrl` class to your control's
  * node.
  *
  * @interface IControl
@@ -1981,7 +1981,7 @@ function removeNode(node) {
  *     onAdd(map) {
  *         this._map = map;
  *         this._container = document.createElement('div');
- *         this._container.className = 'mapboxgl-ctrl';
+ *         this._container.className = 'goongjs-ctrl';
  *         this._container.textContent = 'Hello, world';
  *         return this._container;
  *     }
@@ -1998,7 +1998,7 @@ function removeNode(node) {
  * HelloWorldControl.prototype.onAdd = function(map) {
  *     this._map = map;
  *     this._container = document.createElement('div');
- *     this._container.className = 'mapboxgl-ctrl';
+ *     this._container.className = 'goongjs-ctrl';
  *     this._container.textContent = 'Hello, world';
  *     return this._container;
  * };

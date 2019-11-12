@@ -1,9 +1,9 @@
 {
-  "name": "mapbox-gl",
-  "description": "A WebGL interactive maps library",
+  "name": "goong-js",
+  "description": "Goong WebGL interactive maps library",
   "version": "1.2.1",
   "main": "dist/mapbox-gl.js",
-  "style": "dist/mapbox-gl.css",
+  "style": "dist/goongjs.css",
   "license": "SEE LICENSE IN LICENSE.txt",
   "repository": {
     "type": "git",
@@ -101,7 +101,7 @@
     "build-prod-min": "rollup -c --environment BUILD:production,MINIFY:true",
     "build-csp": "rollup -c rollup.config.csp.js",
     "build-flow-types": "cp build/mapbox-gl.js.flow dist/mapbox-gl.js.flow && cp build/mapbox-gl.js.flow dist/mapbox-gl-dev.js.flow",
-    "build-css": "postcss -o dist/mapbox-gl.css src/css/mapbox-gl.css",
+    "build-css": "postcss -o dist/goongjs.css src/css/goongjs.css",
     "build-style-spec": "cd src/style-spec && npm run build && cd ../.. && mkdir -p dist/style-spec && cp src/style-spec/dist/* dist/style-spec",
     "watch-css": "postcss --watch -o dist/mapbox-gl.css src/css/mapbox-gl.css",
     "build-token": "node build/generate-access-token-script.js",

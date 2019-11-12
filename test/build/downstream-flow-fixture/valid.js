@@ -1,7 +1,7 @@
 // @flow
 /* eslint-disable */
-import mapboxgl from '../../..';
-const Map = mapboxgl.Map;
+import goongjs from '../../..';
+const Map = goongjs.Map;
 const map = new Map({
     container: document.getElementById('map')
 });

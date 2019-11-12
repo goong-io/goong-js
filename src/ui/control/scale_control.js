@@ -25,7 +25,7 @@ const defaultOptions: Options = {
  * @param {number} [options.maxWidth='100'] The maximum length of the scale control in pixels.
  * @param {string} [options.unit='metric'] Unit of the distance (`'imperial'`, `'metric'` or `'nautical'`).
  * @example
- * var scale = new mapboxgl.ScaleControl({
+ * var scale = new goongjs.ScaleControl({
  *     maxWidth: 80,
  *     unit: 'imperial'
  * });
@@ -57,7 +57,7 @@ class ScaleControl {
 
     onAdd(map: Map) {
         this._map = map;
-        this._container = DOM.create('div', 'mapboxgl-ctrl mapboxgl-ctrl-scale', map.getContainer());
+        this._container = DOM.create('div', 'goongjs-ctrl goongjs-ctrl-scale', map.getContainer());
 
         this._map.on('move', this._onMove);
         this._onMove();
