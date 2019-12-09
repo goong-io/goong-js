@@ -101,13 +101,11 @@ export class RequestManager {
     normalizeSpriteURL(url: string, format: string, extension: string, accessToken?: string): string {
         const urlObject = parseUrl(url);
         if (!isGoongURL(url)) {
-            console.log("ahihi");
             urlObject.path += `${format}${extension}`;
             // accessToken = this._customAccessToken || accessToken || config.ACCESS_TOKEN;
             // return `${url}?api_key=${accessToken}`;
             return formatUrl(urlObject);
         }
-        console.log("ahihi2");
         urlObject.path = `/styles/v1${urlObject.path}/sprite${format}${extension}`;
         return this._makeAPIURL(urlObject, this._customAccessToken || accessToken);
     }
