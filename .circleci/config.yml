@@ -168,8 +168,8 @@ jobs:
       - run:
           name: Check bundle size
           command: |
-            node build/check-bundle-size.js "dist/mapbox-gl.js" "JS"
-            node build/check-bundle-size.js "dist/mapbox-gl.css" "CSS"
+            node build/check-bundle-size.js "dist/goong-js.js" "JS"
+            node build/check-bundle-size.js "dist/goong-js.css" "CSS"
 
   collect-stats:
     <<: *defaults

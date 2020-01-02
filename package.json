@@ -1,13 +1,13 @@
 {
-  "name": "@goongmaps/goongjs",
+  "name": "@goongmaps/goong-js",
   "description": "A WebGL interactive maps library",
-  "version": "1.7.0-dev",
+  "version": "1.0.0",
   "main": "dist/goong-js.js",
   "style": "dist/goong-js.css",
   "license": "SEE LICENSE IN LICENSE.txt",
   "repository": {
     "type": "git",
-    "url": "git://github.com/mapbox/mapbox-gl-js.git"
+    "url": "git@git.goong.io:binhnt/goong-gj-js.git"
   },
   "engines": {
     "node": ">=6.4.0"

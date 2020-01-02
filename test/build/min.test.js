@@ -5,7 +5,7 @@ import reference from '../../src/style-spec/reference/latest';
 import {Linter} from 'eslint';
 import {scripts} from '../../package.json';
 
-const minBundle = fs.readFileSync('dist/mapbox-gl.js', 'utf8');
+const minBundle = fs.readFileSync('dist/goong-js.js', 'utf8');
 
 test('production build removes asserts', (t) => {
     t.assert(minBundle.indexOf('canary assert') === -1);
