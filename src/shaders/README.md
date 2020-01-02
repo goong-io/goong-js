@@ -1,6 +1,6 @@
-# goong GL Shaders
+# Mapbox GL Shaders
 
-This repository contains GL shaders which are shared by [goong GL JS](https://github.com/goong/goong-gl-js) and [goong GL Native](https://github.com/goong/goong-gl-native).
+This repository contains GL shaders which are shared by [Mapbox GL JS](https://github.com/mapbox/mapbox-gl-js) and [Mapbox GL Native](https://github.com/mapbox/mapbox-gl-native).
 
 ## Pragmas
 
@@ -13,10 +13,10 @@ Some variables change type depending on their context:
 We abstract over this functionality using pragmas.
 
 ```glsl
-#pragma goong: define highp vec4 color
+#pragma mapbox: define highp vec4 color
 
 main() {
-    #pragma goong: initialize highp vec4 color
+    #pragma mapbox: initialize highp vec4 color
     ...
     gl_FragColor = color;
 }
@@ -27,7 +27,7 @@ This program defines a variable within `main` called `color`, initialize the val
 Pragmas take the following form.
 
 ```glsl
-#pragma goong: (define|initialize) (lowp|mediump|highp) (float|vec2|vec3|vec4) {name}
+#pragma mapbox: (define|initialize) (lowp|mediump|highp) (float|vec2|vec3|vec4) {name}
 ```
 
 When using pragmas, the following requirements apply.

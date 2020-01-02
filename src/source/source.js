@@ -44,7 +44,7 @@ export interface Source {
 
     roundZoom?: boolean,
     isTileClipped?: boolean,
-    goong_logo?: boolean,
+    mapbox_logo?: boolean,
     tileID?: CanonicalTileID;
     reparseOverscaled?: boolean,
     vectorLayerIds?: Array<string>,

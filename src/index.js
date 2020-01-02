@@ -19,9 +19,12 @@ import Point from '@mapbox/point-geometry';
 import MercatorCoordinate from './geo/mercator_coordinate';
 import {Evented} from './util/evented';
 import config from './util/config';
+import {Debug} from './util/debug';
+import {isSafari} from './util/util';
 import {setRTLTextPlugin, getRTLTextPluginStatus} from './source/rtl_text_plugin';
 import WorkerPool from './util/worker_pool';
 import {clearTileCache} from './util/tile_request_cache';
+import {PerformanceUtils} from './util/performance';
 
 const exported = {
     version,
@@ -45,12 +48,12 @@ const exported = {
     config,
 
     /**
-     * Gets and sets the map's [access token](https://www.mapbox.com/help/define-access-token/).
+     * Gets and sets the map's [access token](https://account.goong.io/).
      *
      * @var {string} accessToken
      * @example
      * goongjs.accessToken = myAccessToken;
-     * @see [Display a map](https://www.mapbox.com/mapbox-gl-js/examples/)
+     * @see [Display a map](https://docs.goong.io/js/guide)
      */
     get accessToken(): ?string {
         return config.ACCESS_TOKEN;
@@ -65,7 +68,7 @@ const exported = {
      *
      * @var {string} baseApiUrl
      * @example
-     * goongjs.baseApiUrl = 'https://api-ss1.goong.io';
+     * goongjs.baseApiUrl = 'https://api.goong.io';
      */
     get baseApiUrl(): ?string {
         return config.API_URL;
@@ -130,6 +133,9 @@ const exported = {
     workerUrl: ''
 };
 
+//This gets automatically stripped out in production builds.
+Debug.extend(exported, {isSafari, getPerformanceMetrics: PerformanceUtils.getPerformanceMetrics});
+
 /**
  * The version of Mapbox GL JS in use as specified in `package.json`,
  * `CHANGELOG.md`, and the GitHub release.
@@ -138,7 +144,7 @@ const exported = {
  */
 
 /**
- * Test whether the browser [supports Mapbox GL JS](https://www.mapbox.com/help/mapbox-browser-support/#mapbox-gl-js).
+ * Test whether the browser [supports Mapbox GL JS](https://docs.goong.io/js/guide#check-browser-support).
  *
  * @function supported
  * @param {Object} [options]
@@ -148,7 +154,7 @@ const exported = {
  * @return {boolean}
  * @example
  * goongjs.supported() // = true
- * @see [Check for browser support](https://www.mapbox.com/mapbox-gl-js/example/check-for-support/)
+ * @see [Check for browser support](https://docs.goong.io/js/guide#check-browser-support)
  */
 
 /**
@@ -158,7 +164,7 @@ const exported = {
  * @function setRTLTextPlugin
  * @param {string} pluginURL URL pointing to the Mapbox RTL text plugin source.
  * @param {Function} callback Called with an error argument if there is an error.
- * @param {boolean} lazy If set to `true`, mapboxgl will defer loading the plugin until rtl text is encountered,
+ * @param {boolean} lazy If set to `true`, goongjs will defer loading the plugin until rtl text is encountered,
  *    rtl text will then be rendered only after the plugin finishes loading.
  * @example
  * goongjs.setRTLTextPlugin('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.0/mapbox-gl-rtl-text.js');
@@ -172,7 +178,7 @@ const exported = {
   *
   * @function getRTLTextPluginStatus
   * @example
-  * const pluginStatus = mapboxgl.getRTLTextPluginStatus();
+  * const pluginStatus = goongjs.getRTLTextPluginStatus();
   */
 
 export default exported;

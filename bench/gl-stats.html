@@ -9,14 +9,14 @@ let now = performance.now();
 window.performance.now = () => now;
 </script>
 <script src="../dist/mapbox-gl.js"></script>
-<style>.mapboxgl-canary { background-color: salmon; }</style>
+<style>.goongjs-canary { background-color: salmon; }</style>
 </head>
 <body style="margin: 0; padding: 0"><div id="map" style="width: 500px; height: 500px"></div></body>
 <script>
-mapboxgl.accessToken = 'MAPBOX_ACCESS_TOKEN';
-mapboxgl.workerCount = 1;
+goongjs.accessToken = 'MAPBOX_ACCESS_TOKEN';
+goongjs.workerCount = 1;
 
-var map = new mapboxgl.Map({
+var map = new goongjs.Map({
     container: document.getElementById('map'),
     style: 'mapbox://styles/mapbox/streets-v11',
     center: [-77.07842066675323, 38.890315130853566],

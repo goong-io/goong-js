@@ -113,7 +113,7 @@ export default class Popup extends Evented {
         if (this._trackPointer) {
             this._map.on('mousemove', (e) => { this._update(e.point); });
             this._map.on('mouseup', (e) => { this._update(e.point); });
-       if (this._container) {
+            if (this._container) {
                 this._container.classList.add('goongjs-popup-track-pointer');
             }
             this._map._canvasContainer.classList.add('goongjs-track-pointer');
@@ -234,7 +234,7 @@ export default class Popup extends Evented {
             this._map.off('move', this._update);
             this._map.on('mousemove', (e) => { this._update(e.point); });
             this._map.on('drag', (e) => { this._update(e.point); });
-        if (this._container) {
+            if (this._container) {
                 this._container.classList.add('goongjs-popup-track-pointer');
             }
             this._map._canvasContainer.classList.add('goongjs-track-pointer');
@@ -344,7 +344,7 @@ export default class Popup extends Evented {
      * @param {string} className Non-empty string with CSS class name to add to popup container
      *
      * @example
-     * let popup = new mapboxgl.Popup()
+     * let popup = new goongjs.Popup()
      * popup.addClassName('some-class')
      */
     addClassName(className: string) {
@@ -357,7 +357,7 @@ export default class Popup extends Evented {
      * @param {string} className Non-empty string with CSS class name to remove from popup container
      *
      * @example
-     * let popup = new mapboxgl.Popup()
+     * let popup = new goongjs.Popup()
      * popup.removeClassName('some-class')
      */
     removeClassName(className: string) {
@@ -372,7 +372,7 @@ export default class Popup extends Evented {
      * @returns {boolean} if the class was removed return false, if class was added, then return true
      *
      * @example
-     * let popup = new mapboxgl.Popup()
+     * let popup = new goongjs.Popup()
      * popup.toggleClassName('toggleClass')
      */
     toggleClassName(className: string) {

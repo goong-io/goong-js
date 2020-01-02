@@ -8,7 +8,7 @@ const localizeURLs = require('./localize-urls');
 module.exports = function () {
     const port = 2900;
     const integrationMount = st({path: path.join(__dirname, '..')});
-    const goongjsStylesMount = st({path: path.dirname(require.resolve('mapbox-gl-styles')), url: 'mapbox-gl-styles'});
+    const mapboxGLStylesMount = st({path: path.dirname(require.resolve('mapbox-gl-styles')), url: 'mapbox-gl-styles'});
     const mapboxMVTFixturesMount = st({path: path.dirname(require.resolve('@mapbox/mvt-fixtures')), url: 'mvt-fixtures'});
     const server = createServer((req, res) => {
         if (req.method === 'POST' && req.url === '/write-file') {
@@ -28,7 +28,7 @@ module.exports = function () {
         }
 
         return mapboxMVTFixturesMount(req, res, () => {
-            return goongjsStylesMount(req, res, () => {
+            return mapboxGLStylesMount(req, res, () => {
                 return integrationMount(req, res);
             });
         });

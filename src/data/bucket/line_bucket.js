@@ -221,11 +221,11 @@ class LineBucket implements Bucket {
         this.totalDistance = 0;
 
         if (!!feature.properties &&
-            feature.properties.hasOwnProperty('goong_clip_start') &&
-            feature.properties.hasOwnProperty('goong_clip_end')) {
+            feature.properties.hasOwnProperty('mapbox_clip_start') &&
+            feature.properties.hasOwnProperty('mapbox_clip_end')) {
 
-            this.clipStart = +feature.properties['goong_clip_start'];
-            this.clipEnd = +feature.properties['goong_clip_end'];
+            this.clipStart = +feature.properties['mapbox_clip_start'];
+            this.clipEnd = +feature.properties['mapbox_clip_end'];
 
             // Calculate the total distance, in tile units, of this tiled line feature
             for (let i = 0; i < vertices.length - 1; i++) {
@@ -250,7 +250,9 @@ class LineBucket implements Bucket {
 
         if (join === 'bevel') miterLimit = 1.05;
 
-        const sharpCornerOffset = SHARP_CORNER_OFFSET * (EXTENT / (512 * this.overscaling));
+        const sharpCornerOffset = this.overscaling <= 16 ?
+            SHARP_CORNER_OFFSET * EXTENT / (512 * this.overscaling) :
+            0;
 
         // we could be more precise, but it would only save a negligible amount of space
         const segment = this.segments.prepareSegment(len * 10, this.layoutVertexArray, this.indexArray);

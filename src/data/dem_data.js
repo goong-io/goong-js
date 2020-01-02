@@ -19,20 +19,20 @@ export default class DEMData {
     data: Uint32Array;
     stride: number;
     dim: number;
-    encoding: "goong" | "terrarium";
+    encoding: "mapbox" | "terrarium";
 
     // RGBAImage data has uniform 1px padding on all sides: square tile edge size defines stride
     // and dim is calculated as stride - 2.
-    constructor(uid: string, data: RGBAImage, encoding: "goong" | "terrarium") {
+    constructor(uid: string, data: RGBAImage, encoding: "mapbox" | "terrarium") {
         this.uid = uid;
         if (data.height !== data.width) throw new RangeError('DEM tiles must be square');
-        if (encoding && encoding !== "goong" && encoding !== "terrarium") return warnOnce(
-            `"${encoding}" is not a valid encoding type. Valid types include "goong" and "terrarium".`
+        if (encoding && encoding !== "mapbox" && encoding !== "terrarium") return warnOnce(
+            `"${encoding}" is not a valid encoding type. Valid types include "mapbox" and "terrarium".`
         );
         this.stride = data.height;
         const dim = this.dim = data.height - 2;
         this.data = new Uint32Array(data.data.buffer);
-        this.encoding = encoding || 'goong';
+        this.encoding = encoding || 'mapbox';
 
         // in order to avoid flashing seams between tiles, here we are initially populating a 1px border of pixels around the image
         // with the data of the nearest pixel from the image. this data is eventually replaced when the tile's neighboring
@@ -57,7 +57,7 @@ export default class DEMData {
     get(x: number, y: number) {
         const pixels = new Uint8Array(this.data.buffer);
         const index = this._idx(x, y) * 4;
-        const unpack = this.encoding === "terrarium" ? this._unpackTerrarium : this._unpackGoong;
+        const unpack = this.encoding === "terrarium" ? this._unpackTerrarium : this._unpackMapbox;
         return unpack(pixels[index], pixels[index + 1], pixels[index + 2]);
     }
 
@@ -70,7 +70,7 @@ export default class DEMData {
         return (y + 1) * this.stride + (x + 1);
     }
 
-    _unpackGoong(r: number, g: number, b: number) {
+    _unpackMapbox(r: number, g: number, b: number) {
         // unpacking formula for mapbox.terrain-rgb:
         // https://www.mapbox.com/help/access-elevation-data/#mapbox-terrain-rgb
         return ((r * 256 * 256 + g * 256.0 + b) / 10.0 - 10000.0);

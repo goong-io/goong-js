@@ -1,14 +1,14 @@
 import {test} from '../util/test';
-import goongjs from '../../src';
+import mapboxgl from '../../src';
 
-test('goongjs', (t) => {
+test('mapboxgl', (t) => {
     t.test('version', (t) => {
-        t.ok(goongjs.version);
+        t.ok(mapboxgl.version);
         t.end();
     });
 
     t.test('workerCount', (t) => {
-        t.ok(typeof goongjs.workerCount === 'number');
+        t.ok(typeof mapboxgl.workerCount === 'number');
         t.end();
     });
     t.end();

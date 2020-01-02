@@ -10,14 +10,14 @@ varying vec2 v_pos_a;
 varying vec2 v_pos_b;
 varying vec2 v_pos;
 
-#pragma goong: define lowp float opacity
-#pragma goong: define lowp vec4 pattern_from
-#pragma goong: define lowp vec4 pattern_to
+#pragma mapbox: define lowp float opacity
+#pragma mapbox: define lowp vec4 pattern_from
+#pragma mapbox: define lowp vec4 pattern_to
 
 void main() {
-    #pragma goong: initialize lowp float opacity
-    #pragma goong: initialize mediump vec4 pattern_from
-    #pragma goong: initialize mediump vec4 pattern_to
+    #pragma mapbox: initialize lowp float opacity
+    #pragma mapbox: initialize mediump vec4 pattern_from
+    #pragma mapbox: initialize mediump vec4 pattern_to
 
     vec2 pattern_tl_a = pattern_from.xy;
     vec2 pattern_br_a = pattern_from.zw;

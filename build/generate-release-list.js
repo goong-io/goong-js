@@ -6,7 +6,7 @@ const list = {};
 octokit
     .paginate(octokit.repos.listReleases.endpoint({
         owner: 'goong',
-        repo: 'goong-gl-js'
+        repo: 'goong-js'
     }))
     .then(releases => {
         releases.filter(release => release.tag_name.match(/^v\d+\.\d+\.\d+(-\w+)?/)).forEach(release => {

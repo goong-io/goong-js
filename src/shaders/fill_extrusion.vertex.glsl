@@ -10,15 +10,15 @@ attribute vec4 a_normal_ed;
 
 varying vec4 v_color;
 
-#pragma goong: define highp float base
-#pragma goong: define highp float height
+#pragma mapbox: define highp float base
+#pragma mapbox: define highp float height
 
-#pragma goong: define highp vec4 color
+#pragma mapbox: define highp vec4 color
 
 void main() {
-    #pragma goong: initialize highp float base
-    #pragma goong: initialize highp float height
-    #pragma goong: initialize highp vec4 color
+    #pragma mapbox: initialize highp float base
+    #pragma mapbox: initialize highp float height
+    #pragma mapbox: initialize highp vec4 color
 
     vec3 normal = a_normal_ed.xyz;
 

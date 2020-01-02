@@ -437,7 +437,7 @@ test("mapbox", (t) => {
             t.end();
         });
 
-        t.test('does not POST when goongjs.ACCESS_TOKEN is not set', (t) => {
+        t.test('does not POST when mapboxgl.ACCESS_TOKEN is not set', (t) => {
             config.ACCESS_TOKEN = null;
 
             event.postTurnstileEvent(mapboxTileURLs);
@@ -774,7 +774,7 @@ test("mapbox", (t) => {
             t.end();
         });
 
-        t.test('does not POST when goongjs.ACCESS_TOKEN is not set', (t) => {
+        t.test('does not POST when mapboxgl.ACCESS_TOKEN is not set', (t) => {
             config.ACCESS_TOKEN = null;
 
             event.postMapLoadEvent(mapboxTileURLs, 1, skuToken);

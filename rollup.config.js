@@ -7,8 +7,8 @@ const {BUILD, MINIFY} = process.env;
 const minified = MINIFY === 'true';
 const production = BUILD === 'production';
 const outputFile =
-    !production ? 'dist/mapbox-gl-dev.js' :
-    minified ? 'dist/mapbox-gl.js' : 'dist/mapbox-gl-unminified.js';
+    !production ? 'dist/goong-js-dev.js' :
+    minified ? 'dist/goong-js.js' : 'dist/goong-js-unminified.js';
 
 export default [{
     // First, use code splitting to bundle GL JS into three "chunks":
@@ -33,7 +33,7 @@ export default [{
     // Next, bundle together the three "chunks" produced in the previous pass
     // into a single, final bundle. See rollup/bundle_prelude.js and
     // rollup/goongjs.js for details.
-    input: 'rollup/goongjs.js',
+    input: 'rollup/goong-js.js',
     output: {
         name: 'goongjs',
         file: outputFile,

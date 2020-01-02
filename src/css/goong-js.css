@@ -16,7 +16,7 @@
 }
 
 .goongjs-canvas-container.goongjs-interactive,
-.goongjs-ctrl-group > button.goongjs-ctrl-compass {
+.goongjs-ctrl-group button.goongjs-ctrl-compass {
     cursor: -webkit-grab;
     cursor: -moz-grab;
     cursor: grab;
@@ -31,7 +31,7 @@
 }
 
 .goongjs-canvas-container.goongjs-interactive:active,
-.goongjs-ctrl-group > button.goongjs-ctrl-compass:active {
+.goongjs-ctrl-group button.goongjs-ctrl-compass:active {
     cursor: -webkit-grabbing;
     cursor: -moz-grabbing;
     cursor: grabbing;
@@ -63,7 +63,9 @@
 
 .goongjs-ctrl {
     clear: both;
-    pointer-events: auto;    
+    pointer-events: auto;
+
+    /* workaround for a Safari bug https://github.com/mapbox/mapbox-gl-js/issues/8185 */
     transform: translate(0, 0);
 }
 .goongjs-ctrl-top-left .goongjs-ctrl     { margin: 10px 0 0 10px; float: left; }
@@ -82,9 +84,15 @@
     box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
 }
 
-.goongjs-ctrl-group > button {
-    width: 30px;
-    height: 30px;
+@media (-ms-high-contrast: active) {
+    .goongjs-ctrl-group:not(:empty) {
+        box-shadow: 0 0 0 2px ButtonText;
+    }
+}
+
+.goongjs-ctrl-group button {
+    width: 29px;
+    height: 29px;
     display: block;
     padding: 0;
     outline: none;
@@ -94,102 +102,265 @@
     cursor: pointer;
 }
 
-.goongjs-ctrl-group > button + button {
+.goongjs-ctrl-group button + button {
     border-top: 1px solid #ddd;
 }
 
+.goongjs-ctrl button .goongjs-ctrl-icon {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+@media (-ms-high-contrast: active) {
+    .goongjs-ctrl-icon {
+        background-color: transparent;
+    }
+
+    .goongjs-ctrl-group button + button {
+        border-top: 1px solid ButtonText;
+    }
+}
+
 /* https://bugzilla.mozilla.org/show_bug.cgi?id=140562 */
-.goongjs-ctrl > button::-moz-focus-inner {
+.goongjs-ctrl button::-moz-focus-inner {
     border: 0;
     padding: 0;
 }
 
-.goongjs-ctrl > button:hover {
+.goongjs-ctrl-group button:focus {
+    box-shadow: 0 0 2px 2px rgba(0, 150, 255, 1);
+}
+
+.goongjs-ctrl button:disabled {
+    cursor: not-allowed;
+}
+
+.goongjs-ctrl button:disabled .goongjs-ctrl-icon {
+    opacity: 0.25;
+}
+
+.goongjs-ctrl button:not(:disabled):hover {
     background-color: rgba(0, 0, 0, 0.05);
 }
 
-.goongjs-ctrl-group > button:focus {
+.goongjs-ctrl-group button:focus:focus-visible {
     box-shadow: 0 0 2px 2px rgba(0, 150, 255, 1);
 }
 
-.goongjs-ctrl-group > button:focus:focus-visible {
-    box-shadow: 0 0 2px 2px rgba(0, 150, 255, 1);
-}
-
-.goongjs-ctrl-group > button:focus:not(:focus-visible) {
+.goongjs-ctrl-group button:focus:not(:focus-visible) {
     box-shadow: none;
 }
 
-.goongjs-ctrl-group > button:focus:first-child {
+.goongjs-ctrl-group button:focus:first-child {
     border-radius: 4px 4px 0 0;
 }
 
-.goongjs-ctrl-group > button:focus:last-child {
+.goongjs-ctrl-group button:focus:last-child {
     border-radius: 0 0 4px 4px;
 }
 
-.goongjs-ctrl-group > button:focus:only-child {
+.goongjs-ctrl-group button:focus:only-child {
     border-radius: inherit;
 }
 
-.goongjs-ctrl-icon,
-.goongjs-ctrl-icon > .goongjs-ctrl-compass-arrow {
-    speak: none;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+.goongjs-ctrl button.goongjs-ctrl-zoom-out .goongjs-ctrl-icon {
+    background-image: svg-load('svg/goongjs-ctrl-zoom-out.svg', fill: #333);
 }
 
-.goongjs-ctrl-icon {
-    padding: 5px;
+.goongjs-ctrl button.goongjs-ctrl-zoom-in .goongjs-ctrl-icon {
+    background-image: svg-load('svg/goongjs-ctrl-zoom-in.svg', fill: #333);
 }
 
-.goongjs-ctrl-icon.goongjs-ctrl-icon-disabled {
-    opacity: 0.25;
-    border-color: #373737;
+@media (-ms-high-contrast: active) {
+    .goongjs-ctrl button.goongjs-ctrl-zoom-out .goongjs-ctrl-icon {
+        background-image: svg-load('svg/goongjs-ctrl-zoom-out.svg', fill: #fff);
+    }
+
+    .goongjs-ctrl button.goongjs-ctrl-zoom-in .goongjs-ctrl-icon {
+        background-image: svg-load('svg/goongjs-ctrl-zoom-in.svg', fill: #fff);
+    }
 }
 
-.goongjs-ctrl-icon.goongjs-ctrl-zoom-out {
-    background-image: svg-load('svg/goongjs-ctrl-zoom-out.svg');
+@media (-ms-high-contrast: black-on-white) {
+    .goongjs-ctrl button.goongjs-ctrl-zoom-out .goongjs-ctrl-icon {
+        background-image: svg-load('svg/goongjs-ctrl-zoom-out.svg', fill: #000);
+    }
+
+    .goongjs-ctrl button.goongjs-ctrl-zoom-in .goongjs-ctrl-icon {
+        background-image: svg-load('svg/goongjs-ctrl-zoom-in.svg', fill: #000);
+    }
 }
 
-.goongjs-ctrl-icon.goongjs-ctrl-zoom-in {
-    background-image: svg-load('svg/goongjs-ctrl-zoom-in.svg');
+.goongjs-ctrl button.goongjs-ctrl-fullscreen .goongjs-ctrl-icon {
+    background-image: svg-load('svg/goongjs-ctrl-fullscreen.svg', fill: #333);
 }
 
-.goongjs-ctrl-icon.goongjs-ctrl-geolocate::before {
-    background-image: svg-load('svg/goongjs-ctrl-geolocate.svg', fill=#333);
-    content: "";
-    display: block;
-    width: 100%;
-    height: 100%;
+.goongjs-ctrl button.goongjs-ctrl-shrink .goongjs-ctrl-icon {
+    background-image: svg-load('svg/goongjs-ctrl-shrink.svg');
 }
 
-.goongjs-ctrl-icon.goongjs-ctrl-geolocate::before:disabled {
-    background-image: svg-load('svg/goongjs-ctrl-geolocate.svg', fill=#aaa);
+@media (-ms-high-contrast: active) {
+    .goongjs-ctrl button.goongjs-ctrl-fullscreen .goongjs-ctrl-icon {
+        background-image: svg-load('svg/goongjs-ctrl-fullscreen.svg', fill: #fff);
+    }
+
+    .goongjs-ctrl button.goongjs-ctrl-shrink .goongjs-ctrl-icon {
+        background-image: svg-load('svg/goongjs-ctrl-shrink.svg', fill: #fff);
+    }
 }
 
-.goongjs-ctrl-icon.goongjs-ctrl-geolocate.goongjs-ctrl-geolocate-active::before {
-    background-image: svg-load('svg/goongjs-ctrl-geolocate.svg', fill=#33b5e5);
+@media (-ms-high-contrast: black-on-white) {
+    .goongjs-ctrl button.goongjs-ctrl-fullscreen .goongjs-ctrl-icon {
+        background-image: svg-load('svg/goongjs-ctrl-fullscreen.svg', fill: #000);
+    }
+
+    .goongjs-ctrl button.goongjs-ctrl-shrink .goongjs-ctrl-icon {
+        background-image: svg-load('svg/goongjs-ctrl-shrink.svg', fill: #000);
+    }
 }
 
-.goongjs-ctrl-icon.goongjs-ctrl-geolocate.goongjs-ctrl-geolocate-active-error::before {
-    background-image: svg-load('svg/goongjs-ctrl-geolocate.svg', fill=#e58978);
+.goongjs-ctrl button.goongjs-ctrl-compass .goongjs-ctrl-icon {
+    background-image: svg-load('svg/goongjs-ctrl-compass.svg', fill: #333);
 }
 
-.goongjs-ctrl-icon.goongjs-ctrl-geolocate.goongjs-ctrl-geolocate-background::before {
-    background-image: svg-load('svg/goongjs-ctrl-geolocate-background.svg', fill=#33b5e5);
+@media (-ms-high-contrast: active) {
+    .goongjs-ctrl button.goongjs-ctrl-compass .goongjs-ctrl-icon {
+        @svg-load ctrl-compass-white url(svg/goongjs-ctrl-compass.svg) {
+            fill: #fff;
+            #south { fill: #999; }
+        }
+
+        background-image: svg-inline(ctrl-compass-white);
+    }
 }
 
-.goongjs-ctrl-icon.goongjs-ctrl-geolocate.goongjs-ctrl-geolocate-background-error::before {
-    background-image: svg-load('svg/goongjs-ctrl-geolocate-background.svg', fill=#e54e33);
+@media (-ms-high-contrast: black-on-white) {
+    .goongjs-ctrl button.goongjs-ctrl-compass .goongjs-ctrl-icon {
+        background-image: svg-load('svg/goongjs-ctrl-compass.svg', fill: #000);
+    }
 }
 
-.goongjs-ctrl-icon.goongjs-ctrl-geolocate.goongjs-ctrl-geolocate-waiting::before {
+@svg-load ctrl-geolocate url(svg/goongjs-ctrl-geolocate.svg) {
+    fill: #333;
+    #stroke { display: none; }
+}
+
+@svg-load ctrl-geolocate-white url(svg/goongjs-ctrl-geolocate.svg) {
+    fill: #fff;
+    #stroke { display: none; }
+}
+
+@svg-load ctrl-geolocate-black url(svg/goongjs-ctrl-geolocate.svg) {
+    fill: #000;
+    #stroke { display: none; }
+}
+
+@svg-load ctrl-geolocate-disabled url(svg/goongjs-ctrl-geolocate.svg) {
+    fill: #aaa;
+    #stroke { fill: #f00; }
+}
+
+@svg-load ctrl-geolocate-disabled-white url(svg/goongjs-ctrl-geolocate.svg) {
+    fill: #999;
+    #stroke { fill: #f00; }
+}
+
+@svg-load ctrl-geolocate-disabled-black url(svg/goongjs-ctrl-geolocate.svg) {
+    fill: #666;
+    #stroke { fill: #f00; }
+}
+
+@svg-load ctrl-geolocate-active url(svg/goongjs-ctrl-geolocate.svg) {
+    fill: #33b5e5;
+    #stroke { display: none; }
+}
+
+@svg-load ctrl-geolocate-active-error url(svg/goongjs-ctrl-geolocate.svg) {
+    fill: #e58978;
+    #stroke { display: none; }
+}
+
+@svg-load ctrl-geolocate-background url(svg/goongjs-ctrl-geolocate.svg) {
+    fill: #33b5e5;
+    #stroke { display: none; }
+    #dot { display: none; }
+}
+
+@svg-load ctrl-geolocate-background-error url(svg/goongjs-ctrl-geolocate.svg) {
+    fill: #e54e33;
+    #stroke { display: none; }
+    #dot { display: none; }
+}
+
+.goongjs-ctrl button.goongjs-ctrl-geolocate .goongjs-ctrl-icon {
+    background-image: svg-inline(ctrl-geolocate);
+}
+
+.goongjs-ctrl button.goongjs-ctrl-geolocate:disabled .goongjs-ctrl-icon {
+    background-image: svg-inline(ctrl-geolocate-disabled);
+}
+
+.goongjs-ctrl button.goongjs-ctrl-geolocate.goongjs-ctrl-geolocate-active .goongjs-ctrl-icon {
+    background-image: svg-inline(ctrl-geolocate-active);
+}
+
+.goongjs-ctrl button.goongjs-ctrl-geolocate.goongjs-ctrl-geolocate-active-error .goongjs-ctrl-icon {
+    background-image: svg-inline(ctrl-geolocate-active-error);
+}
+
+.goongjs-ctrl button.goongjs-ctrl-geolocate.goongjs-ctrl-geolocate-background .goongjs-ctrl-icon {
+    background-image: svg-inline(ctrl-geolocate-background);
+}
+
+.goongjs-ctrl button.goongjs-ctrl-geolocate.goongjs-ctrl-geolocate-background-error .goongjs-ctrl-icon {
+    background-image: svg-inline(ctrl-geolocate-background-error);
+}
+
+.goongjs-ctrl button.goongjs-ctrl-geolocate.goongjs-ctrl-geolocate-waiting .goongjs-ctrl-icon {
     -webkit-animation: goongjs-spin 2s infinite linear;
     -moz-animation: goongjs-spin 2s infinite linear;
     -o-animation: goongjs-spin 2s infinite linear;
     -ms-animation: goongjs-spin 2s infinite linear;
     animation: goongjs-spin 2s infinite linear;
+}
+
+@media (-ms-high-contrast: active) {
+    .goongjs-ctrl button.goongjs-ctrl-geolocate .goongjs-ctrl-icon {
+        background-image: svg-inline(ctrl-geolocate-white);
+    }
+
+    .goongjs-ctrl button.goongjs-ctrl-geolocate:disabled .goongjs-ctrl-icon {
+        background-image: svg-inline(ctrl-geolocate-disabled-white);
+    }
+
+    .goongjs-ctrl button.goongjs-ctrl-geolocate.goongjs-ctrl-geolocate-active .goongjs-ctrl-icon {
+        background-image: svg-inline(ctrl-geolocate-active);
+    }
+
+    .goongjs-ctrl button.goongjs-ctrl-geolocate.goongjs-ctrl-geolocate-active-error .goongjs-ctrl-icon {
+        background-image: svg-inline(ctrl-geolocate-active-error);
+    }
+
+    .goongjs-ctrl button.goongjs-ctrl-geolocate.goongjs-ctrl-geolocate-background .goongjs-ctrl-icon {
+        background-image: svg-inline(ctrl-geolocate-background);
+    }
+
+    .goongjs-ctrl button.goongjs-ctrl-geolocate.goongjs-ctrl-geolocate-background-error .goongjs-ctrl-icon {
+        background-image: svg-inline(ctrl-geolocate-background-error);
+    }
+}
+
+@media (-ms-high-contrast: black-on-white) {
+    .goongjs-ctrl button.goongjs-ctrl-geolocate .goongjs-ctrl-icon {
+        background-image: svg-inline(ctrl-geolocate-black);
+    }
+
+    .goongjs-ctrl button.goongjs-ctrl-geolocate:disabled .goongjs-ctrl-icon {
+        background-image: svg-inline(ctrl-geolocate-disabled-black);
+    }
 }
 
 @-webkit-keyframes goongjs-spin {
@@ -217,37 +388,42 @@
     100% { transform: rotate(360deg); }
 }
 
-.goongjs-ctrl-icon.goongjs-ctrl-fullscreen {
-    background-image: svg-load('svg/goongjs-ctrl-fullscreen.svg');
-}
-
-.goongjs-ctrl-icon.goongjs-ctrl-shrink {
-    background-image: svg-load('svg/goongjs-ctrl-shrink.svg');
-}
-
-.goongjs-ctrl-icon.goongjs-ctrl-compass > .goongjs-ctrl-compass-arrow {
-    width: 20px;
-    height: 20px;
-    margin: 5px;
-    background-image: svg-load('svg/goongjs-ctrl-compass.svg');
-    background-repeat: no-repeat;
-    display: inline-block;
-}
-
 a.goongjs-ctrl-logo {
-    width: 85px;
-    height: 21px;
-    margin: 0 0 -3px -3px;
+    width: 88px;
+    height: 23px;
+    margin: 0 0 -4px -4px;
     display: block;
     background-repeat: no-repeat;
     cursor: pointer;
+    overflow: hidden;
     background-image: svg-load('svg/goongjs-ctrl-logo.svg');
 }
 
 a.goongjs-ctrl-logo.goongjs-compact {
-    width: 21px;
-    height: 21px;
-    background-image: svg-load('svg/goongjs-ctrl-logo-compact.svg');
+    width: 23px;
+}
+
+@media (-ms-high-contrast: active) {
+    a.goongjs-ctrl-logo {
+        @svg-load ctrl-logo-white url(svg/goongjs-ctrl-logo.svg) {
+            #outline { opacity: 1; }
+            #fill { opacity: 1; }
+        }
+
+        background-color: transparent;
+        background-image: svg-inline(ctrl-logo-white);
+    }
+}
+
+@media (-ms-high-contrast: black-on-white) {
+    a.goongjs-ctrl-logo {
+        @svg-load ctrl-logo-black url(svg/goongjs-ctrl-logo.svg) {
+            #outline { opacity: 1; fill: #fff; stroke: #fff; }
+            #fill { opacity: 1; fill: #000; }
+        }
+
+        background-image: svg-inline(ctrl-logo-black);
+    }
 }
 
 .goongjs-ctrl.goongjs-ctrl-attrib {
@@ -319,6 +495,18 @@ a.goongjs-ctrl-logo.goongjs-compact {
     }
 }
 
+@media screen and (-ms-high-contrast: active) {
+    .goongjs-ctrl-attrib.goongjs-compact::after {
+        background-image: svg-load('svg/goongjs-ctrl-attrib.svg', fill=#fff);
+    }
+}
+
+@media screen and (-ms-high-contrast: black-on-white) {
+    .goongjs-ctrl-attrib.goongjs-compact::after {
+        background-image: svg-load('svg/goongjs-ctrl-attrib.svg');
+    }
+}
+
 .goongjs-ctrl-attrib a {
     color: rgba(0, 0, 0, 0.75);
     text-decoration: none;
@@ -330,7 +518,7 @@ a.goongjs-ctrl-logo.goongjs-compact {
 }
 
 /* stylelint-disable-next-line selector-class-pattern */
-.goongjs-ctrl-attrib .goongjs-improve-map {
+.goongjs-ctrl-attrib .mapbox-improve-map {
     font-weight: bold;
     margin-left: 2px;
 }
@@ -592,7 +780,7 @@ a.goongjs-ctrl-logo.goongjs-compact {
 
 @media print {
     /* stylelint-disable-next-line selector-class-pattern */
-    .goongjs-improve-map {
+    .mapbox-improve-map {
         display: none;
     }
 }

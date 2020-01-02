@@ -28,22 +28,22 @@ varying vec2 v_tex_a;
 varying vec2 v_tex_b;
 varying float v_gamma_scale;
 
-#pragma goong: define highp vec4 color
-#pragma goong: define lowp float blur
-#pragma goong: define lowp float opacity
-#pragma goong: define mediump float gapwidth
-#pragma goong: define lowp float offset
-#pragma goong: define mediump float width
-#pragma goong: define lowp float floorwidth
+#pragma mapbox: define highp vec4 color
+#pragma mapbox: define lowp float blur
+#pragma mapbox: define lowp float opacity
+#pragma mapbox: define mediump float gapwidth
+#pragma mapbox: define lowp float offset
+#pragma mapbox: define mediump float width
+#pragma mapbox: define lowp float floorwidth
 
 void main() {
-    #pragma goong: initialize highp vec4 color
-    #pragma goong: initialize lowp float blur
-    #pragma goong: initialize lowp float opacity
-    #pragma goong: initialize mediump float gapwidth
-    #pragma goong: initialize lowp float offset
-    #pragma goong: initialize mediump float width
-    #pragma goong: initialize lowp float floorwidth
+    #pragma mapbox: initialize highp vec4 color
+    #pragma mapbox: initialize lowp float blur
+    #pragma mapbox: initialize lowp float opacity
+    #pragma mapbox: initialize mediump float gapwidth
+    #pragma mapbox: initialize lowp float offset
+    #pragma mapbox: initialize mediump float width
+    #pragma mapbox: initialize lowp float floorwidth
 
     // the distance over which the line edge fades out.
     // Retina devices need a smaller distance to avoid aliasing.

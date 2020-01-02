@@ -4,8 +4,7 @@ import DOM from '../../util/dom';
 
 import {bindAll} from '../../util/util';
 
-import type Mapimport { isTryStatement } from 'typescript';
- from '../map';
+import type Map from '../map';
 
 /**
  * A `LogoControl` is a control that adds the Mapbox watermark
@@ -31,11 +30,11 @@ class LogoControl {
         const anchor = DOM.create('a', 'goongjs-ctrl-logo');
         anchor.target = "_blank";
         anchor.rel = "noopener nofollow";
-        anchor.href = "https://goong.io/";
-        anchor.setAttribute("aria-label", "Goong logo");
+        anchor.href = "https://www.mapbox.com/";
+        anchor.setAttribute("aria-label", this._map._getUIString('LogoControl.Title'));
         anchor.setAttribute("rel", "noopener nofollow");
         this._container.appendChild(anchor);
-        // this._container.style.display = 'none'; 
+        this._container.style.display = 'none';
 
         this._map.on('sourcedata', this._updateLogo);
         this._updateLogo();
@@ -64,17 +63,6 @@ class LogoControl {
 
     _logoRequired() {
         return true;
-        if (!this._map.style) return;
-
-        const sourceCaches = this._map.style.sourceCaches;
-        for (const id in sourceCaches) {
-            const source = sourceCaches[id].getSource();
-            if (source.w_logo) {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     _updateCompact() {

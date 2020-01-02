@@ -8,8 +8,8 @@ attribute vec2 a_pos;
 
 varying vec2 v_extrude;
 
-#pragma goong: define highp float weight
-#pragma goong: define mediump float radius
+#pragma mapbox: define highp float weight
+#pragma mapbox: define mediump float radius
 
 // Effective "0" in the kernel density texture to adjust the kernel size to;
 // this empirically chosen number minimizes artifacts on overlapping kernels
@@ -20,8 +20,8 @@ const highp float ZERO = 1.0 / 255.0 / 16.0;
 #define GAUSS_COEF 0.3989422804014327
 
 void main(void) {
-    #pragma goong: initialize highp float weight
-    #pragma goong: initialize mediump float radius
+    #pragma mapbox: initialize highp float weight
+    #pragma mapbox: initialize mediump float radius
 
     // unencode the extrusion vector that we snuck into the a_pos vector
     vec2 unscaled_extrude = vec2(mod(a_pos, 2.0) * 2.0 - 1.0);

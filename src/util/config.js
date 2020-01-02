@@ -10,11 +10,11 @@ type Config = {|
 |};
 
 const config: Config = {
-    API_URL: 'https://tiles.goong.io',
+    API_URL: 'https://rsapi.goong.io',
     get EVENTS_URL() {
-            return 'https://goong.io';
+        return 'https://rsapi.goong.io';
     },
-    FEEDBACK_URL: 'https://goong.io/contact',
+    FEEDBACK_URL: 'https://account.goong.io',
     REQUIRE_ACCESS_TOKEN: true,
     ACCESS_TOKEN: null,
     MAX_PARALLEL_IMAGE_REQUESTS: 16

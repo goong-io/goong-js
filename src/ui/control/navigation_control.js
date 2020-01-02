@@ -38,7 +38,7 @@ class NavigationControl {
     _container: HTMLElement;
     _zoomInButton: HTMLButtonElement;
     _zoomOutButton: HTMLButtonElement;
-    _compass: HTMLElement;
+    _compass: HTMLButtonElement;
     _compassIcon: HTMLElement;
     _handler: DragRotateHandler;
 
@@ -50,27 +50,25 @@ class NavigationControl {
 
         if (this.options.showZoom) {
             bindAll([
+                '_setButtonTitle',
                 '_updateZoomButtons'
             ], this);
-
-            this._zoomInButton = this._createButton('goongjs-ctrl-zoom-in', 'Zoom in', (e) => this._map.zoomIn({}, {originalEvent: e}));
+            this._zoomInButton = this._createButton('goongjs-ctrl-zoom-in', (e) => this._map.zoomIn({}, {originalEvent: e}));
             DOM.create('span', `goongjs-ctrl-icon`, this._zoomInButton).setAttribute('aria-hidden', true);
-            this._zoomOutButton = this._createButton('goongjs-ctrl-zoom-out', 'Zoom out', (e) => this._map.zoomOut({}, {originalEvent: e}));
+            this._zoomOutButton = this._createButton('goongjs-ctrl-zoom-out', (e) => this._map.zoomOut({}, {originalEvent: e}));
             DOM.create('span', `goongjs-ctrl-icon`, this._zoomOutButton).setAttribute('aria-hidden', true);
         }
         if (this.options.showCompass) {
             bindAll([
                 '_rotateCompassArrow'
             ], this);
-
-            this._compass = this._createButton('goongjs-ctrl-compass', 'Reset bearing to north', (e) => {
+            this._compass = this._createButton('goongjs-ctrl-compass', (e) => {
                 if (this.options.visualizePitch) {
                     this._map.resetNorthPitch({}, {originalEvent: e});
                 } else {
                     this._map.resetNorth({}, {originalEvent: e});
                 }
             });
-
             this._compassIcon = DOM.create('span', 'goongjs-ctrl-icon', this._compass);
             this._compassIcon.setAttribute('aria-hidden', true);
         }
@@ -78,7 +76,6 @@ class NavigationControl {
 
     _updateZoomButtons() {
         const zoom = this._map.getZoom();
-
         this._zoomInButton.disabled = zoom === this._map.getMaxZoom();
         this._zoomOutButton.disabled = zoom === this._map.getMinZoom();
     }
@@ -94,10 +91,13 @@ class NavigationControl {
     onAdd(map: Map) {
         this._map = map;
         if (this.options.showZoom) {
+            this._setButtonTitle(this._zoomInButton, 'ZoomIn');
+            this._setButtonTitle(this._zoomOutButton, 'ZoomOut');
             this._map.on('zoom', this._updateZoomButtons);
             this._updateZoomButtons();
         }
         if (this.options.showCompass) {
+            this._setButtonTitle(this._compass, 'ResetBearing');
             if (this.options.visualizePitch) {
                 this._map.on('pitch', this._rotateCompassArrow);
             }
@@ -130,13 +130,17 @@ class NavigationControl {
         delete this._map;
     }
 
-    _createButton(className: string, ariaLabel: string, fn: () => mixed) {
+    _createButton(className: string, fn: () => mixed) {
         const a = DOM.create('button', className, this._container);
         a.type = 'button';
-        a.title = ariaLabel;
-        a.setAttribute('aria-label', ariaLabel);
         a.addEventListener('click', fn);
         return a;
+    }
+
+    _setButtonTitle(button: HTMLButtonElement, title: string) {
+        const str = this._map._getUIString(`NavigationControl.${title}`);
+        button.title = str;
+        button.setAttribute('aria-label', str);
     }
 }
 

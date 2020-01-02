@@ -23,7 +23,7 @@ test('AttributionControl appears in bottom-right by default', (t) => {
     const map = createMap(t);
     map.addControl(new AttributionControl());
 
-    t.equal(map.getContainer().querySelectorAll('.goongjs-ctrl-bottom-right .goongjs-ctrl-attrib').length, 1);
+    t.equal(map.getContainer().querySelectorAll('.mapboxgl-ctrl-bottom-right .mapboxgl-ctrl-attrib').length, 1);
     t.end();
 });
 
@@ -31,7 +31,7 @@ test('AttributionControl appears in the position specified by the position optio
     const map = createMap(t);
     map.addControl(new AttributionControl(), 'top-left');
 
-    t.equal(map.getContainer().querySelectorAll('.goongjs-ctrl-top-left .goongjs-ctrl-attrib').length, 1);
+    t.equal(map.getContainer().querySelectorAll('.mapboxgl-ctrl-top-left .mapboxgl-ctrl-attrib').length, 1);
     t.end();
 });
 
@@ -46,7 +46,7 @@ test('AttributionControl appears in compact mode if compact option is used', (t)
 
     const container = map.getContainer();
 
-    t.equal(container.querySelectorAll('.goongjs-ctrl-attrib.goongjs-compact').length, 1);
+    t.equal(container.querySelectorAll('.mapboxgl-ctrl-attrib.mapboxgl-compact').length, 1);
     map.removeControl(attributionControl);
 
     Object.defineProperty(map.getCanvasContainer(), 'offsetWidth', {value: 600, configurable: true});
@@ -55,7 +55,7 @@ test('AttributionControl appears in compact mode if compact option is used', (t)
     });
 
     map.addControl(attributionControl);
-    t.equal(container.querySelectorAll('.goongjs-ctrl-attrib:not(.goongjs-compact)').length, 1);
+    t.equal(container.querySelectorAll('.mapboxgl-ctrl-attrib:not(.mapboxgl-compact)').length, 1);
     t.end();
 });
 
@@ -66,12 +66,12 @@ test('AttributionControl appears in compact mode if container is less then 640 p
 
     const container = map.getContainer();
 
-    t.equal(container.querySelectorAll('.goongjs-ctrl-attrib:not(.goongjs-compact)').length, 1);
+    t.equal(container.querySelectorAll('.mapboxgl-ctrl-attrib:not(.mapboxgl-compact)').length, 1);
 
     Object.defineProperty(map.getCanvasContainer(), 'offsetWidth', {value: 600, configurable: true});
     map.resize();
 
-    t.equal(container.querySelectorAll('.goongjs-ctrl-attrib.goongjs-compact').length, 1);
+    t.equal(container.querySelectorAll('.mapboxgl-ctrl-attrib.mapboxgl-compact').length, 1);
     t.end();
 });
 
@@ -141,7 +141,7 @@ test('AttributionControl is hidden if empty', (t) => {
 
     const checkEmptyFirst = () => {
         t.equal(attribution._innerContainer.innerHTML, '');
-        t.equal(container.querySelectorAll('.goongjs-attrib-empty').length, 1, 'includes empty class when no attribution strings are provided');
+        t.equal(container.querySelectorAll('.mapboxgl-attrib-empty').length, 1, 'includes empty class when no attribution strings are provided');
 
         map.addSource('2', {type: 'geojson', data: {type: 'FeatureCollection', features: []}, attribution: 'Hello World'});
         map.addLayer({id: '2', type: 'fill', source: '2'});
@@ -149,7 +149,7 @@ test('AttributionControl is hidden if empty', (t) => {
 
     const checkNotEmptyLater = () => {
         t.equal(attribution._innerContainer.innerHTML, 'Hello World');
-        t.equal(container.querySelectorAll('.goongjs-attrib-empty').length, 0, 'removes empty class when source with attribution is added');
+        t.equal(container.querySelectorAll('.mapboxgl-attrib-empty').length, 0, 'removes empty class when source with attribution is added');
         t.end();
     };
 
@@ -171,6 +171,19 @@ test('AttributionControl shows custom attribution if customAttribution option is
     const attributionControl = new AttributionControl({
         customAttribution: 'Custom string'
     });
+    map.addControl(attributionControl);
+
+    t.equal(attributionControl._innerContainer.innerHTML, 'Custom string');
+    t.end();
+});
+
+test('AttributionControl shows custom attribution if customAttribution option is provided, control is removed and added back', (t) => {
+    const map = createMap(t);
+    const attributionControl = new AttributionControl({
+        customAttribution: 'Custom string'
+    });
+    map.addControl(attributionControl);
+    map.removeControl(attributionControl);
     map.addControl(attributionControl);
 
     t.equal(attributionControl._innerContainer.innerHTML, 'Custom string');

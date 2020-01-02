@@ -17,16 +17,16 @@ varying vec2 v_pos_a;
 varying vec2 v_pos_b;
 varying vec4 v_lighting;
 
-#pragma goong: define lowp float base
-#pragma goong: define lowp float height
-#pragma goong: define lowp vec4 pattern_from
-#pragma goong: define lowp vec4 pattern_to
+#pragma mapbox: define lowp float base
+#pragma mapbox: define lowp float height
+#pragma mapbox: define lowp vec4 pattern_from
+#pragma mapbox: define lowp vec4 pattern_to
 
 void main() {
-    #pragma goong: initialize lowp float base
-    #pragma goong: initialize lowp float height
-    #pragma goong: initialize mediump vec4 pattern_from
-    #pragma goong: initialize mediump vec4 pattern_to
+    #pragma mapbox: initialize lowp float base
+    #pragma mapbox: initialize lowp float height
+    #pragma mapbox: initialize mediump vec4 pattern_from
+    #pragma mapbox: initialize mediump vec4 pattern_to
 
     vec2 pattern_tl_a = pattern_from.xy;
     vec2 pattern_br_a = pattern_from.zw;

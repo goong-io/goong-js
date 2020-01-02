@@ -50,8 +50,8 @@ class Transform {
     _maxPitch: number;
     _center: LngLat;
     _constraining: boolean;
-    _posMatrixCache: {[number]: Float32Array};
-    _alignedPosMatrixCache: {[number]: Float32Array};
+    _posMatrixCache: {[string]: Float32Array};
+    _alignedPosMatrixCache: {[string]: Float32Array};
 
     constructor(minZoom: ?number, maxZoom: ?number, minPitch: ?number, maxPitch: ?number, renderWorldCopies: boolean | void) {
         this.tileSize = 512; // constant
@@ -212,9 +212,11 @@ class Transform {
      * @returns {number} zoom level
      */
     coveringZoomLevel(options: {roundZoom?: boolean, tileSize: number}) {
-        return (options.roundZoom ? Math.round : Math.floor)(
+        const z = (options.roundZoom ? Math.round : Math.floor)(
             this.zoom + this.scaleZoom(this.tileSize / options.tileSize)
         );
+        // At negative zoom levels load tiles from z0 because negative tile zoom levels don't exist.
+        return Math.max(0, z);
     }
 
     /**

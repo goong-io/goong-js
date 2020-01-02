@@ -31,7 +31,7 @@
 <script src='/debug/access_token_generated.js'></script>
 <script>
 var pluginURL = 'https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.0/mapbox-gl-rtl-text.js';
-var map = window.map = new mapboxgl.Map({
+var map = window.map = new goongjs.Map({
     container: 'map',
     zoom: 16.5,
     center: [44.355435, 33.258814],
@@ -40,11 +40,11 @@ var map = window.map = new mapboxgl.Map({
 });
 
 document.getElementById('loadSync').onclick = function() {
-    mapboxgl.setRTLTextPlugin(pluginURL);
+    goongjs.setRTLTextPlugin(pluginURL);
 };
 
 document.getElementById('loadAsync').onclick = function() {
-    mapboxgl.setRTLTextPlugin(pluginURL, function(err) {
+    goongjs.setRTLTextPlugin(pluginURL, function(err) {
         if (err) {
             throw err;
         } else {
@@ -54,7 +54,7 @@ document.getElementById('loadAsync').onclick = function() {
 };
 
 setInterval(function() {
-    document.getElementById('pluginStatus').innerHTML = mapboxgl.getRTLTextPluginStatus();
+    document.getElementById('pluginStatus').innerHTML = goongjs.getRTLTextPluginStatus();
 }, 400);
 </script>
 </body>

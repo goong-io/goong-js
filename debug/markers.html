@@ -27,7 +27,6 @@ var map = window.map = new goongjs.Map({
     hash: true
 });
 
-
 const spinningMarkers = [];
 ['auto', 'map', 'viewport'].forEach((rotationAlignment, i) => {
     ['auto', 'map', 'viewport'].forEach((pitchAlignment, j) => {
@@ -40,13 +39,13 @@ const spinningMarkers = [];
         var lng = w + (e - w) * (i / 3);
         var lat = s + (n - s) * (j / 3);
 
-        var popup = new mapboxgl.Popup().setHTML(`Pitch Alignment: ${pitchAlignment}<br>Rotation Alignment: ${rotationAlignment}`);
+        var popup = new goongjs.Popup().setHTML(`Pitch Alignment: ${pitchAlignment}<br>Rotation Alignment: ${rotationAlignment}`);
 
         var r = Math.round(Math.random() * 255);
         var g = Math.round(Math.random() * 255);
         var b = Math.round(Math.random() * 255);
 
-        var marker = new mapboxgl.Marker({
+        var marker = new goongjs.Marker({
             color: `rgb(${r}, ${g}, ${b})`,
             draggable: true,
             rotationAlignment,
@@ -55,6 +54,7 @@ const spinningMarkers = [];
             .setLngLat([lng, lat])
             .setPopup(popup)
             .addTo(map);
+
         marker.togglePopup();
 
         spinningMarkers.push(marker);

@@ -10,17 +10,17 @@ varying vec2 v_width2;
 varying float v_linesofar;
 varying float v_gamma_scale;
 
-#pragma goong: define lowp vec4 pattern_from
-#pragma goong: define lowp vec4 pattern_to
-#pragma goong: define lowp float blur
-#pragma goong: define lowp float opacity
+#pragma mapbox: define lowp vec4 pattern_from
+#pragma mapbox: define lowp vec4 pattern_to
+#pragma mapbox: define lowp float blur
+#pragma mapbox: define lowp float opacity
 
 void main() {
-    #pragma goong: initialize mediump vec4 pattern_from
-    #pragma goong: initialize mediump vec4 pattern_to
+    #pragma mapbox: initialize mediump vec4 pattern_from
+    #pragma mapbox: initialize mediump vec4 pattern_to
 
-    #pragma goong: initialize lowp float blur
-    #pragma goong: initialize lowp float opacity
+    #pragma mapbox: initialize lowp float blur
+    #pragma mapbox: initialize lowp float opacity
 
     vec2 pattern_tl_a = pattern_from.xy;
     vec2 pattern_br_a = pattern_from.zw;
