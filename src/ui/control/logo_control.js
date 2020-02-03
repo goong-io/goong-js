@@ -30,7 +30,7 @@ class LogoControl {
         const anchor = DOM.create('a', 'goongjs-ctrl-logo');
         anchor.target = "_blank";
         anchor.rel = "noopener nofollow";
-        anchor.href = "https://www.mapbox.com/";
+        anchor.href = "https://goong.io/";
         anchor.setAttribute("aria-label", this._map._getUIString('LogoControl.Title'));
         anchor.setAttribute("rel", "noopener nofollow");
         this._container.appendChild(anchor);

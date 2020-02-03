@@ -5,7 +5,7 @@ const defaultLocale = {
     'FullscreenControl.Exit': 'Exit fullscreen',
     'GeolocateControl.FindMyLocation': 'Find my location',
     'GeolocateControl.LocationNotAvailable': 'Location not available',
-    'LogoControl.Title': 'Mapbox logo',
+    'LogoControl.Title': 'Goong logo',
     'NavigationControl.ResetBearing': 'Reset bearing to north',
     'NavigationControl.ZoomIn': 'Zoom in',
     'NavigationControl.ZoomOut': 'Zoom out',
