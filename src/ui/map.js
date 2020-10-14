@@ -4,7 +4,7 @@ import {version} from '../../package.json';
 import {extend, bindAll, warnOnce, uniqueId} from '../util/util';
 import browser from '../util/browser';
 import window from '../util/window';
-const {HTMLImageElement, HTMLElement} = window;
+const {HTMLImageElement, HTMLElement, ImageBitmap} = window;
 import DOM from '../util/dom';
 import {getImage, getJSON, ResourceType} from '../util/ajax';
 import {RequestManager} from '../util/mapbox';
@@ -405,6 +405,7 @@ class Map extends Camera {
         bindAll([
             '_onWindowOnline',
             '_onWindowResize',
+            '_onMapScroll',
             '_contextLost',
             '_contextRestored'
         ], this);
@@ -1411,7 +1412,7 @@ class Map extends Camera {
      * A {@link Map#error} event will be fired if there is not enough space in the sprite to add this image.
      *
      * @param id The ID of the image.
-     * @param image The image as an `HTMLImageElement`, `ImageData`, or object with `width`, `height`, and `data`
+     * @param image The image as an `HTMLImageElement`, `ImageData`, `ImageBitmap` or object with `width`, `height`, and `data`
      * properties with the same format as `ImageData`.
      * @param options
      * @param options.pixelRatio The ratio of pixels in the image to physical pixels on the screen
@@ -1447,17 +1448,17 @@ class Map extends Camera {
      * @see Use `ImageData`: [Add a generated icon to the map](https://www.mapbox.com/mapbox-gl-js/example/add-image-generated/)
      */
     addImage(id: string,
-             image: HTMLImageElement | ImageData | {width: number, height: number, data: Uint8Array | Uint8ClampedArray} | StyleImageInterface,
+             image: HTMLImageElement | ImageBitmap | ImageData | {width: number, height: number, data: Uint8Array | Uint8ClampedArray} | StyleImageInterface,
              {pixelRatio = 1, sdf = false, stretchX, stretchY, content}: $Shape<StyleImageMetadata> = {}) {
         this._lazyInitEmptyStyle();
         const version = 0;
 
-        if (image instanceof HTMLImageElement) {
+        if (image instanceof HTMLImageElement || (ImageBitmap && image instanceof ImageBitmap)) {
             const {width, height, data} = browser.getImageData(image);
             this.style.addImage(id, {data: new RGBAImage({width, height}, data), pixelRatio, stretchX, stretchY, content, sdf, version});
         } else if (image.width === undefined || image.height === undefined) {
             return this.fire(new ErrorEvent(new Error(
-                'Invalid arguments to map.addImage(). The second argument must be an `HTMLImageElement`, `ImageData`, ' +
+                'Invalid arguments to map.addImage(). The second argument must be an `HTMLImageElement`, `ImageData`, `ImageBitmap`, ' +
                 'or object with `width`, `height`, and `data` properties with the same format as `ImageData`')));
         } else {
             const {width, height, data} = image;
@@ -1489,7 +1490,7 @@ class Map extends Camera {
      * or [`line-pattern`](https://docs.mapbox.com/mapbox-gl-js/style-spec/#paint-line-line-pattern).
      *
      * @param id The ID of the image.
-     * @param image The image as an `HTMLImageElement`, `ImageData`, or object with `width`, `height`, and `data`
+     * @param image The image as an `HTMLImageElement`, `ImageData`, `ImageBitmap` or object with `width`, `height`, and `data`
      * properties with the same format as `ImageData`.
      *
      * @example
@@ -1498,7 +1499,7 @@ class Map extends Camera {
      * if (map.hasImage('cat')) map.updateImage('cat', './other-cat-icon.png');
      */
     updateImage(id: string,
-        image: HTMLImageElement | ImageData | {width: number, height: number, data: Uint8Array | Uint8ClampedArray} | StyleImageInterface) {
+        image: HTMLImageElement | ImageBitmap | ImageData | {width: number, height: number, data: Uint8Array | Uint8ClampedArray} | StyleImageInterface) {
 
         const existingImage = this.style.getImage(id);
         if (!existingImage) {
@@ -1506,12 +1507,12 @@ class Map extends Camera {
                 'The map has no image with that id. If you are adding a new image use `map.addImage(...)` instead.')));
         }
 
-        const imageData = image instanceof HTMLImageElement ? browser.getImageData(image) : image;
+        const imageData = (image instanceof HTMLImageElement || (ImageBitmap && image instanceof ImageBitmap)) ? browser.getImageData(image) : image;
         const {width, height, data} = imageData;
 
         if (width === undefined || height === undefined) {
             return this.fire(new ErrorEvent(new Error(
-                'Invalid arguments to map.updateImage(). The second argument must be an `HTMLImageElement`, `ImageData`, ' +
+                'Invalid arguments to map.updateImage(). The second argument must be an `HTMLImageElement`, `ImageData`, `ImageBitmap`, ' +
                 'or object with `width`, `height`, and `data` properties with the same format as `ImageData`')));
         }
 
@@ -1520,7 +1521,7 @@ class Map extends Camera {
                 'The width and height of the updated image must be that same as the previous version of the image')));
         }
 
-        const copy = !(image instanceof HTMLImageElement);
+        const copy = !(image instanceof HTMLImageElement || (ImageBitmap && image instanceof ImageBitmap));
         existingImage.data.replace(data, copy);
 
         this.style.updateImage(id, existingImage);
@@ -1982,6 +1983,8 @@ class Map extends Camera {
         ['top-left', 'top-right', 'bottom-left', 'bottom-right'].forEach((positionName) => {
             positions[positionName] = DOM.create('div', `goongjs-ctrl-${positionName}`, controlContainer);
         });
+
+        this._container.addEventListener('scroll', this._onMapScroll, false);
     }
 
     _resizeCanvas(width: number, height: number) {
@@ -2031,7 +2034,14 @@ class Map extends Camera {
         this._update();
         this.fire(new Event('webglcontextrestored', {originalEvent: event}));
     }
+    _onMapScroll(event: *) {
+        if (event.target !== this._container) return;
 
+        // Revert any scroll which would move the canvas outside of the view
+        this._container.scrollTop = 0;
+        this._container.scrollLeft = 0;
+        return false;
+    }
     /**
      * Returns a Boolean indicating whether the map is fully loaded.
      *
