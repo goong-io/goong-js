@@ -5,14 +5,14 @@ import window from '../util/window';
 import LngLat from '../geo/lng_lat';
 import Point from '@mapbox/point-geometry';
 import smartWrap from '../util/smart_wrap';
-import {bindAll, extend} from '../util/util';
-import {type Anchor, anchorTranslate, applyAnchorClass} from './anchor';
-import {Event, Evented} from '../util/evented';
+import { bindAll, extend } from '../util/util';
+import { type Anchor, anchorTranslate, applyAnchorClass } from './anchor';
+import { Event, Evented } from '../util/evented';
 import type Map from './map';
 import type Popup from './popup';
-import type {LngLatLike} from "../geo/lng_lat";
-import type {MapMouseEvent, MapTouchEvent} from './events';
-import type {PointLike} from '@mapbox/point-geometry';
+import type { LngLatLike } from "../geo/lng_lat";
+import type { MapMouseEvent, MapTouchEvent } from './events';
+import type { PointLike } from '@mapbox/point-geometry';
 
 type Options = {
     element?: HTMLElement,
@@ -70,7 +70,7 @@ export default class Marker extends Evented {
         // For backward compatibility -- the constructor used to accept the element as a
         // required first argument, before it was made optional.
         if (options instanceof window.HTMLElement || legacyOptions) {
-            options = extend({element: options}, legacyOptions);
+            options = extend({ element: options }, legacyOptions);
         }
 
         bindAll([
@@ -89,7 +89,7 @@ export default class Marker extends Evented {
         this._state = 'inactive';
         this._rotation = options && options.rotation || 0;
         this._rotationAlignment = options && options.rotationAlignment || 'auto';
-        this._pitchAlignment = options && options.pitchAlignment && options.pitchAlignment !== 'auto' ?  options.pitchAlignment : this._rotationAlignment;
+        this._pitchAlignment = options && options.pitchAlignment && options.pitchAlignment !== 'auto' ? options.pitchAlignment : this._rotationAlignment;
 
         if (!options || !options.element) {
             this._defaultMarker = true;
@@ -119,14 +119,14 @@ export default class Marker extends Evented {
             shadow.setAttributeNS(null, 'fill', '#000000');
 
             const ellipses = [
-                {'rx': '10.5', 'ry': '5.25002273'},
-                {'rx': '10.5', 'ry': '5.25002273'},
-                {'rx': '9.5', 'ry': '4.77275007'},
-                {'rx': '8.5', 'ry': '4.29549936'},
-                {'rx': '7.5', 'ry': '3.81822308'},
-                {'rx': '6.5', 'ry': '3.34094679'},
-                {'rx': '5.5', 'ry': '2.86367051'},
-                {'rx': '4.5', 'ry': '2.38636864'}
+                { 'rx': '10.5', 'ry': '5.25002273' },
+                { 'rx': '10.5', 'ry': '5.25002273' },
+                { 'rx': '9.5', 'ry': '4.77275007' },
+                { 'rx': '8.5', 'ry': '4.29549936' },
+                { 'rx': '7.5', 'ry': '3.81822308' },
+                { 'rx': '6.5', 'ry': '3.34094679' },
+                { 'rx': '5.5', 'ry': '2.86367051' },
+                { 'rx': '4.5', 'ry': '2.38636864' }
             ];
 
             for (const data of ellipses) {
@@ -213,7 +213,7 @@ export default class Marker extends Evented {
             // prevent focusing on click
             e.preventDefault();
         });
-        
+
         applyAnchorClass(this._element, this._anchor, 'marker');
 
         this._popup = null;
@@ -387,7 +387,7 @@ export default class Marker extends Evented {
         return this;
     }
 
-    _update(e?: {type: 'move' | 'moveend'}) {
+    _update(e?: { type: 'move' | 'moveend' }) {
         if (!this._map) return;
 
         if (this._map.transform.renderWorldCopies) {

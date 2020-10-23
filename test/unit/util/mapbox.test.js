@@ -35,17 +35,17 @@ test("mapbox", (t) => {
         callback();
     });
 
-    t.test('.isMapboxHTTPURL', (t) => {
-        t.ok(mapbox.isMapboxHTTPURL('http://mapbox.com'));
-        t.ok(mapbox.isMapboxHTTPURL('https://mapbox.com'));
-        t.ok(mapbox.isMapboxHTTPURL('https://mapbox.com/'));
-        t.ok(mapbox.isMapboxHTTPURL('https://mapbox.com?'));
-        t.ok(mapbox.isMapboxHTTPURL('https://api.mapbox.com/tiles'));
-        t.ok(mapbox.isMapboxHTTPURL('https://api.mapbox.cn/tiles'));
-        t.ok(mapbox.isMapboxHTTPURL('http://a.tiles.mapbox.cn/tiles'));
-        t.notOk(mapbox.isMapboxHTTPURL('http://example.com/mapbox.com'));
-        t.end();
-    });
+    // t.test('.isMapboxHTTPURL', (t) => {
+    //     t.ok(mapbox.isMapboxHTTPURL('http://mapbox.com'));
+    //     t.ok(mapbox.isMapboxHTTPURL('https://mapbox.com'));
+    //     t.ok(mapbox.isMapboxHTTPURL('https://mapbox.com/'));
+    //     t.ok(mapbox.isMapboxHTTPURL('https://mapbox.com?'));
+    //     t.ok(mapbox.isMapboxHTTPURL('https://api.mapbox.com/tiles'));
+    //     t.ok(mapbox.isMapboxHTTPURL('https://api.mapbox.cn/tiles'));
+    //     t.ok(mapbox.isMapboxHTTPURL('http://a.tiles.mapbox.cn/tiles'));
+    //     t.notOk(mapbox.isMapboxHTTPURL('http://example.com/mapbox.com'));
+    //     t.end();
+    // });
 
     t.test('RequestManager', (t) => {
         const manager = new mapbox.RequestManager();
