@@ -137,19 +137,19 @@ const exported = {
 Debug.extend(exported, {isSafari, getPerformanceMetrics: PerformanceUtils.getPerformanceMetrics});
 
 /**
- * The version of Mapbox GL JS in use as specified in `package.json`,
+ * The version of Goong GL JS in use as specified in `package.json`,
  * `CHANGELOG.md`, and the GitHub release.
  *
  * @var {string} version
  */
 
 /**
- * Test whether the browser [supports Mapbox GL JS](https://docs.goong.io/js/guide#check-browser-support).
+ * Test whether the browser [supports Goong GL JS](https://docs.goong.io/js/guide#check-browser-support).
  *
  * @function supported
  * @param {Object} [options]
  * @param {boolean} [options.failIfMajorPerformanceCaveat=false] If `true`,
- *   the function will return `false` if the performance of Mapbox GL JS would
+ *   the function will return `false` if the performance of Goong GL JS would
  *   be dramatically worse than expected (e.g. a software WebGL renderer would be used).
  * @return {boolean}
  * @example

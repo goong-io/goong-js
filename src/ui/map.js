@@ -156,37 +156,29 @@ const defaultOptions = {
  * and fires events as users interact with it.
  *
  * You create a `Map` by specifying a `container` and other options.
- * Then Mapbox GL JS initializes the map on the page and returns your `Map`
+ * Then Goong GL JS initializes the map on the page and returns your `Map`
  * object.
  *
  * @extends Evented
  * @param {Object} options
- * @param {HTMLElement|string} options.container The HTML element in which Mapbox GL JS will render the map, or the element's string `id`. The specified element must have no children.
+ * @param {HTMLElement|string} options.container The HTML element in which Goong GL JS will render the map, or the element's string `id`. The specified element must have no children.
  * @param {number} [options.minZoom=0] The minimum zoom level of the map (0-24).
  * @param {number} [options.maxZoom=22] The maximum zoom level of the map (0-24).
  * @param {number} [options.minPitch=0] The minimum pitch of the map (0-60).
  * @param {number} [options.maxPitch=60] The maximum pitch of the map (0-60).
- * @param {Object|string} [options.style] The map's Mapbox style. This must be an a JSON object conforming to
- * the schema described in the [Mapbox Style Specification](https://mapbox.com/mapbox-gl-style-spec/), or a URL to
+ * @param {Object|string} [options.style] The map's Goong style. This must be an a JSON object conforming to
+ * the schema described in the [Goong Style Specification](https://docs.goong.io/goong-js-docs/style-spec/), or a URL to
  * such JSON.
  *
- * To load a style from the Mapbox API, you can use a URL of the form `mapbox://styles/:owner/:style`,
- * where `:owner` is your Mapbox account name and `:style` is the style ID. Or you can use one of the following
- * [the predefined Mapbox styles](https://www.mapbox.com/maps/):
+ * To load a style from the Goong API, you can use a Style URL provided below:
  *
- *  * `mapbox://styles/mapbox/streets-v11`
- *  * `mapbox://styles/mapbox/outdoors-v11`
- *  * `mapbox://styles/mapbox/light-v10`
- *  * `mapbox://styles/mapbox/dark-v10`
- *  * `mapbox://styles/mapbox/satellite-v9`
- *  * `mapbox://styles/mapbox/satellite-streets-v11`
- *  * `mapbox://styles/mapbox/navigation-preview-day-v4`
- *  * `mapbox://styles/mapbox/navigation-preview-night-v4`
- *  * `mapbox://styles/mapbox/navigation-guidance-day-v4`
- *  * `mapbox://styles/mapbox/navigation-guidance-night-v4`
+ *  * `https://tiles.goong.io/assets/goong_map_web.json`
+ *  * `https://tiles.goong.io/assets/goong_map_dark.json`
+ *  * `https://tiles.goong.io/assets/navigation_day.json`
+ *  * `https://tiles.goong.io/assets/navigation_night.json`
  *
- * Tilesets hosted with Mapbox can be style-optimized if you append `?optimize=true` to the end of your style URL, like `mapbox://styles/mapbox/streets-v11?optimize=true`.
- * Learn more about style-optimized vector tiles in our [API documentation](https://www.mapbox.com/api-documentation/maps/#retrieve-tiles).
+ * Tilesets hosted with Goong can be style-optimized
+ * Learn more about style-optimized vector tiles in our [Style Editor](https://editor.goong.io/).
  *
  * @param {(boolean|string)} [options.hash=false] If `true`, the map's position (zoom, center latitude, center longitude, bearing, and pitch) will be synced with the hash fragment of the page's URL.
  *   For example, `http://path/to/my/page.html#2.59/39.26/53.07/-24.1/60`.
@@ -201,8 +193,8 @@ const defaultOptions = {
  * @param {number} [options.clickTolerance=3] The max number of pixels a user can shift the mouse pointer during a click for it to be considered a valid click (as opposed to a mouse drag).
  * @param {boolean} [options.attributionControl=true] If `true`, an {@link AttributionControl} will be added to the map.
  * @param {string | Array<string>} [options.customAttribution] String or strings to show in an {@link AttributionControl}. Only applicable if `options.attributionControl` is `true`.
- * @param {string} [options.logoPosition='bottom-left'] A string representing the position of the Mapbox wordmark on the map. Valid options are `top-left`,`top-right`, `bottom-left`, `bottom-right`.
- * @param {boolean} [options.failIfMajorPerformanceCaveat=false] If `true`, map creation will fail if the performance of Mapbox
+ * @param {string} [options.logoPosition='bottom-left'] A string representing the position of the Goong wordmark on the map. Valid options are `top-left`,`top-right`, `bottom-left`, `bottom-right`.
+ * @param {boolean} [options.failIfMajorPerformanceCaveat=false] If `true`, map creation will fail if the performance of Goong
  *   GL JS would be dramatically worse than expected (i.e. a software renderer would be used).
  * @param {boolean} [options.preserveDrawingBuffer=false] If `true`, the map's canvas can be exported to a PNG using `map.getCanvas().toDataURL()`. This is `false` by default as a performance optimization.
  * @param {boolean} [options.antialias] If `true`, the gl context will be created with MSAA antialiasing, which can be useful for antialiasing custom layers. this is `false` by default as a performance optimization.
@@ -216,10 +208,10 @@ const defaultOptions = {
  * @param {boolean} [options.doubleClickZoom=true] If `true`, the "double click to zoom" interaction is enabled (see {@link DoubleClickZoomHandler}).
  * @param {boolean|Object} [options.touchZoomRotate=true] If `true`, the "pinch to rotate and zoom" interaction is enabled. An `Object` value is passed as options to {@link TouchZoomRotateHandler#enable}.
  * @param {boolean} [options.trackResize=true]  If `true`, the map will automatically resize when the browser window resizes.
- * @param {LngLatLike} [options.center=[0, 0]] The inital geographical centerpoint of the map. If `center` is not specified in the constructor options, Mapbox GL JS will look for it in the map's style object. If it is not specified in the style, either, it will default to `[0, 0]` Note: Mapbox GL uses longitude, latitude coordinate order (as opposed to latitude, longitude) to match GeoJSON.
- * @param {number} [options.zoom=0] The initial zoom level of the map. If `zoom` is not specified in the constructor options, Mapbox GL JS will look for it in the map's style object. If it is not specified in the style, either, it will default to `0`.
- * @param {number} [options.bearing=0] The initial bearing (rotation) of the map, measured in degrees counter-clockwise from north. If `bearing` is not specified in the constructor options, Mapbox GL JS will look for it in the map's style object. If it is not specified in the style, either, it will default to `0`.
- * @param {number} [options.pitch=0] The initial pitch (tilt) of the map, measured in degrees away from the plane of the screen (0-60). If `pitch` is not specified in the constructor options, Mapbox GL JS will look for it in the map's style object. If it is not specified in the style, either, it will default to `0`.
+ * @param {LngLatLike} [options.center=[0, 0]] The inital geographical centerpoint of the map. If `center` is not specified in the constructor options, Goong GL JS will look for it in the map's style object. If it is not specified in the style, either, it will default to `[0, 0]` Note: Mapbox GL uses longitude, latitude coordinate order (as opposed to latitude, longitude) to match GeoJSON.
+ * @param {number} [options.zoom=0] The initial zoom level of the map. If `zoom` is not specified in the constructor options, Goong GL JS will look for it in the map's style object. If it is not specified in the style, either, it will default to `0`.
+ * @param {number} [options.bearing=0] The initial bearing (rotation) of the map, measured in degrees counter-clockwise from north. If `bearing` is not specified in the constructor options, Goong GL JS will look for it in the map's style object. If it is not specified in the style, either, it will default to `0`.
+ * @param {number} [options.pitch=0] The initial pitch (tilt) of the map, measured in degrees away from the plane of the screen (0-60). If `pitch` is not specified in the constructor options, Goong GL JS will look for it in the map's style object. If it is not specified in the style, either, it will default to `0`.
  * @param {LngLatBoundsLike} [options.bounds] The initial bounds of the map. If `bounds` is specified, it overrides `center` and `zoom` constructor options.
  * @param {Object} [options.fitBoundsOptions] A [`fitBounds`](#map#fitbounds) options object to use _only_ when fitting the initial `bounds` provided above.
  * @param {boolean} [options.renderWorldCopies=true]  If `true`, multiple copies of the world will be rendered side by side beyond -180 and 180 degrees longitude. If set to `false`:
@@ -231,8 +223,8 @@ const defaultOptions = {
  * @param {string} [options.localIdeographFontFamily='sans-serif'] Defines a CSS
  *   font-family for locally overriding generation of glyphs in the 'CJK Unified Ideographs', 'Hiragana', 'Katakana' and 'Hangul Syllables' ranges.
  *   In these ranges, font settings from the map's style will be ignored, except for font-weight keywords (light/regular/medium/bold).
- *   Set to `false`, to enable font settings from the map's style for these glyph ranges.  Note that [Mapbox Studio](https://studio.mapbox.com/) sets this value to `false` by default.
- *   The purpose of this option is to avoid bandwidth-intensive glyph server requests. (See [Use locally generated ideographs](https://www.mapbox.com/mapbox-gl-js/example/local-ideographs).)
+ *   Set to `false`, to enable font settings from the map's style for these glyph ranges.  Note that [Goong Style Editor](https://editor.goong.io/) sets this value to `false` by default.
+ *   The purpose of this option is to avoid bandwidth-intensive glyph server requests. (See [Use locally generated ideographs](https://docs.goong.io/goong-js-docs/example/local-ideographs/).)
  * @param {RequestTransformFunction} [options.transformRequest=null] A callback run before the Map makes a request for an external URL. The callback can be used to modify the url, set headers, or set the credentials property for cross-origin requests.
  *   Expected to return an object with a `url` property and optionally `headers` and `credentials` properties.
  * @param {boolean} [options.collectResourceTiming=false] If `true`, Resource Timing API information will be collected for requests made by GeoJSON and Vector Tile web workers (this information is normally inaccessible from the main Javascript thread). Information will be returned in a `resourceTiming` property of relevant `data` events.
@@ -257,7 +249,7 @@ const defaultOptions = {
  *     }
  *   }
  * });
- * @see [Display a map](https://docs.goong.io/js/guide)
+ * @see [Display a map](https://docs.goong.io/goong-js-docs/example/simple-map/)
  */
 class Map extends Camera {
     style: Style;
@@ -488,7 +480,7 @@ class Map extends Camera {
      * @example
      * // Add zoom and rotation controls to the map.
      * map.addControl(new goongjs.NavigationControl());
-     * @see [Display map navigation controls](https://www.mapbox.com/mapbox-gl-js/example/navigation/)
+     * @see [Display map navigation controls](https://docs.goong.io/goong-js-docs/example/navigation/)
      */
     addControl(control: IControl, position?: ControlPosition) {
         if (position === undefined && control.getDefaultPosition) {
@@ -770,7 +762,7 @@ class Map extends Camera {
      * @returns {boolean} renderWorldCopies
      * @example
      * var worldCopiesRendered = map.getRenderWorldCopies();
-     * @see [Render world copies](https://docs.mapbox.com/mapbox-gl-js/example/render-world-copies/)
+     * @see [Render world copies](https://docs.goong.io/goong-js-docs/example/render-world-copies/)
      */
     getRenderWorldCopies() { return this.transform.renderWorldCopies; }
 
@@ -787,7 +779,7 @@ class Map extends Camera {
      * @returns {Map} `this`
      * @example
      * map.setRenderWorldCopies(true);
-     * @see [Render world copies](https://docs.mapbox.com/mapbox-gl-js/example/render-world-copies/)
+     * @see [Render world copies](https://docs.goong.io/goong-js-docs/example/render-world-copies/)
      */
     setRenderWorldCopies(renderWorldCopies?: ?boolean) {
         this.transform.renderWorldCopies = renderWorldCopies;
@@ -1311,9 +1303,9 @@ class Map extends Camera {
      *     }
      *   }
      * });
-     * @see Vector source: [Show and hide layers](https://docs.mapbox.com/mapbox-gl-js/example/toggle-layers/)
-     * @see GeoJSON source: [Add live realtime data](https://docs.mapbox.com/mapbox-gl-js/example/live-geojson/)
-     * @see Raster DEM source: [Add hillshading](https://docs.mapbox.com/mapbox-gl-js/example/hillshade/)
+     * @see Vector source: [Show and hide layers](https://docs.goong.io/goong-js-docs/example/toggle-layers/)
+     * @see GeoJSON source: [Add live realtime data](https://docs.goong.io/goong-js-docs/example/live-geojson/)
+     * @see Raster DEM source: [Add hillshading](https://docs.goong.io/goong-js-docs/example/hillshade/)
      */
     addSource(id: string, source: SourceSpecification) {
         this._lazyInitEmptyStyle();
@@ -1949,7 +1941,7 @@ class Map extends Camera {
         const computedColor = window.getComputedStyle(this._missingCSSCanary).getPropertyValue('background-color');
         if (computedColor !== 'rgb(250, 128, 114)') {
             warnOnce('This page appears to be missing CSS declarations for ' +
-                'Mapbox GL JS, which may cause the map to display incorrectly. ' +
+                'Goong GL JS, which may cause the map to display incorrectly. ' +
                 'Please ensure your page includes mapbox-gl.css, as described ' +
                 'in https://www.mapbox.com/mapbox-gl-js/api/.');
         }
@@ -2379,7 +2371,7 @@ class Map extends Camera {
     }
 
     /**
-     * The version of Mapbox GL JS in use as specified in package.json, CHANGELOG.md, and the GitHub release.
+     * The version of Goong GL JS in use as specified in package.json, CHANGELOG.md, and the GitHub release.
      *
      * @name version
      * @instance
@@ -2404,7 +2396,7 @@ function removeNode(node) {
  * an exported method or class.
  *
  * Controls must implement `onAdd` and `onRemove`, and must own an
- * element, which is often a `div` element. To use Mapbox GL JS's
+ * element, which is often a `div` element. To use Goong GL JS's
  * default control styling, add the `goongjs-ctrl` class to your control's
  * node.
  *

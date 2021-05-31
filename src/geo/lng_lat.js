@@ -6,9 +6,9 @@ import LngLatBounds from './lng_lat_bounds';
 /**
  * A `LngLat` object represents a given longitude and latitude coordinate, measured in degrees.
  *
- * Mapbox GL uses longitude, latitude coordinate order (as opposed to latitude, longitude) to match GeoJSON.
+ * Goong GL uses longitude, latitude coordinate order (as opposed to latitude, longitude) to match GeoJSON.
  *
- * Note that any Mapbox GL method that accepts a `LngLat` object as an argument or option
+ * Note that any Goong GL method that accepts a `LngLat` object as an argument or option
  * can also accept an `Array` of two numbers and will perform an implicit conversion.
  * This flexible type is documented as {@link LngLatLike}.
  *
@@ -16,10 +16,10 @@ import LngLatBounds from './lng_lat_bounds';
  * @param {number} lat Latitude, measured in degrees.
  * @example
  * var ll = new goongjs.LngLat(-73.9749, 40.7736);
- * @see [Get coordinates of the mouse pointer](https://www.mapbox.com/mapbox-gl-js/example/mouse-position/)
- * @see [Display a popup](https://www.mapbox.com/mapbox-gl-js/example/popup/)
+ * @see [Get coordinates of the mouse pointer](https://docs.goong.io/goong-js-docs/example/mouse-position/)
+ * @see [Display a popup](https://docs.goong.io/goong-js-docs/example/popup/)
  * @see [Highlight features within a bounding box](https://www.mapbox.com/mapbox-gl-js/example/using-box-queryrenderedfeatures/)
- * @see [Create a timeline animation](https://www.mapbox.com/mapbox-gl-js/example/timeline-animation/)
+ * @see [Create a timeline animation](https://docs.goong.io/goong-js-docs/example/timeline-animation/))
  */
 class LngLat {
     lng: number;
