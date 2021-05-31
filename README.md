@@ -4,10 +4,9 @@
 To get started with Goong JS or any of our other building blocks,
 [sign up for a Goong account](https://account.goong.io/).
 
-- [Getting started with Goong JS](https://docs.goong.io/js/guide)
-- [Tutorials](https://docs.goong.io/js/guide)
-- [API documentation](hhttps://docs.goong.io/js/guide)
-- [Examples](https://docs.goong.io/js/guide)
+- [Getting started with Goong JS](https://docs.goong.io/goong-js-docs/api/)
+- [API documentation](https://docs.goong.io/goong-js-docs/api/)
+- [Examples](https://docs.goong.io/goong-js-docs/example/)
 
 
 ## License
