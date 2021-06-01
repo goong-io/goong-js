@@ -205,7 +205,7 @@ export default class Marker extends Evented {
             this._offset = Point.convert(options && options.offset || [0, 0]);
         }
 
-        this._element.classList.add('goongjs-marker');
+        this._element.classList.add('mapboxgl-marker');
         this._element.addEventListener('dragstart', (e: DragEvent) => {
             e.preventDefault();
         });

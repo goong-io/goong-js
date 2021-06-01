@@ -16,10 +16,10 @@ import LngLatBounds from './lng_lat_bounds';
  * @param {number} lat Latitude, measured in degrees.
  * @example
  * var ll = new goongjs.LngLat(-73.9749, 40.7736);
- * @see [Get coordinates of the mouse pointer](https://docs.goong.io/goong-js-docs/example/mouse-position/)
- * @see [Display a popup](https://docs.goong.io/goong-js-docs/example/popup/)
+ * @see [Get coordinates of the mouse pointer](https://docs.goong.io/docs/example/mouse-position/)
+ * @see [Display a popup](https://docs.goong.io/docs/example/popup/)
  * @see [Highlight features within a bounding box](https://www.mapbox.com/mapbox-gl-js/example/using-box-queryrenderedfeatures/)
- * @see [Create a timeline animation](https://docs.goong.io/goong-js-docs/example/timeline-animation/))
+ * @see [Create a timeline animation](https://docs.goong.io/docs/example/timeline-animation/))
  */
 class LngLat {
     lng: number;

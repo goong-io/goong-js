@@ -123,10 +123,10 @@ export default class Popup extends Evented {
      *   .setLngLat([0, 0])
      *   .setHTML("<h1>Null Island</h1>")
      *   .addTo(map);
-     * @see [Display a popup](https://docs.goong.io/goong-js-docs/example/popup/)
-     * @see [Display a popup on hover](https://docs.goong.io/goong-js-docs/example/popup-on-hover/)
-     * @see [Display a popup on click](https://docs.goong.io/goong-js-docs/example/popup-on-click/)
-     * @see [Show polygon information on click](https://docs.goong.io/goong-js-docs/example/polygon-popup-on-click/)
+     * @see [Display a popup](https://docs.goong.io/docs/example/popup/)
+     * @see [Display a popup on hover](https://docs.goong.io/docs/example/popup-on-hover/)
+     * @see [Display a popup on click](https://docs.goong.io/docs/example/popup-on-click/)
+     * @see [Show polygon information on click](https://docs.goong.io/docs/example/polygon-popup-on-click/)
      */
     addTo(map: Map) {
         if (this._map) this.remove();
@@ -148,9 +148,9 @@ export default class Popup extends Evented {
             this._map.on('mousemove', this._onMouseMove);
             this._map.on('mouseup', this._onMouseUp);
             if (this._container) {
-                this._container.classList.add('goongjs-popup-track-pointer');
+                this._container.classList.add('mapboxgl-popup-track-pointer');
             }
-            this._map._canvasContainer.classList.add('goongjs-track-pointer');
+            this._map._canvasContainer.classList.add('mapboxgl-track-pointer');
         } else {
             this._map.on('move', this._update);
         }
@@ -270,9 +270,9 @@ export default class Popup extends Evented {
             this._map.on('move', this._update);
             this._map.off('mousemove', this._onMouseMove);
             if (this._container) {
-                this._container.classList.remove('goongjs-popup-track-pointer');
+                this._container.classList.remove('mapboxgl-popup-track-pointer');
             }
-            this._map._canvasContainer.classList.remove('goongjs-track-pointer');
+            this._map._canvasContainer.classList.remove('mapboxgl-track-pointer');
         }
 
         return this;
@@ -297,9 +297,9 @@ export default class Popup extends Evented {
             this._map.on('mousemove', this._onMouseMove);
             this._map.on('drag', this._onDrag);
             if (this._container) {
-                this._container.classList.add('goongjs-popup-track-pointer');
+                this._container.classList.add('mapboxgl-popup-track-pointer');
             }
-            this._map._canvasContainer.classList.add('goongjs-track-pointer');
+            this._map._canvasContainer.classList.add('mapboxgl-track-pointer');
         }
 
         return this;
@@ -355,10 +355,10 @@ export default class Popup extends Evented {
      *   .setLngLat(e.lngLat)
      *   .setHTML("<h1>Hello World!</h1>")
      *   .addTo(map);
-     * @see [Display a popup](https://docs.goong.io/goong-js-docs/example/popup/)
-     * @see [Display a popup on hover](https://docs.goong.io/goong-js-docs/example/popup-on-hover/)
-     * @see [Display a popup on click](https://docs.goong.io/goong-js-docs/example/popup-on-click/)
-     * @see [Attach a popup to a marker instance](https://docs.goong.io/goong-js-docs/example/set-popup/)
+     * @see [Display a popup](https://docs.goong.io/docs/example/popup/)
+     * @see [Display a popup on hover](https://docs.goong.io/docs/example/popup-on-hover/)
+     * @see [Display a popup on click](https://docs.goong.io/docs/example/popup-on-click/)
+     * @see [Attach a popup to a marker instance](https://docs.goong.io/docs/example/set-popup/)
      */
     setHTML(html: string) {
         const frag = window.document.createDocumentFragment();
@@ -484,12 +484,12 @@ export default class Popup extends Evented {
             DOM.remove(this._content);
         }
 
-        this._content = DOM.create('div', 'goongjs-popup-content', this._container);
+        this._content = DOM.create('div', 'mapboxgl-popup-content', this._container);
     }
 
     _createCloseButton() {
         if (this.options.closeButton) {
-            this._closeButton = DOM.create('button', 'goongjs-popup-close-button', this._content);
+            this._closeButton = DOM.create('button', 'mapboxgl-popup-close-button', this._content);
             this._closeButton.type = 'button';
             this._closeButton.setAttribute('aria-label', 'Close popup');
             this._closeButton.innerHTML = '&#215;';
@@ -515,8 +515,8 @@ export default class Popup extends Evented {
         if (!this._map || !hasPosition || !this._content) { return; }
 
         if (!this._container) {
-            this._container = DOM.create('div', 'goongjs-popup', this._map.getContainer());
-            this._tip       = DOM.create('div', 'goongjs-popup-tip', this._container);
+            this._container = DOM.create('div', 'mapboxgl-popup', this._map.getContainer());
+            this._tip       = DOM.create('div', 'mapboxgl-popup-tip', this._container);
             this._container.appendChild(this._content);
             if (this.options.className) {
                 this.options.className.split(' ').forEach(name =>
@@ -524,7 +524,7 @@ export default class Popup extends Evented {
             }
 
             if (this._trackPointer) {
-                this._container.classList.add('goongjs-popup-track-pointer');
+                this._container.classList.add('mapboxgl-popup-track-pointer');
             }
         }
 

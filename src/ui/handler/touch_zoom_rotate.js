@@ -73,7 +73,7 @@ class TouchZoomRotateHandler {
      */
     enable(options: ?{around?: 'center'}) {
         if (this.isEnabled()) return;
-        this._el.classList.add('goongjs-touch-zoom-rotate');
+        this._el.classList.add('mapboxgl-touch-zoom-rotate');
         this._enabled = true;
         this._aroundCenter = !!options && options.around === 'center';
     }
@@ -86,7 +86,7 @@ class TouchZoomRotateHandler {
      */
     disable() {
         if (!this.isEnabled()) return;
-        this._el.classList.remove('goongjs-touch-zoom-rotate');
+        this._el.classList.remove('mapboxgl-touch-zoom-rotate');
         this._enabled = false;
     }
 

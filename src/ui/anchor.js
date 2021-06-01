@@ -26,7 +26,7 @@ export const anchorTranslate: {[Anchor]: string} = {
 export function applyAnchorClass(element: HTMLElement, anchor: Anchor, prefix: string) {
     const classList = element.classList;
     for (const key in anchorTranslate) {
-        classList.remove(`goongjs-${prefix}-anchor-${key}`);
+        classList.remove(`mapboxgl-${prefix}-anchor-${key}`);
     }
-    classList.add(`goongjs-${prefix}-anchor-${anchor}`);
+    classList.add(`mapboxgl-${prefix}-anchor-${anchor}`);
 }

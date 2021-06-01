@@ -52,11 +52,11 @@ class AttributionControl {
         const compact = this.options && this.options.compact;
 
         this._map = map;
-        this._container = DOM.create('div', 'goongjs-ctrl goongjs-ctrl-attrib');
-        this._innerContainer = DOM.create('div', 'goongjs-ctrl-attrib-inner', this._container);
+        this._container = DOM.create('div', 'mapboxgl-ctrl mapboxgl-ctrl-attrib');
+        this._innerContainer = DOM.create('div', 'mapboxgl-ctrl-attrib-inner', this._container);
 
         if (compact) {
-            this._container.classList.add('goongjs-compact');
+            this._container.classList.add('mapboxgl-compact');
         }
 
         this._updateAttributions();
@@ -168,9 +168,9 @@ class AttributionControl {
 
         if (attributions.length) {
             this._innerContainer.innerHTML = attribHTML;
-            this._container.classList.remove('goongjs-attrib-empty');
+            this._container.classList.remove('mapboxgl-attrib-empty');
         } else {
-            this._container.classList.add('goongjs-attrib-empty');
+            this._container.classList.add('mapboxgl-attrib-empty');
         }
         // remove old DOM node from _editLink
         this._editLink = null;
@@ -178,9 +178,9 @@ class AttributionControl {
 
     _updateCompact() {
         if (this._map.getCanvasContainer().offsetWidth <= 640) {
-            this._container.classList.add('goongjs-compact');
+            this._container.classList.add('mapboxgl-compact');
         } else {
-            this._container.classList.remove('goongjs-compact');
+            this._container.classList.remove('mapboxgl-compact');
         }
     }
 
