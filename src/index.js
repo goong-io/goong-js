@@ -168,7 +168,7 @@ Debug.extend(exported, {isSafari, getPerformanceMetrics: PerformanceUtils.getPer
  *    rtl text will then be rendered only after the plugin finishes loading.
  * @example
  * goongjs.setRTLTextPlugin('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.0/mapbox-gl-rtl-text.js');
- * @see [Add support for right-to-left scripts](https://www.mapbox.com/mapbox-gl-js/example/mapbox-gl-rtl-text/)
+ * @see [Add support for right-to-left scripts](https://https://docs.goong.io/example/mapbox-gl-rtl-text/)
  */
 
 /**

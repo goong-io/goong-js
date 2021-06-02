@@ -84,7 +84,7 @@ function checkGeolocationSupport(callback) {
  *     },
  *     trackUserLocation: true
  * }));
- * @see [Locate the user](https://www.mapbox.com/mapbox-gl-js/example/locate-user/)
+ * @see [Locate the user](https://https://docs.goong.io/example/locate-user/)
  */
 class GeolocateControl extends Evented {
     _map: Map;

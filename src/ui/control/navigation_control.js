@@ -29,8 +29,8 @@ const defaultOptions: Options = {
  * @example
  * var nav = new goongjs.NavigationControl();
  * map.addControl(nav, 'top-left');
- * @see [Display map navigation controls](https://www.mapbox.com/mapbox-gl-js/example/navigation/)
- * @see [Add a third party vector tile source](https://www.mapbox.com/mapbox-gl-js/example/third-party/)
+ * @see [Display map navigation controls](https://https://docs.goong.io/example/navigation/)
+ * @see [Add a third party vector tile source](https://https://docs.goong.io/example/third-party/)
  */
 class NavigationControl {
     _map: Map;

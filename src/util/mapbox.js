@@ -9,7 +9,7 @@
 * Under the Mapbox Terms of Service, you may not use this code to access Mapbox
 * Mapping APIs other than through Mapbox SDKs.
 *
-* The Mapping APIs documentation is available at https://docs.mapbox.com/api/maps/#maps
+* The Mapping APIs documentation is available at https://docs.goong.io
 * and the Mapbox Terms of Service are available at https://www.mapbox.com/tos/
 ******************************************************************************/
 

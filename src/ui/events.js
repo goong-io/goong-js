@@ -266,8 +266,8 @@ export type MapEvent =
      * @memberof Map
      * @instance
      * @property {MapMouseEvent} data
-     * @see [Highlight features within a bounding box](https://www.mapbox.com/mapbox-gl-js/example/using-box-queryrenderedfeatures/)
-     * @see [Create a draggable point](https://www.mapbox.com/mapbox-gl-js/example/drag-a-point/)
+     * @see [Highlight features within a bounding box](https://https://docs.goong.io/example/using-box-queryrenderedfeatures/)
+     * @see [Create a draggable point](https://https://docs.goong.io/example/drag-a-point/)
      */
     | 'mousedown'
 
@@ -278,8 +278,8 @@ export type MapEvent =
      * @memberof Map
      * @instance
      * @property {MapMouseEvent} data
-     * @see [Highlight features within a bounding box](https://www.mapbox.com/mapbox-gl-js/example/using-box-queryrenderedfeatures/)
-     * @see [Create a draggable point](https://www.mapbox.com/mapbox-gl-js/example/drag-a-point/)
+     * @see [Highlight features within a bounding box](https://https://docs.goong.io/example/using-box-queryrenderedfeatures/)
+     * @see [Create a draggable point](https://https://docs.goong.io/example/drag-a-point/)
      */
     | 'mouseup'
 
@@ -290,9 +290,9 @@ export type MapEvent =
      * @memberof Map
      * @instance
      * @property {MapMouseEvent} data
-     * @see [Get coordinates of the mouse pointer](https://www.mapbox.com/mapbox-gl-js/example/mouse-position/)
-     * @see [Highlight features under the mouse pointer](https://www.mapbox.com/mapbox-gl-js/example/hover-styles/)
-     * @see [Display a popup on hover](https://www.mapbox.com/mapbox-gl-js/example/popup-on-hover/)
+     * @see [Get coordinates of the mouse pointer](https://https://docs.goong.io/example/mouse-position/)
+     * @see [Highlight features under the mouse pointer](https://https://docs.goong.io/example/hover-styles/)
+     * @see [Display a popup on hover](https://https://docs.goong.io/example/popup-on-hover/)
      */
     | 'mouseover'
 
@@ -303,9 +303,9 @@ export type MapEvent =
      * @memberof Map
      * @instance
      * @property {MapMouseEvent} data
-     * @see [Get coordinates of the mouse pointer](https://www.mapbox.com/mapbox-gl-js/example/mouse-position/)
-     * @see [Highlight features under the mouse pointer](https://www.mapbox.com/mapbox-gl-js/example/hover-styles/)
-     * @see [Display a popup on over](https://www.mapbox.com/mapbox-gl-js/example/popup-on-hover/)
+     * @see [Get coordinates of the mouse pointer](https://https://docs.goong.io/example/mouse-position/)
+     * @see [Highlight features under the mouse pointer](https://https://docs.goong.io/example/hover-styles/)
+     * @see [Display a popup on over](https://https://docs.goong.io/example/popup-on-hover/)
      */
     | 'mousemove'
 
@@ -316,8 +316,8 @@ export type MapEvent =
      * @memberof Map
      * @instance
      * @property {MapMouseEvent} data
-     * @see [Measure distances](https://www.mapbox.com/mapbox-gl-js/example/measure/)
-     * @see [Center the map on a clicked symbol](https://www.mapbox.com/mapbox-gl-js/example/center-on-symbol/)
+     * @see [Measure distances](https://https://docs.goong.io/example/measure/)
+     * @see [Center the map on a clicked symbol](https://https://docs.goong.io/example/center-on-symbol/)
      */
     | 'click'
 
@@ -352,7 +352,7 @@ export type MapEvent =
      * @memberof Map
      * @instance
      * @property {MapMouseEvent} data
-     * @see [Highlight features under the mouse pointer](https://www.mapbox.com/mapbox-gl-js/example/hover-styles/)
+     * @see [Highlight features under the mouse pointer](https://https://docs.goong.io/example/hover-styles/)
      */
     | 'mouseleave'
 
@@ -456,8 +456,8 @@ export type MapEvent =
      * @memberof Map
      * @instance
      * @property {{originalEvent: DragEvent}} data
-     * @see [Play map locations as a slideshow](https://www.mapbox.com/mapbox-gl-js/example/playback-locations/)
-     * @see [Filter features within map view](https://www.mapbox.com/mapbox-gl-js/example/filter-features-within-map-view/)
+     * @see [Play map locations as a slideshow](https://https://docs.goong.io/example/playback-locations/)
+     * @see [Filter features within map view](https://https://docs.goong.io/example/filter-features-within-map-view/)
      */
     | 'moveend'
 
@@ -510,7 +510,7 @@ export type MapEvent =
      * @memberof Map
      * @instance
      * @property {MapMouseEvent | MapTouchEvent} data
-     * @see [Update a choropleth layer by zoom level](https://www.mapbox.com/mapbox-gl-js/example/updating-choropleth/)
+     * @see [Update a choropleth layer by zoom level](https://https://docs.goong.io/example/updating-choropleth/)
      */
     | 'zoom'
 
@@ -655,9 +655,9 @@ export type MapEvent =
      * @memberof Map
      * @instance
      * @type {Object}
-     * @see [Draw GeoJSON points](https://www.mapbox.com/mapbox-gl-js/example/geojson-markers/)
-     * @see [Add live realtime data](https://www.mapbox.com/mapbox-gl-js/example/live-geojson/)
-     * @see [Animate a point](https://www.mapbox.com/mapbox-gl-js/example/animate-point-along-line/)
+     * @see [Draw GeoJSON points](https://https://docs.goong.io/example/geojson-markers/)
+     * @see [Add live realtime data](https://https://docs.goong.io/example/live-geojson/)
+     * @see [Animate a point](https://https://docs.goong.io/example/animate-point-along-line/)
      */
     | 'load'
 

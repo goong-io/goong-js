@@ -994,7 +994,7 @@ class Map extends Camera {
      * or with only a `options` argument) is equivalent to passing a bounding box encompassing the entire
      * map viewport.
      * @param {Object} [options]
-     * @param {Array<string>} [options.layers] An array of [style layer IDs](https://docs.mapbox.com/mapbox-gl-js/style-spec/#layer-id) for the query to inspect.
+     * @param {Array<string>} [options.layers] An array of [style layer IDs](https://docs.goong.io//style-spec/#layer-id) for the query to inspect.
      *   Only features within these layers will be returned. If this parameter is undefined, all layers will be checked.
      * @param {Array} [options.filter] A [filter](https://www.mapbox.com/mapbox-gl-js/style-spec/#other-filter)
      *   to limit query results.
@@ -1058,9 +1058,9 @@ class Map extends Camera {
      * @example
      * // Query all rendered features from a single layer
      * var features = map.queryRenderedFeatures({ layers: ['my-layer-name'] });
-     * @see [Get features under the mouse pointer](https://www.mapbox.com/mapbox-gl-js/example/queryrenderedfeatures/)
-     * @see [Highlight features within a bounding box](https://www.mapbox.com/mapbox-gl-js/example/using-box-queryrenderedfeatures/)
-     * @see [Filter features within map view](https://www.mapbox.com/mapbox-gl-js/example/filter-features-within-map-view/)
+     * @see [Get features under the mouse pointer](https://https://docs.goong.io/example/queryrenderedfeatures/)
+     * @see [Highlight features within a bounding box](https://https://docs.goong.io/example/using-box-queryrenderedfeatures/)
+     * @see [Filter features within map view](https://https://docs.goong.io/example/filter-features-within-map-view/)
      */
     queryRenderedFeatures(geometry?: PointLike | [PointLike, PointLike], options?: Object) {
         // The first parameter can be omitted entirely, making this effectively an overloaded method
@@ -1131,7 +1131,7 @@ class Map extends Camera {
      *   sourceLayer: 'your-source-layer'
      * });
      *
-     * @see [Highlight features containing similar data](https://www.mapbox.com/mapbox-gl-js/example/query-similar-features/)
+     * @see [Highlight features containing similar data](https://https://docs.goong.io/example/query-similar-features/)
      */
     querySourceFeatures(sourceId: string, parameters: ?{sourceLayer: ?string, filter: ?Array<any>, validate?: boolean}) {
         return this.style.querySourceFeatures(sourceId, parameters);
@@ -1162,7 +1162,7 @@ class Map extends Camera {
      * @example
      * map.setStyle("mapbox://styles/mapbox/streets-v11");
      *
-     * @see [Change a map's style](https://www.mapbox.com/mapbox-gl-js/example/setstyle/)
+     * @see [Change a map's style](https://https://docs.goong.io/example/setstyle/)
      */
     setStyle(style: StyleSpecification | string | null, options?: {diff?: boolean} & StyleOptions) {
         options = extend({}, {localIdeographFontFamily: this._localIdeographFontFamily}, options);
@@ -1386,9 +1386,9 @@ class Map extends Camera {
      *   if the ID corresponds to no existing sources.
      * @example
      * var sourceObject = map.getSource('points');
-     * @see [Create a draggable point](https://www.mapbox.com/mapbox-gl-js/example/drag-a-point/)
-     * @see [Animate a point](https://www.mapbox.com/mapbox-gl-js/example/animate-point-along-line/)
-     * @see [Add live realtime data](https://www.mapbox.com/mapbox-gl-js/example/live-geojson/)
+     * @see [Create a draggable point](https://https://docs.goong.io/example/drag-a-point/)
+     * @see [Animate a point](https://https://docs.goong.io/example/animate-point-along-line/)
+     * @see [Add live realtime data](https://https://docs.goong.io/example/live-geojson/)
      */
     getSource(id: string) {
         return this.style.getSource(id);
@@ -1397,10 +1397,10 @@ class Map extends Camera {
     /**
      * Add an image to the style. This image can be displayed on the map like any other icon in the style's
      * [sprite](https://docs.mapbox.com/help/glossary/sprite/) using the image's ID with
-     * [`icon-image`](https://docs.mapbox.com/mapbox-gl-js/style-spec/#layout-symbol-icon-image),
-     * [`background-pattern`](https://docs.mapbox.com/mapbox-gl-js/style-spec/#paint-background-background-pattern),
-     * [`fill-pattern`](https://docs.mapbox.com/mapbox-gl-js/style-spec/#paint-fill-fill-pattern),
-     * or [`line-pattern`](https://docs.mapbox.com/mapbox-gl-js/style-spec/#paint-line-line-pattern).
+     * [`icon-image`](https://docs.goong.io//style-spec/#layout-symbol-icon-image),
+     * [`background-pattern`](https://docs.goong.io//style-spec/#paint-background-background-pattern),
+     * [`fill-pattern`](https://docs.goong.io//style-spec/#paint-fill-fill-pattern),
+     * or [`line-pattern`](https://docs.goong.io//style-spec/#paint-line-line-pattern).
      * A {@link Map#error} event will be fired if there is not enough space in the sprite to add this image.
      *
      * @param id The ID of the image.
@@ -1436,8 +1436,8 @@ class Map extends Camera {
      * });
      *
      *
-     * @see Use `HTMLImageElement`: [Add an icon to the map](https://www.mapbox.com/mapbox-gl-js/example/add-image/)
-     * @see Use `ImageData`: [Add a generated icon to the map](https://www.mapbox.com/mapbox-gl-js/example/add-image-generated/)
+     * @see Use `HTMLImageElement`: [Add an icon to the map](https://https://docs.goong.io/example/add-image/)
+     * @see Use `ImageData`: [Add a generated icon to the map](https://https://docs.goong.io/example/add-image-generated/)
      */
     addImage(id: string,
              image: HTMLImageElement | ImageBitmap | ImageData | {width: number, height: number, data: Uint8Array | Uint8ClampedArray} | StyleImageInterface,
@@ -1476,10 +1476,10 @@ class Map extends Camera {
     /**
      * Update an existing image in a style. This image can be displayed on the map like any other icon in the style's
      * [sprite](https://docs.mapbox.com/help/glossary/sprite/) using the image's ID with
-     * [`icon-image`](https://docs.mapbox.com/mapbox-gl-js/style-spec/#layout-symbol-icon-image),
-     * [`background-pattern`](https://docs.mapbox.com/mapbox-gl-js/style-spec/#paint-background-background-pattern),
-     * [`fill-pattern`](https://docs.mapbox.com/mapbox-gl-js/style-spec/#paint-fill-fill-pattern),
-     * or [`line-pattern`](https://docs.mapbox.com/mapbox-gl-js/style-spec/#paint-line-line-pattern).
+     * [`icon-image`](https://docs.goong.io//style-spec/#layout-symbol-icon-image),
+     * [`background-pattern`](https://docs.goong.io//style-spec/#paint-background-background-pattern),
+     * [`fill-pattern`](https://docs.goong.io//style-spec/#paint-fill-fill-pattern),
+     * or [`line-pattern`](https://docs.goong.io//style-spec/#paint-line-line-pattern).
      *
      * @param id The ID of the image.
      * @param image The image as an `HTMLImageElement`, `ImageData`, `ImageBitmap` or object with `width`, `height`, and `data`
@@ -1572,7 +1572,7 @@ class Map extends Camera {
      *   map.addImage('kitten', image);
      * });
      *
-     * @see [Add an icon to the map](https://www.mapbox.com/mapbox-gl-js/example/add-image/)
+     * @see [Add an icon to the map](https://https://docs.goong.io/example/add-image/)
      */
     loadImage(url: string, callback: Function) {
         getImage(this._requestManager.transformRequest(url, ResourceType.Image), callback);
@@ -1594,14 +1594,14 @@ class Map extends Camera {
     }
 
     /**
-     * Adds a [Mapbox style layer](https://docs.mapbox.com/mapbox-gl-js/style-spec/#layers)
+     * Adds a [Mapbox style layer](https://docs.goong.io//style-spec/#layers)
      * to the map's style.
      *
      * A layer defines how data from a specified source will be styled. Read more about layer types
-     * and available paint and layout properties in the [Mapbox Style Specification](https://docs.mapbox.com/mapbox-gl-js/style-spec/#layers).
+     * and available paint and layout properties in the [Mapbox Style Specification](https://docs.goong.io//style-spec/#layers).
      *
      * @param {Object | CustomLayerInterface} layer The style layer to add, conforming to the Mapbox Style Specification's
-     *   [layer definition](https://docs.mapbox.com/mapbox-gl-js/style-spec/#layers).
+     *   [layer definition](https://docs.goong.io//style-spec/#layers).
      * @param {string} [beforeId] The ID of an existing layer to insert the new layer before.
      *   If this argument is omitted, the layer will be appended to the end of the layers array.
      *
@@ -1625,9 +1625,9 @@ class Map extends Camera {
      *   }
      * });
      *
-     * @see [Create and style clusters](https://www.mapbox.com/mapbox-gl-js/example/cluster/)
-     * @see [Add a vector tile source](https://www.mapbox.com/mapbox-gl-js/example/vector-source/)
-     * @see [Add a WMS source](https://www.mapbox.com/mapbox-gl-js/example/wms/)
+     * @see [Create and style clusters](https://https://docs.goong.io/example/cluster/)
+     * @see [Add a vector tile source](https://https://docs.goong.io/example/vector-source/)
+     * @see [Add a WMS source](https://https://docs.goong.io/example/wms/)
      */
     addLayer(layer: LayerSpecification | CustomLayerInterface, beforeId?: string) {
         this._lazyInitEmptyStyle();
@@ -1679,8 +1679,8 @@ class Map extends Camera {
      * @example
      * var stateDataLayer = map.getLayer('state-data');
      *
-     * @see [Filter symbols by toggling a list](https://www.mapbox.com/mapbox-gl-js/example/filter-markers/)
-     * @see [Filter symbols by text input](https://www.mapbox.com/mapbox-gl-js/example/filter-markers-by-input/)
+     * @see [Filter symbols by toggling a list](https://https://docs.goong.io/example/filter-markers/)
+     * @see [Filter symbols by text input](https://https://docs.goong.io/example/filter-markers-by-input/)
      */
     getLayer(id: string) {
         return this.style.getLayer(id);
@@ -1688,8 +1688,8 @@ class Map extends Camera {
 
     /**
      * Sets the zoom extent for the specified style layer. The zoom extent includes the
-     * [minimum zoom level](https://docs.mapbox.com/mapbox-gl-js/style-spec/#layer-minzoom)
-     * and [maximum zoom level](https://docs.mapbox.com/mapbox-gl-js/style-spec/#layer-maxzoom))
+     * [minimum zoom level](https://docs.goong.io//style-spec/#layer-minzoom)
+     * and [maximum zoom level](https://docs.goong.io//style-spec/#layer-maxzoom))
      * at which the layer will be rendered.
      *
      * Note: For style layers using vector sources, style layers cannot be rendered at zoom levels lower than the
@@ -1724,9 +1724,9 @@ class Map extends Camera {
      * @example
      * map.setFilter('my-layer', ['==', 'name', 'USA']);
      *
-     * @see [Filter features within map view](https://www.mapbox.com/mapbox-gl-js/example/filter-features-within-map-view/)
-     * @see [Highlight features containing similar data](https://www.mapbox.com/mapbox-gl-js/example/query-similar-features/)
-     * @see [Create a timeline animation](https://www.mapbox.com/mapbox-gl-js/example/timeline-animation/)
+     * @see [Filter features within map view](https://https://docs.goong.io/example/filter-features-within-map-view/)
+     * @see [Highlight features containing similar data](https://https://docs.goong.io/example/query-similar-features/)
+     * @see [Create a timeline animation](https://https://docs.goong.io/example/timeline-animation/)
      */
     setFilter(layerId: string, filter: ?FilterSpecification,  options: StyleSetterOptions = {}) {
         this.style.setFilter(layerId, filter, options);
@@ -1755,9 +1755,9 @@ class Map extends Camera {
      * @returns {Map} `this`
      * @example
      * map.setPaintProperty('my-layer', 'fill-color', '#faafee');
-     * @see [Change a layer's color with buttons](https://www.mapbox.com/mapbox-gl-js/example/color-switcher/)
-     * @see [Adjust a layer's opacity](https://www.mapbox.com/mapbox-gl-js/example/adjust-layer-opacity/)
-     * @see [Create a draggable point](https://www.mapbox.com/mapbox-gl-js/example/drag-a-point/)
+     * @see [Change a layer's color with buttons](https://https://docs.goong.io/example/color-switcher/)
+     * @see [Adjust a layer's opacity](https://https://docs.goong.io/example/adjust-layer-opacity/)
+     * @see [Create a draggable point](https://https://docs.goong.io/example/drag-a-point/)
      */
     setPaintProperty(layerId: string, name: string, value: any, options: StyleSetterOptions = {}) {
         this.style.setPaintProperty(layerId, name, value, options);
@@ -1906,8 +1906,8 @@ class Map extends Camera {
      * map controls.
      *
      * @returns {HTMLElement} The container of the map's `<canvas>`.
-     * @see [Create a draggable point](https://www.mapbox.com/mapbox-gl-js/example/drag-a-point/)
-     * @see [Highlight features within a bounding box](https://www.mapbox.com/mapbox-gl-js/example/using-box-queryrenderedfeatures/)
+     * @see [Create a draggable point](https://https://docs.goong.io/example/drag-a-point/)
+     * @see [Highlight features within a bounding box](https://https://docs.goong.io/example/using-box-queryrenderedfeatures/)
      */
     getCanvasContainer() {
         return this._canvasContainer;
@@ -1917,9 +1917,9 @@ class Map extends Camera {
      * Returns the map's `<canvas>` element.
      *
      * @returns {HTMLCanvasElement} The map's `<canvas>` element.
-     * @see [Measure distances](https://www.mapbox.com/mapbox-gl-js/example/measure/)
-     * @see [Display a popup on hover](https://www.mapbox.com/mapbox-gl-js/example/popup-on-hover/)
-     * @see [Center the map on a clicked symbol](https://www.mapbox.com/mapbox-gl-js/example/center-on-symbol/)
+     * @see [Measure distances](https://https://docs.goong.io/example/measure/)
+     * @see [Display a popup on hover](https://https://docs.goong.io/example/popup-on-hover/)
+     * @see [Center the map on a clicked symbol](https://https://docs.goong.io/example/center-on-symbol/)
      */
     getCanvas() {
         return this._canvas;

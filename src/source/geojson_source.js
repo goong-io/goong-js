@@ -57,10 +57,10 @@ import type {GeoJSONSourceSpecification, PromoteIdSpecification} from '../style-
  *       }
  *   }]
  * });
- * @see [Draw GeoJSON points](https://www.mapbox.com/mapbox-gl-js/example/geojson-markers/)
- * @see [Add a GeoJSON line](https://www.mapbox.com/mapbox-gl-js/example/geojson-line/)
- * @see [Create a heatmap from points](https://www.mapbox.com/mapbox-gl-js/example/heatmap/)
- * @see [Create and style clusters](https://www.mapbox.com/mapbox-gl-js/example/cluster/)
+ * @see [Draw GeoJSON points](https://https://docs.goong.io/example/geojson-markers/)
+ * @see [Add a GeoJSON line](https://https://docs.goong.io/example/geojson-line/)
+ * @see [Create a heatmap from points](https://https://docs.goong.io/example/heatmap/)
+ * @see [Create and style clusters](https://https://docs.goong.io/example/cluster/)
  */
 class GeoJSONSource extends Evented implements Source {
     type: 'geojson';

@@ -20,7 +20,7 @@ type Options = {
  *
  * @example
  * map.addControl(new goongjs.FullscreenControl({container: document.querySelector('body')}));
- * @see [View a fullscreen map](https://www.mapbox.com/mapbox-gl-js/example/fullscreen/)
+ * @see [View a fullscreen map](https://https://docs.goong.io/example/fullscreen/)
  */
 
 class FullscreenControl {
