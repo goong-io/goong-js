@@ -167,7 +167,7 @@ const defaultOptions = {
  * @param {number} [options.minPitch=0] The minimum pitch of the map (0-60).
  * @param {number} [options.maxPitch=60] The maximum pitch of the map (0-60).
  * @param {Object|string} [options.style] The map's Goong style. This must be an a JSON object conforming to
- * the schema described in the [Goong Style Specification](https://docs.goong.io//style-spec/), or a URL to
+ * the schema described in the [Goong Style Specification](https://docs.goong.io/style-spec/), or a URL to
  * such JSON.
  *
  * To load a style from the Goong API, you can use a Style URL provided below:
@@ -224,7 +224,7 @@ const defaultOptions = {
  *   font-family for locally overriding generation of glyphs in the 'CJK Unified Ideographs', 'Hiragana', 'Katakana' and 'Hangul Syllables' ranges.
  *   In these ranges, font settings from the map's style will be ignored, except for font-weight keywords (light/regular/medium/bold).
  *   Set to `false`, to enable font settings from the map's style for these glyph ranges.  Note that [Goong Style Editor](https://editor.goong.io/) sets this value to `false` by default.
- *   The purpose of this option is to avoid bandwidth-intensive glyph server requests. (See [Use locally generated ideographs](https://docs.goong.io//example/local-ideographs/).)
+ *   The purpose of this option is to avoid bandwidth-intensive glyph server requests. (See [Use locally generated ideographs](https://docs.goong.io/example/local-ideographs/).)
  * @param {RequestTransformFunction} [options.transformRequest=null] A callback run before the Map makes a request for an external URL. The callback can be used to modify the url, set headers, or set the credentials property for cross-origin requests.
  *   Expected to return an object with a `url` property and optionally `headers` and `credentials` properties.
  * @param {boolean} [options.collectResourceTiming=false] If `true`, Resource Timing API information will be collected for requests made by GeoJSON and Vector Tile web workers (this information is normally inaccessible from the main Javascript thread). Information will be returned in a `resourceTiming` property of relevant `data` events.
@@ -249,7 +249,7 @@ const defaultOptions = {
  *     }
  *   }
  * });
- * @see [Display a map](https://docs.goong.io//example/simple-map/)
+ * @see [Display a map](https://docs.goong.io/example/simple-map/)
  */
 class Map extends Camera {
     style: Style;
@@ -480,7 +480,7 @@ class Map extends Camera {
      * @example
      * // Add zoom and rotation controls to the map.
      * map.addControl(new goongjs.NavigationControl());
-     * @see [Display map navigation controls](https://docs.goong.io//example/navigation/)
+     * @see [Display map navigation controls](https://docs.goong.io/example/navigation/)
      */
     addControl(control: IControl, position?: ControlPosition) {
         if (position === undefined && control.getDefaultPosition) {
@@ -762,7 +762,7 @@ class Map extends Camera {
      * @returns {boolean} renderWorldCopies
      * @example
      * var worldCopiesRendered = map.getRenderWorldCopies();
-     * @see [Render world copies](https://docs.goong.io//example/render-world-copies/)
+     * @see [Render world copies](https://docs.goong.io/example/render-world-copies/)
      */
     getRenderWorldCopies() { return this.transform.renderWorldCopies; }
 
@@ -779,7 +779,7 @@ class Map extends Camera {
      * @returns {Map} `this`
      * @example
      * map.setRenderWorldCopies(true);
-     * @see [Render world copies](https://docs.goong.io//example/render-world-copies/)
+     * @see [Render world copies](https://docs.goong.io/example/render-world-copies/)
      */
     setRenderWorldCopies(renderWorldCopies?: ?boolean) {
         this.transform.renderWorldCopies = renderWorldCopies;
@@ -994,7 +994,7 @@ class Map extends Camera {
      * or with only a `options` argument) is equivalent to passing a bounding box encompassing the entire
      * map viewport.
      * @param {Object} [options]
-     * @param {Array<string>} [options.layers] An array of [style layer IDs](https://docs.goong.io//style-spec/#layer-id) for the query to inspect.
+     * @param {Array<string>} [options.layers] An array of [style layer IDs](https://docs.goong.io/style-spec/#layer-id) for the query to inspect.
      *   Only features within these layers will be returned. If this parameter is undefined, all layers will be checked.
      * @param {Array} [options.filter] A [filter](https://www.mapbox.com/mapbox-gl-js/style-spec/#other-filter)
      *   to limit query results.
@@ -1303,9 +1303,9 @@ class Map extends Camera {
      *     }
      *   }
      * });
-     * @see Vector source: [Show and hide layers](https://docs.goong.io//example/toggle-layers/)
-     * @see GeoJSON source: [Add live realtime data](https://docs.goong.io//example/live-geojson/)
-     * @see Raster DEM source: [Add hillshading](https://docs.goong.io//example/hillshade/)
+     * @see Vector source: [Show and hide layers](https://docs.goong.io/example/toggle-layers/)
+     * @see GeoJSON source: [Add live realtime data](https://docs.goong.io/example/live-geojson/)
+     * @see Raster DEM source: [Add hillshading](https://docs.goong.io/example/hillshade/)
      */
     addSource(id: string, source: SourceSpecification) {
         this._lazyInitEmptyStyle();
@@ -1397,10 +1397,10 @@ class Map extends Camera {
     /**
      * Add an image to the style. This image can be displayed on the map like any other icon in the style's
      * [sprite](https://docs.mapbox.com/help/glossary/sprite/) using the image's ID with
-     * [`icon-image`](https://docs.goong.io//style-spec/#layout-symbol-icon-image),
-     * [`background-pattern`](https://docs.goong.io//style-spec/#paint-background-background-pattern),
-     * [`fill-pattern`](https://docs.goong.io//style-spec/#paint-fill-fill-pattern),
-     * or [`line-pattern`](https://docs.goong.io//style-spec/#paint-line-line-pattern).
+     * [`icon-image`](https://docs.goong.io/style-spec/#layout-symbol-icon-image),
+     * [`background-pattern`](https://docs.goong.io/style-spec/#paint-background-background-pattern),
+     * [`fill-pattern`](https://docs.goong.io/style-spec/#paint-fill-fill-pattern),
+     * or [`line-pattern`](https://docs.goong.io/style-spec/#paint-line-line-pattern).
      * A {@link Map#error} event will be fired if there is not enough space in the sprite to add this image.
      *
      * @param id The ID of the image.
@@ -1476,10 +1476,10 @@ class Map extends Camera {
     /**
      * Update an existing image in a style. This image can be displayed on the map like any other icon in the style's
      * [sprite](https://docs.mapbox.com/help/glossary/sprite/) using the image's ID with
-     * [`icon-image`](https://docs.goong.io//style-spec/#layout-symbol-icon-image),
-     * [`background-pattern`](https://docs.goong.io//style-spec/#paint-background-background-pattern),
-     * [`fill-pattern`](https://docs.goong.io//style-spec/#paint-fill-fill-pattern),
-     * or [`line-pattern`](https://docs.goong.io//style-spec/#paint-line-line-pattern).
+     * [`icon-image`](https://docs.goong.io/style-spec/#layout-symbol-icon-image),
+     * [`background-pattern`](https://docs.goong.io/style-spec/#paint-background-background-pattern),
+     * [`fill-pattern`](https://docs.goong.io/style-spec/#paint-fill-fill-pattern),
+     * or [`line-pattern`](https://docs.goong.io/style-spec/#paint-line-line-pattern).
      *
      * @param id The ID of the image.
      * @param image The image as an `HTMLImageElement`, `ImageData`, `ImageBitmap` or object with `width`, `height`, and `data`
@@ -1594,14 +1594,14 @@ class Map extends Camera {
     }
 
     /**
-     * Adds a [Mapbox style layer](https://docs.goong.io//style-spec/#layers)
+     * Adds a [Mapbox style layer](https://docs.goong.io/style-spec/#layers)
      * to the map's style.
      *
      * A layer defines how data from a specified source will be styled. Read more about layer types
-     * and available paint and layout properties in the [Mapbox Style Specification](https://docs.goong.io//style-spec/#layers).
+     * and available paint and layout properties in the [Mapbox Style Specification](https://docs.goong.io/style-spec/#layers).
      *
      * @param {Object | CustomLayerInterface} layer The style layer to add, conforming to the Mapbox Style Specification's
-     *   [layer definition](https://docs.goong.io//style-spec/#layers).
+     *   [layer definition](https://docs.goong.io/style-spec/#layers).
      * @param {string} [beforeId] The ID of an existing layer to insert the new layer before.
      *   If this argument is omitted, the layer will be appended to the end of the layers array.
      *
@@ -1688,8 +1688,8 @@ class Map extends Camera {
 
     /**
      * Sets the zoom extent for the specified style layer. The zoom extent includes the
-     * [minimum zoom level](https://docs.goong.io//style-spec/#layer-minzoom)
-     * and [maximum zoom level](https://docs.goong.io//style-spec/#layer-maxzoom))
+     * [minimum zoom level](https://docs.goong.io/style-spec/#layer-minzoom)
+     * and [maximum zoom level](https://docs.goong.io/style-spec/#layer-maxzoom))
      * at which the layer will be rendered.
      *
      * Note: For style layers using vector sources, style layers cannot be rendered at zoom levels lower than the
@@ -1943,7 +1943,7 @@ class Map extends Camera {
             warnOnce('This page appears to be missing CSS declarations for ' +
                 'Goong GL JS, which may cause the map to display incorrectly. ' +
                 'Please ensure your page includes mapbox-gl.css, as described ' +
-                'in https://docs.goong.io//api/.');
+                'in https://docs.goong.io/api/.');
         }
     }
 
