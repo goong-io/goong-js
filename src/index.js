@@ -53,7 +53,7 @@ const exported = {
      * @var {string} accessToken
      * @example
      * goongjs.accessToken = myAccessToken;
-     * @see [Display a map](https://docs.goong.io/docs/example/simple-map/)
+     * @see [Display a map](https://docs.goong.io//example/simple-map/)
      */
     get accessToken(): ?string {
         return config.ACCESS_TOKEN;
@@ -144,7 +144,7 @@ Debug.extend(exported, {isSafari, getPerformanceMetrics: PerformanceUtils.getPer
  */
 
 /**
- * Test whether the browser [supports Goong GL JS](https://docs.goong.io/docs/example/check-for-support/).
+ * Test whether the browser [supports Goong GL JS](https://docs.goong.io//example/check-for-support/).
  *
  * @function supported
  * @param {Object} [options]
@@ -154,7 +154,7 @@ Debug.extend(exported, {isSafari, getPerformanceMetrics: PerformanceUtils.getPer
  * @return {boolean}
  * @example
  * goongjs.supported() // = true
- * @see [Check for browser support](https://docs.goong.io/docs/example/check-for-support/)
+ * @see [Check for browser support](https://docs.goong.io//example/check-for-support/)
  */
 
 /**

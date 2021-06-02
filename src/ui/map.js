@@ -167,7 +167,7 @@ const defaultOptions = {
  * @param {number} [options.minPitch=0] The minimum pitch of the map (0-60).
  * @param {number} [options.maxPitch=60] The maximum pitch of the map (0-60).
  * @param {Object|string} [options.style] The map's Goong style. This must be an a JSON object conforming to
- * the schema described in the [Goong Style Specification](https://docs.goong.io/docs/style-spec/), or a URL to
+ * the schema described in the [Goong Style Specification](https://docs.goong.io//style-spec/), or a URL to
  * such JSON.
  *
  * To load a style from the Goong API, you can use a Style URL provided below:
@@ -224,7 +224,7 @@ const defaultOptions = {
  *   font-family for locally overriding generation of glyphs in the 'CJK Unified Ideographs', 'Hiragana', 'Katakana' and 'Hangul Syllables' ranges.
  *   In these ranges, font settings from the map's style will be ignored, except for font-weight keywords (light/regular/medium/bold).
  *   Set to `false`, to enable font settings from the map's style for these glyph ranges.  Note that [Goong Style Editor](https://editor.goong.io/) sets this value to `false` by default.
- *   The purpose of this option is to avoid bandwidth-intensive glyph server requests. (See [Use locally generated ideographs](https://docs.goong.io/docs/example/local-ideographs/).)
+ *   The purpose of this option is to avoid bandwidth-intensive glyph server requests. (See [Use locally generated ideographs](https://docs.goong.io//example/local-ideographs/).)
  * @param {RequestTransformFunction} [options.transformRequest=null] A callback run before the Map makes a request for an external URL. The callback can be used to modify the url, set headers, or set the credentials property for cross-origin requests.
  *   Expected to return an object with a `url` property and optionally `headers` and `credentials` properties.
  * @param {boolean} [options.collectResourceTiming=false] If `true`, Resource Timing API information will be collected for requests made by GeoJSON and Vector Tile web workers (this information is normally inaccessible from the main Javascript thread). Information will be returned in a `resourceTiming` property of relevant `data` events.
@@ -249,7 +249,7 @@ const defaultOptions = {
  *     }
  *   }
  * });
- * @see [Display a map](https://docs.goong.io/docs/example/simple-map/)
+ * @see [Display a map](https://docs.goong.io//example/simple-map/)
  */
 class Map extends Camera {
     style: Style;
@@ -480,7 +480,7 @@ class Map extends Camera {
      * @example
      * // Add zoom and rotation controls to the map.
      * map.addControl(new goongjs.NavigationControl());
-     * @see [Display map navigation controls](https://docs.goong.io/docs/example/navigation/)
+     * @see [Display map navigation controls](https://docs.goong.io//example/navigation/)
      */
     addControl(control: IControl, position?: ControlPosition) {
         if (position === undefined && control.getDefaultPosition) {
@@ -762,7 +762,7 @@ class Map extends Camera {
      * @returns {boolean} renderWorldCopies
      * @example
      * var worldCopiesRendered = map.getRenderWorldCopies();
-     * @see [Render world copies](https://docs.goong.io/docs/example/render-world-copies/)
+     * @see [Render world copies](https://docs.goong.io//example/render-world-copies/)
      */
     getRenderWorldCopies() { return this.transform.renderWorldCopies; }
 
@@ -779,7 +779,7 @@ class Map extends Camera {
      * @returns {Map} `this`
      * @example
      * map.setRenderWorldCopies(true);
-     * @see [Render world copies](https://docs.goong.io/docs/example/render-world-copies/)
+     * @see [Render world copies](https://docs.goong.io//example/render-world-copies/)
      */
     setRenderWorldCopies(renderWorldCopies?: ?boolean) {
         this.transform.renderWorldCopies = renderWorldCopies;
@@ -1303,9 +1303,9 @@ class Map extends Camera {
      *     }
      *   }
      * });
-     * @see Vector source: [Show and hide layers](https://docs.goong.io/docs/example/toggle-layers/)
-     * @see GeoJSON source: [Add live realtime data](https://docs.goong.io/docs/example/live-geojson/)
-     * @see Raster DEM source: [Add hillshading](https://docs.goong.io/docs/example/hillshade/)
+     * @see Vector source: [Show and hide layers](https://docs.goong.io//example/toggle-layers/)
+     * @see GeoJSON source: [Add live realtime data](https://docs.goong.io//example/live-geojson/)
+     * @see Raster DEM source: [Add hillshading](https://docs.goong.io//example/hillshade/)
      */
     addSource(id: string, source: SourceSpecification) {
         this._lazyInitEmptyStyle();
@@ -1943,7 +1943,7 @@ class Map extends Camera {
             warnOnce('This page appears to be missing CSS declarations for ' +
                 'Goong GL JS, which may cause the map to display incorrectly. ' +
                 'Please ensure your page includes mapbox-gl.css, as described ' +
-                'in https://docs.goong.io/docs/api/.');
+                'in https://docs.goong.io//api/.');
         }
     }
 

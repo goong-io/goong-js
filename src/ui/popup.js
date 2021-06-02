@@ -123,10 +123,10 @@ export default class Popup extends Evented {
      *   .setLngLat([0, 0])
      *   .setHTML("<h1>Null Island</h1>")
      *   .addTo(map);
-     * @see [Display a popup](https://docs.goong.io/docs/example/popup/)
-     * @see [Display a popup on hover](https://docs.goong.io/docs/example/popup-on-hover/)
-     * @see [Display a popup on click](https://docs.goong.io/docs/example/popup-on-click/)
-     * @see [Show polygon information on click](https://docs.goong.io/docs/example/polygon-popup-on-click/)
+     * @see [Display a popup](https://docs.goong.io//example/popup/)
+     * @see [Display a popup on hover](https://docs.goong.io//example/popup-on-hover/)
+     * @see [Display a popup on click](https://docs.goong.io//example/popup-on-click/)
+     * @see [Show polygon information on click](https://docs.goong.io//example/polygon-popup-on-click/)
      */
     addTo(map: Map) {
         if (this._map) this.remove();
@@ -355,10 +355,10 @@ export default class Popup extends Evented {
      *   .setLngLat(e.lngLat)
      *   .setHTML("<h1>Hello World!</h1>")
      *   .addTo(map);
-     * @see [Display a popup](https://docs.goong.io/docs/example/popup/)
-     * @see [Display a popup on hover](https://docs.goong.io/docs/example/popup-on-hover/)
-     * @see [Display a popup on click](https://docs.goong.io/docs/example/popup-on-click/)
-     * @see [Attach a popup to a marker instance](https://docs.goong.io/docs/example/set-popup/)
+     * @see [Display a popup](https://docs.goong.io//example/popup/)
+     * @see [Display a popup on hover](https://docs.goong.io//example/popup-on-hover/)
+     * @see [Display a popup on click](https://docs.goong.io//example/popup-on-click/)
+     * @see [Attach a popup to a marker instance](https://docs.goong.io//example/set-popup/)
      */
     setHTML(html: string) {
         const frag = window.document.createDocumentFragment();
