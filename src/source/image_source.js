@@ -26,7 +26,7 @@ type Coordinates = [[number, number], [number, number], [number, number], [numbe
 
 /**
  * A data source containing an image.
- * (See the [Style Specification](https://www.mapbox.com/mapbox-gl-style-spec/#sources-image) for detailed documentation of options.)
+ * (See the [Style Specification](https://docs.goong.io/style-spec/sources/#image) for detailed documentation of options.)
  *
  * @example
  * // add to map
@@ -62,7 +62,7 @@ type Coordinates = [[number, number], [number, number], [number, number], [numbe
  * })
  *
  * map.removeSource('some id');  // remove
- * @see [Add an image](https://https://docs.goong.io/example/image-on-a-map/)
+ * @see [Add an image](https://docs.goong.io/example/image-on-a-map/)
  */
 class ImageSource extends Evented implements Source {
     type: string;

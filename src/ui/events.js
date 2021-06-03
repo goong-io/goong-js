@@ -234,13 +234,13 @@ export type MapBoxZoomEvent = {
  * `dataType`s are:
  *
  * - `'source'`: The non-tile data associated with any source
- * - `'style'`: The [style](https://www.mapbox.com/mapbox-gl-style-spec/) used by the map
+ * - `'style'`: The [style](https://docs.goong.io/style-spec/) used by the map
  *
  * @typedef {Object} MapDataEvent
  * @property {string} type The event type.
  * @property {string} dataType The type of data that has changed. One of `'source'`, `'style'`.
  * @property {boolean} [isSourceLoaded] True if the event has a `dataType` of `source` and the source has no outstanding network requests.
- * @property {Object} [source] The [style spec representation of the source](https://www.mapbox.com/mapbox-gl-style-spec/#sources) if the event has a `dataType` of `source`.
+ * @property {Object} [source] The [style spec representation of the source](https://docs.goong.io/style-spec/sources/) if the event has a `dataType` of `source`.
  * @property {string} [sourceDataType] Included if the event has a `dataType` of `source` and the event signals
  * that internal data has been received or changed. Possible values are `metadata` and `content`.
  * @property {Object} [tile] The tile being loaded or changed, if the event has a `dataType` of `source` and
@@ -266,8 +266,8 @@ export type MapEvent =
      * @memberof Map
      * @instance
      * @property {MapMouseEvent} data
-     * @see [Highlight features within a bounding box](https://https://docs.goong.io/example/using-box-queryrenderedfeatures/)
-     * @see [Create a draggable point](https://https://docs.goong.io/example/drag-a-point/)
+     * @see [Highlight features within a bounding box](https://docs.goong.io/example/using-box-queryrenderedfeatures/)
+     * @see [Create a draggable point](https://docs.goong.io/example/drag-a-point/)
      */
     | 'mousedown'
 
@@ -278,8 +278,8 @@ export type MapEvent =
      * @memberof Map
      * @instance
      * @property {MapMouseEvent} data
-     * @see [Highlight features within a bounding box](https://https://docs.goong.io/example/using-box-queryrenderedfeatures/)
-     * @see [Create a draggable point](https://https://docs.goong.io/example/drag-a-point/)
+     * @see [Highlight features within a bounding box](https://docs.goong.io/example/using-box-queryrenderedfeatures/)
+     * @see [Create a draggable point](https://docs.goong.io/example/drag-a-point/)
      */
     | 'mouseup'
 
@@ -290,9 +290,9 @@ export type MapEvent =
      * @memberof Map
      * @instance
      * @property {MapMouseEvent} data
-     * @see [Get coordinates of the mouse pointer](https://https://docs.goong.io/example/mouse-position/)
-     * @see [Highlight features under the mouse pointer](https://https://docs.goong.io/example/hover-styles/)
-     * @see [Display a popup on hover](https://https://docs.goong.io/example/popup-on-hover/)
+     * @see [Get coordinates of the mouse pointer](https://docs.goong.io/example/mouse-position/)
+     * @see [Highlight features under the mouse pointer](https://docs.goong.io/example/hover-styles/)
+     * @see [Display a popup on hover](https://docs.goong.io/example/popup-on-hover/)
      */
     | 'mouseover'
 
@@ -303,9 +303,9 @@ export type MapEvent =
      * @memberof Map
      * @instance
      * @property {MapMouseEvent} data
-     * @see [Get coordinates of the mouse pointer](https://https://docs.goong.io/example/mouse-position/)
-     * @see [Highlight features under the mouse pointer](https://https://docs.goong.io/example/hover-styles/)
-     * @see [Display a popup on over](https://https://docs.goong.io/example/popup-on-hover/)
+     * @see [Get coordinates of the mouse pointer](https://docs.goong.io/example/mouse-position/)
+     * @see [Highlight features under the mouse pointer](https://docs.goong.io/example/hover-styles/)
+     * @see [Display a popup on over](https://docs.goong.io/example/popup-on-hover/)
      */
     | 'mousemove'
 
@@ -316,8 +316,8 @@ export type MapEvent =
      * @memberof Map
      * @instance
      * @property {MapMouseEvent} data
-     * @see [Measure distances](https://https://docs.goong.io/example/measure/)
-     * @see [Center the map on a clicked symbol](https://https://docs.goong.io/example/center-on-symbol/)
+     * @see [Measure distances](https://docs.goong.io/example/measure/)
+     * @see [Center the map on a clicked symbol](https://docs.goong.io/example/center-on-symbol/)
      */
     | 'click'
 
@@ -352,7 +352,7 @@ export type MapEvent =
      * @memberof Map
      * @instance
      * @property {MapMouseEvent} data
-     * @see [Highlight features under the mouse pointer](https://https://docs.goong.io/example/hover-styles/)
+     * @see [Highlight features under the mouse pointer](https://docs.goong.io/example/hover-styles/)
      */
     | 'mouseleave'
 
@@ -456,8 +456,8 @@ export type MapEvent =
      * @memberof Map
      * @instance
      * @property {{originalEvent: DragEvent}} data
-     * @see [Play map locations as a slideshow](https://https://docs.goong.io/example/playback-locations/)
-     * @see [Filter features within map view](https://https://docs.goong.io/example/filter-features-within-map-view/)
+     * @see [Play map locations as a slideshow](https://docs.goong.io/example/playback-locations/)
+     * @see [Filter features within map view](https://docs.goong.io/example/filter-features-within-map-view/)
      */
     | 'moveend'
 
@@ -510,7 +510,7 @@ export type MapEvent =
      * @memberof Map
      * @instance
      * @property {MapMouseEvent | MapTouchEvent} data
-     * @see [Update a choropleth layer by zoom level](https://https://docs.goong.io/example/updating-choropleth/)
+     * @see [Update a choropleth layer by zoom level](https://docs.goong.io/example/updating-choropleth/)
      */
     | 'zoom'
 
@@ -655,9 +655,9 @@ export type MapEvent =
      * @memberof Map
      * @instance
      * @type {Object}
-     * @see [Draw GeoJSON points](https://https://docs.goong.io/example/geojson-markers/)
-     * @see [Add live realtime data](https://https://docs.goong.io/example/live-geojson/)
-     * @see [Animate a point](https://https://docs.goong.io/example/animate-point-along-line/)
+     * @see [Draw GeoJSON points](https://docs.goong.io/example/geojson-markers/)
+     * @see [Add live realtime data](https://docs.goong.io/example/live-geojson/)
+     * @see [Animate a point](https://docs.goong.io/example/animate-point-along-line/)
      */
     | 'load'
 
@@ -790,7 +790,7 @@ export type MapEvent =
      * @instance
      * @property {string} id The id of the missing image.
      *
-     * @see [Generate and add a missing icon to the map](https://mapbox.com/mapbox-gl-js/example/add-image-missing-generated/)
+     * @see [Generate and add a missing icon to the map](https://docs.goong.io/example/add-image-missing-generated/)
      */
     | 'styleimagemissing'
 

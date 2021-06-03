@@ -43,8 +43,8 @@ type Options = {
  * var marker = new goongjs.Marker()
  *   .setLngLat([30.5, 50.5])
  *   .addTo(map);
- * @see [Add custom icons with Markers](https://https://docs.goong.io/example/custom-marker-icons/)
- * @see [Create a draggable Marker](https://https://docs.goong.io/example/drag-a-marker/)
+ * @see [Add custom icons with Markers](https://docs.goong.io/example/custom-marker-icons/)
+ * @see [Create a draggable Marker](https://docs.goong.io/example/drag-a-marker/)
  */
 export default class Marker extends Evented {
     _map: Map;

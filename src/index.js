@@ -158,7 +158,7 @@ Debug.extend(exported, {isSafari, getPerformanceMetrics: PerformanceUtils.getPer
  */
 
 /**
- * Sets the map's [RTL text plugin](https://www.mapbox.com/mapbox-gl-js/plugins/#mapbox-gl-rtl-text).
+ * Sets the map's [RTL text plugin](https://docs.goong.io/plugins/#mapbox-gl-rtl-text).
  * Necessary for supporting the Arabic and Hebrew languages, which are written right-to-left. Mapbox Studio loads this plugin by default.
  *
  * @function setRTLTextPlugin
@@ -168,11 +168,11 @@ Debug.extend(exported, {isSafari, getPerformanceMetrics: PerformanceUtils.getPer
  *    rtl text will then be rendered only after the plugin finishes loading.
  * @example
  * goongjs.setRTLTextPlugin('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.0/mapbox-gl-rtl-text.js');
- * @see [Add support for right-to-left scripts](https://https://docs.goong.io/example/mapbox-gl-rtl-text/)
+ * @see [Add support for right-to-left scripts](https://docs.goong.io/example/mapbox-gl-rtl-text/)
  */
 
 /**
-  * Gets the map's [RTL text plugin](https://www.mapbox.com/mapbox-gl-js/plugins/#mapbox-gl-rtl-text) status.
+  * Gets the map's [RTL text plugin](https://docs.goong.io/plugins/#mapbox-gl-rtl-text) status.
   * The status can be `unavailable` (i.e. not requested or removed), `loading`, `loaded` or `error`.
   * If the status is `loaded` and the plugin is requested again, an error will be thrown.
   *

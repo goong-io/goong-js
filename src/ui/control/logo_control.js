@@ -7,8 +7,8 @@ import {bindAll} from '../../util/util';
 import type Map from '../map';
 
 /**
- * A `LogoControl` is a control that adds the Mapbox watermark
- * to the map as required by the [terms of service](https://www.mapbox.com/tos/) for Mapbox
+ * A `LogoControl` is a control that adds the Goong watermark
+ * to the map as required by the [terms of service](https://goong.io/terms) for Goong
  * vector tiles and core styles.
  *
  * @implements {IControl}

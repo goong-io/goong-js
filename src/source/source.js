@@ -108,7 +108,7 @@ const sourceTypes = {
  *
  * @param id
  * @param {Object} source A source definition object compliant with
- * [`mapbox-gl-style-spec`](https://www.mapbox.com/mapbox-gl-style-spec/#sources) or, for a third-party source type,
+ * [Style spec](https://docs.goong.io/style-spec/sources/) or, for a third-party source type,
   * with that type's requirements.
  * @param {Dispatcher} dispatcher
  * @returns {Source}
