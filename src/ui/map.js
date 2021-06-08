@@ -1942,8 +1942,8 @@ class Map extends Camera {
         if (computedColor !== 'rgb(250, 128, 114)') {
             warnOnce('This page appears to be missing CSS declarations for ' +
                 'Goong GL JS, which may cause the map to display incorrectly. ' +
-                'Please ensure your page includes mapbox-gl.css, as described ' +
-                'in https://docs.goong.io/api/.');
+                'Please ensure your page includes goong-js.css, as described ' +
+                'in https://docs.goong.io/javascript/.');
         }
     }
 
