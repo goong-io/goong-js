@@ -1655,8 +1655,7 @@
       "type": "array",
       "value": "string",
       "default": [
-        "Open Sans Regular",
-        "Arial Unicode MS Regular"
+        "Roboto Regular"
       ],
       "doc": "Font stack to use for displaying text.",
       "requires": [
