@@ -10,7 +10,7 @@ type Config = {|
 |};
 
 const config: Config = {
-    API_URL: 'https://rsapi.goong.io',
+    API_URL: 'https://tiles.goong.io',
     get EVENTS_URL() {
         return 'https://rsapi.goong.io';
     },

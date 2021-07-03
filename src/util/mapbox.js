@@ -9,7 +9,7 @@
 * Under the Mapbox Terms of Service, you may not use this code to access Mapbox
 * Mapping APIs other than through Mapbox SDKs.
 *
-* The Mapping APIs documentation is available at https://docs.goong.io
+* The Mapping APIs documentation is available at https://docs.mapbox.com/api/maps/#maps
 * and the Mapbox Terms of Service are available at https://www.mapbox.com/tos/
 ******************************************************************************/
 
@@ -69,8 +69,7 @@ export class RequestManager {
 
     normalizeStyleURL(url: string, accessToken?: string): string {
         if (!isGoongURL(url)) {
-            accessToken = this._customAccessToken || accessToken || config.ACCESS_TOKEN;
-            return `${url}?api_key=${accessToken}`;
+            return url;
         }
         const urlObject = parseUrl(url);
         // urlObject.path = `/styles/v1${urlObject.path}`;
@@ -82,7 +81,7 @@ export class RequestManager {
             return url;
         }
         const urlObject = parseUrl(url);
-        urlObject.path = `/fonts/v1${urlObject.path}`;
+        // urlObject.path = `/fonts/v1${urlObject.path}`;
         return this._makeAPIURL(urlObject, this._customAccessToken || accessToken);
     }
 
@@ -91,10 +90,10 @@ export class RequestManager {
             return url;
         }
         const urlObject = parseUrl(url);
-        urlObject.path = `/v4/${urlObject.authority}.json`;
+        // urlObject.path = `/v4/${urlObject.authority}.json`;
         // TileJSON requests need a secure flag appended to their URLs so
         // that the server knows to send SSL-ified resource references.
-        urlObject.params.push('secure');
+        // urlObject.params.push('secure');
         return this._makeAPIURL(urlObject, this._customAccessToken || accessToken);
     }
 
@@ -102,11 +101,9 @@ export class RequestManager {
         const urlObject = parseUrl(url);
         if (!isGoongURL(url)) {
             urlObject.path += `${format}${extension}`;
-            // accessToken = this._customAccessToken || accessToken || config.ACCESS_TOKEN;
-            // return `${url}?api_key=${accessToken}`;
             return formatUrl(urlObject);
         }
-        urlObject.path = `/styles/v1${urlObject.path}/sprite${format}${extension}`;
+        urlObject.path = `${urlObject.path}${format}${extension}`;
         return this._makeAPIURL(urlObject, this._customAccessToken || accessToken);
     }
 
@@ -128,8 +125,7 @@ export class RequestManager {
         const extension = webpSupported.supported ? '.webp' : '$1';
         urlObject.path = urlObject.path.replace(imageExtensionRe, `${suffix}${extension}`);
         urlObject.path = urlObject.path.replace(tileURLAPIPrefixRe, '/');
-        urlObject.path = `/v4${urlObject.path}`;
-
+        // urlObject.path = `/v4${urlObject.path}`;
         if (config.REQUIRE_ACCESS_TOKEN && (config.ACCESS_TOKEN || this._customAccessToken) && this._skuToken) {
             urlObject.params.push(`sku=${this._skuToken}`);
         }
@@ -194,7 +190,7 @@ export class RequestManager {
 }
 
 function isGoongURL(url: string) {
-    return false;//return url.indexOf('goong.io') >= 0;
+    return url.indexOf('https://tiles.goong.io') === 0;
 }
 
 const goongHTTPURLRe = /^((https?:)?\/\/)?([^\/]+\.)?goong\.io(\/|\?|$)/i;
