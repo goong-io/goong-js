@@ -1,10 +1,18 @@
 {
   "name": "@goongmaps/goong-js",
   "description": "A WebGL interactive maps library",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "main": "dist/goong-js.js",
   "style": "dist/goong-js.css",
   "license": "SEE LICENSE IN LICENSE.txt",
+  "keywords": [
+    "goong",
+    "goong-io",
+    "goong-js",
+    "webgl",
+    "vector-tiles",
+    "maps"
+  ],
   "repository": {
     "type": "git",
     "url": "git@github.com/goong-io/goong-js.git"
