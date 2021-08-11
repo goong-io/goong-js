@@ -14,7 +14,7 @@ const config: Config = {
     get EVENTS_URL() {
         return 'https://rsapi.goong.io';
     },
-    FEEDBACK_URL: 'https://account.goong.io',
+    FEEDBACK_URL: 'https://goong.io',
     REQUIRE_ACCESS_TOKEN: true,
     ACCESS_TOKEN: null,
     MAX_PARALLEL_IMAGE_REQUESTS: 16
