@@ -172,6 +172,7 @@ const defaultOptions = {
  *
  * To load a style from the Goong API, you can use a Style URL provided below:
  *
+ *  * `https://tiles.goong.io/assets/goong_light_v2.json`
  *  * `https://tiles.goong.io/assets/goong_map_web.json`
  *  * `https://tiles.goong.io/assets/goong_map_dark.json`
  *  * `https://tiles.goong.io/assets/navigation_day.json`
